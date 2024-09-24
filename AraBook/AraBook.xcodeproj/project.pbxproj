@@ -13,6 +13,19 @@
 		A48AC3822CA28F6B00212432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3812CA28F6B00212432 /* Assets.xcassets */; };
 		A48AC3852CA28F6B00212432 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3842CA28F6B00212432 /* Base */; };
 		A48AC3932CA2921200212432 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3922CA2921200212432 /* Config.swift */; };
+		A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3952CA292BB00212432 /* CustomNavigationBar.swift */; };
+		A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3992CA292D100212432 /* TabBarItem.swift */; };
+		A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC39B2CA292DA00212432 /* TabBarController.swift */; };
+		A48AC39E2CA2964500212432 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A48AC39D2CA2964500212432 /* Colors.xcassets */; };
+		A48AC3A12CA2982A00212432 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3A02CA2982A00212432 /* Then */; };
+		A48AC3A42CA2983700212432 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3A32CA2983700212432 /* SnapKit */; };
+		A48AC3A72CA2993C00212432 /* SizeLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3A62CA2993C00212432 /* SizeLiterals.swift */; };
+		A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3A82CA2994300212432 /* FontLiterals.swift */; };
+		A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3B42CA29AA600212432 /* UIView+.swift */; };
+		A48AC3BA2CA29EA400212432 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B62CA29EA400212432 /* Pretendard-Regular.otf */; };
+		A48AC3BB2CA29EA400212432 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B72CA29EA400212432 /* Pretendard-SemiBold.otf */; };
+		A48AC3BC2CA29EA400212432 /* PyeongChang-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B82CA29EA400212432 /* PyeongChang-Bold.otf */; };
+		A48AC3BD2CA29EA400212432 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B92CA29EA400212432 /* Pretendard-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +37,17 @@
 		A48AC3842CA28F6B00212432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A48AC3862CA28F6B00212432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A48AC3922CA2921200212432 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A48AC3952CA292BB00212432 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		A48AC3992CA292D100212432 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		A48AC39B2CA292DA00212432 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A48AC39D2CA2964500212432 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A48AC3A62CA2993C00212432 /* SizeLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiterals.swift; sourceTree = "<group>"; };
+		A48AC3A82CA2994300212432 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
+		A48AC3B42CA29AA600212432 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		A48AC3B62CA29EA400212432 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		A48AC3B72CA29EA400212432 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		A48AC3B82CA29EA400212432 /* PyeongChang-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PyeongChang-Bold.otf"; sourceTree = "<group>"; };
+		A48AC3B92CA29EA400212432 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48AC3A12CA2982A00212432 /* Then in Frameworks */,
+				A48AC3A42CA2983700212432 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +94,7 @@
 		A48AC38C2CA291BD00212432 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A48AC3942CA292AA00212432 /* Common */,
 				A48AC37C2CA28F6A00212432 /* ViewController.swift */,
 			);
 			path = Presentation;
@@ -84,8 +111,10 @@
 		A48AC38E2CA291CF00212432 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				A48AC3832CA28F6B00212432 /* LaunchScreen.storyboard */,
+				A48AC3B32CA29A9900212432 /* Extension */,
+				A48AC3A52CA2993400212432 /* Literals */,
 				A48AC3902CA291EB00212432 /* Resource */,
+				A48AC3832CA28F6B00212432 /* LaunchScreen.storyboard */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -102,7 +131,9 @@
 		A48AC3902CA291EB00212432 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A48AC3AA2CA2998C00212432 /* Font */,
 				A48AC3812CA28F6B00212432 /* Assets.xcassets */,
+				A48AC39D2CA2964500212432 /* Colors.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -113,6 +144,60 @@
 				A48AC3922CA2921200212432 /* Config.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		A48AC3942CA292AA00212432 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3982CA292C200212432 /* NaviBar */,
+				A48AC3972CA292BE00212432 /* TabBar */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A48AC3972CA292BE00212432 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3992CA292D100212432 /* TabBarItem.swift */,
+				A48AC39B2CA292DA00212432 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A48AC3982CA292C200212432 /* NaviBar */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3952CA292BB00212432 /* CustomNavigationBar.swift */,
+			);
+			path = NaviBar;
+			sourceTree = "<group>";
+		};
+		A48AC3A52CA2993400212432 /* Literals */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3A62CA2993C00212432 /* SizeLiterals.swift */,
+				A48AC3A82CA2994300212432 /* FontLiterals.swift */,
+			);
+			path = Literals;
+			sourceTree = "<group>";
+		};
+		A48AC3AA2CA2998C00212432 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3B92CA29EA400212432 /* Pretendard-Bold.otf */,
+				A48AC3B62CA29EA400212432 /* Pretendard-Regular.otf */,
+				A48AC3B72CA29EA400212432 /* Pretendard-SemiBold.otf */,
+				A48AC3B82CA29EA400212432 /* PyeongChang-Bold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		A48AC3B32CA29A9900212432 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3B42CA29AA600212432 /* UIView+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +216,10 @@
 			dependencies = (
 			);
 			name = AraBook;
+			packageProductDependencies = (
+				A48AC3A02CA2982A00212432 /* Then */,
+				A48AC3A32CA2983700212432 /* SnapKit */,
+			);
 			productName = AraBook;
 			productReference = A48AC3752CA28F6A00212432 /* AraBook.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +248,10 @@
 				Base,
 			);
 			mainGroup = A48AC36C2CA28F6A00212432;
+			packageReferences = (
+				A48AC39F2CA2982A00212432 /* XCRemoteSwiftPackageReference "Then" */,
+				A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A48AC3762CA28F6A00212432 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,7 +266,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48AC39E2CA2964500212432 /* Colors.xcassets in Resources */,
+				A48AC3BA2CA29EA400212432 /* Pretendard-Regular.otf in Resources */,
+				A48AC3BD2CA29EA400212432 /* Pretendard-Bold.otf in Resources */,
+				A48AC3BB2CA29EA400212432 /* Pretendard-SemiBold.otf in Resources */,
 				A48AC3822CA28F6B00212432 /* Assets.xcassets in Resources */,
+				A48AC3BC2CA29EA400212432 /* PyeongChang-Bold.otf in Resources */,
 				A48AC3852CA28F6B00212432 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,10 +283,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48AC3A72CA2993C00212432 /* SizeLiterals.swift in Sources */,
+				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
+				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
+				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
+				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
+				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +509,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A48AC39F2CA2982A00212432 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A48AC3A02CA2982A00212432 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48AC39F2CA2982A00212432 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		A48AC3A32CA2983700212432 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A48AC36D2CA28F6A00212432 /* Project object */;
 }
