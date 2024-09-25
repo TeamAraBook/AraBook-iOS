@@ -11,8 +11,21 @@ import SnapKit
 
 final class HomeViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private let todayBookDummy = TodayBookModel.dummy()
     private let bestSellerDummy = BestSellerModel.dummy()
+    
+    // MARK: - UI Components
+    
+    private let scrollView = {
+        let scrollview = UIScrollView()
+        scrollview.showsVerticalScrollIndicator = false
+        scrollview.contentInsetAdjustmentBehavior = .never
+        return scrollview
+    }()
+    
+    private let contentView = UIView()
     
     private let todayBookView = HomeTodayBookView()
     
@@ -24,7 +37,7 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    private lazy var collectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 109, height: 231)
         layout.minimumInteritemSpacing = 8
@@ -38,6 +51,7 @@ final class HomeViewController: UIViewController {
             forCellWithReuseIdentifier: BookCollectionViewCell.className
         )
         cv.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 20, right: 16)
+        cv.isScrollEnabled = false
         cv.dataSource = self
         return cv
     }()
@@ -62,12 +76,24 @@ extension HomeViewController {
     }
     
     func setHierarchy() {
-        view.addSubviews(todayBookView,
-                         bestSellerTitle,
-                         collectionView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews(todayBookView,
+                                bestSellerTitle,
+                                collectionView)
     }
     
     func setLayout() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView.snp.width)
+            $0.height.equalTo(scrollView.snp.height).priority(.low)
+        }
+        
         todayBookView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(390)
@@ -81,6 +107,7 @@ extension HomeViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(bestSellerTitle.snp.bottom).offset(16)
             $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(1600)
         }
     }
 }

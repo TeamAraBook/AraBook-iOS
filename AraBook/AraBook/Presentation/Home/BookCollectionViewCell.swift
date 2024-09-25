@@ -36,6 +36,7 @@ private extension BookCollectionViewCell {
         
         bookImage.do {
             $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds = true
             $0.backgroundColor = .clear
             $0.layer.cornerRadius = 6
         }
