@@ -26,6 +26,11 @@
 		A48AC3BB2CA29EA400212432 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B72CA29EA400212432 /* Pretendard-SemiBold.otf */; };
 		A48AC3BC2CA29EA400212432 /* PyeongChang-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B82CA29EA400212432 /* PyeongChang-Bold.otf */; };
 		A48AC3BD2CA29EA400212432 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3B92CA29EA400212432 /* Pretendard-Bold.otf */; };
+		A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3BF2CA41D6C00212432 /* HomeViewController.swift */; };
+		A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */; };
+		A48AC3C62CA427BA00212432 /* PyeongChang-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3C52CA427BA00212432 /* PyeongChang-Regular.otf */; };
+		A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3C72CA4284800212432 /* UIStackView+.swift */; };
+		A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3C92CA4299800212432 /* TodayBookModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +53,11 @@
 		A48AC3B72CA29EA400212432 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		A48AC3B82CA29EA400212432 /* PyeongChang-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PyeongChang-Bold.otf"; sourceTree = "<group>"; };
 		A48AC3B92CA29EA400212432 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		A48AC3BF2CA41D6C00212432 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTodayBookView.swift; sourceTree = "<group>"; };
+		A48AC3C52CA427BA00212432 /* PyeongChang-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PyeongChang-Regular.otf"; sourceTree = "<group>"; };
+		A48AC3C72CA4284800212432 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		A48AC3C92CA4299800212432 /* TodayBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBookModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,7 @@
 		A48AC38C2CA291BD00212432 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A48AC3BE2CA41D6100212432 /* Home */,
 				A48AC3942CA292AA00212432 /* Common */,
 				A48AC37C2CA28F6A00212432 /* ViewController.swift */,
 			);
@@ -184,6 +195,7 @@
 		A48AC3AA2CA2998C00212432 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				A48AC3C52CA427BA00212432 /* PyeongChang-Regular.otf */,
 				A48AC3B92CA29EA400212432 /* Pretendard-Bold.otf */,
 				A48AC3B62CA29EA400212432 /* Pretendard-Regular.otf */,
 				A48AC3B72CA29EA400212432 /* Pretendard-SemiBold.otf */,
@@ -196,8 +208,19 @@
 			isa = PBXGroup;
 			children = (
 				A48AC3B42CA29AA600212432 /* UIView+.swift */,
+				A48AC3C72CA4284800212432 /* UIStackView+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A48AC3BE2CA41D6100212432 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3C92CA4299800212432 /* TodayBookModel.swift */,
+				A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */,
+				A48AC3BF2CA41D6C00212432 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48AC3C62CA427BA00212432 /* PyeongChang-Regular.otf in Resources */,
 				A48AC39E2CA2964500212432 /* Colors.xcassets in Resources */,
 				A48AC3BA2CA29EA400212432 /* Pretendard-Regular.otf in Resources */,
 				A48AC3BD2CA29EA400212432 /* Pretendard-Bold.otf in Resources */,
@@ -289,9 +313,13 @@
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
+				A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
+				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
+				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
+				A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

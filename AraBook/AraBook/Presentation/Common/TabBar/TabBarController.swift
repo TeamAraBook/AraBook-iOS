@@ -35,7 +35,7 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     
     func setTabBarItems() {
-        let homeVC = UINavigationController(rootViewController: ViewController())
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         let recordVC = UINavigationController(rootViewController: ViewController())
         let mypageVC = UINavigationController(rootViewController: ViewController())
         
