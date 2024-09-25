@@ -35,13 +35,13 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     
     func setTabBarItems() {
-        let homeVC = UINavigationController(rootViewController: HomeViewController())
         let recordVC = UINavigationController(rootViewController: ViewController())
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         let mypageVC = UINavigationController(rootViewController: ViewController())
         
         tabs = [
-            homeVC,
             recordVC,
+            homeVC,
             mypageVC
         ]
         
@@ -51,8 +51,8 @@ private extension TabBarController {
             tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
         }
         
-        let tabBarItemTitles: [String] = ["홈",
-                                          "내 기록",
+        let tabBarItemTitles: [String] = ["내 기록",
+                                          "홈",
                                           "MY"]
         
         for (index, tabTitle) in tabBarItemTitles.enumerated() {
