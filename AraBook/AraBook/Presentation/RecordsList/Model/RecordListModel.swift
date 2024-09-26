@@ -12,6 +12,7 @@ struct RecordListModel {
     let title: String
     let totalReadDate: String
     let readDate: String
+    let backgroundColor: String
 }
 
 extension RecordListModel {
@@ -21,17 +22,20 @@ extension RecordListModel {
             RecordListModel(id: 0,
                                    title: "퀸의 대각선",
                                    totalReadDate : "총 7일 동안 읽었어요!",
-                                   readDate: "23. 11. 25 ~ 24. 09. 20"
+                                   readDate: "23. 11. 25 ~ 24. 09. 20",
+                            backgroundColor: "yellow"
             ),
             RecordListModel(id: 2,
                                    title: "퀸의 대각선",
                                    totalReadDate : "총 7일 동안 읽었어요!",
-                                   readDate: "23. 11. 25 ~ 24. 09. 20"
+                                   readDate: "23. 11. 25 ~ 24. 09. 20",
+                            backgroundColor: "green"
             ),
             RecordListModel(id: 3,
                                    title: "퀸의 대각선",
                                    totalReadDate : "총 7일 동안 읽었어요!",
-                                   readDate: "23. 11. 25 ~ 24. 09. 20"
+                                   readDate: "23. 11. 25 ~ 24. 09. 20",
+                            backgroundColor: "orange"
             )
         ]
     }

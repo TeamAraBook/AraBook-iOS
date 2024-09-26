@@ -122,5 +122,13 @@ extension RecordListCell {
         titleLabel.text = model.title
         totalReadDate.text = model.totalReadDate
         readingDate.text = model.readDate
+        
+        switch model.backgroundColor {
+        case "yellow": backgroundColor = .chYellow
+        case "green": backgroundColor = .chGreen
+        case "orange": backgroundColor = .chOrange
+        default:
+            backgroundColor = .white
+        }
     }
 }
