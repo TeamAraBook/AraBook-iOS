@@ -14,7 +14,6 @@ final class TabBarController: UITabBarController {
     // MARK: - Properties
     
     private let tabBarHeight: CGFloat = 84
-    private var tabs: [UIViewController] = []
     
     // MARK: - View Life Cycle
     
@@ -39,7 +38,7 @@ private extension TabBarController {
         let recordVC = UINavigationController(rootViewController: ViewController())
         let mypageVC = UINavigationController(rootViewController: ViewController())
         
-        tabs = [
+        let tabs = [
             homeVC,
             recordVC,
             mypageVC
