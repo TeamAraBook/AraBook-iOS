@@ -34,6 +34,10 @@
 		A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */; };
 		A48AC3CE2CA42EC800212432 /* BestSellerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3CD2CA42EC800212432 /* BestSellerModel.swift */; };
 		A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3CF2CA431A400212432 /* NSObject+.swift */; };
+		A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */; };
+		A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3D42CA5B83200212432 /* RxCocoa */; };
+		A48AC3D72CA5B83200212432 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3D62CA5B83200212432 /* RxSwift */; };
+		A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3D92CA5B85A00212432 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,8 @@
 		A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		A48AC3CD2CA42EC800212432 /* BestSellerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerModel.swift; sourceTree = "<group>"; };
 		A48AC3CF2CA431A400212432 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A48AC3D92CA5B85A00212432 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +77,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */,
 				A48AC3A12CA2982A00212432 /* Then in Frameworks */,
+				A48AC3D72CA5B83200212432 /* RxSwift in Frameworks */,
 				A48AC3A42CA2983700212432 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +136,7 @@
 		A48AC38E2CA291CF00212432 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				A48AC3D82CA5B85200212432 /* Protocols */,
 				A48AC3B32CA29A9900212432 /* Extension */,
 				A48AC3A52CA2993400212432 /* Literals */,
 				A48AC3902CA291EB00212432 /* Resource */,
@@ -227,9 +236,18 @@
 				A48AC3CD2CA42EC800212432 /* BestSellerModel.swift */,
 				A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */,
 				A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */,
+				A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */,
 				A48AC3BF2CA41D6C00212432 /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		A48AC3D82CA5B85200212432 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3D92CA5B85A00212432 /* ViewModel.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +269,8 @@
 			packageProductDependencies = (
 				A48AC3A02CA2982A00212432 /* Then */,
 				A48AC3A32CA2983700212432 /* SnapKit */,
+				A48AC3D42CA5B83200212432 /* RxCocoa */,
+				A48AC3D62CA5B83200212432 /* RxSwift */,
 			);
 			productName = AraBook;
 			productReference = A48AC3752CA28F6A00212432 /* AraBook.app */;
@@ -283,6 +303,7 @@
 			packageReferences = (
 				A48AC39F2CA2982A00212432 /* XCRemoteSwiftPackageReference "Then" */,
 				A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = A48AC3762CA28F6A00212432 /* Products */;
 			projectDirPath = "";
@@ -317,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A48AC3A72CA2993C00212432 /* SizeLiterals.swift in Sources */,
+				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
@@ -326,6 +348,7 @@
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
 				A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
+				A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
@@ -575,6 +598,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -587,6 +618,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		A48AC3D42CA5B83200212432 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		A48AC3D62CA5B83200212432 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
