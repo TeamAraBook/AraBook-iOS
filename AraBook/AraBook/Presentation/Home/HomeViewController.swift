@@ -8,13 +8,16 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let todayBookDummy = TodayBookModel.dummy()
-    private let bestSellerDummy = BestSellerModel.dummy()
+    private let homeVM = HomeViewModel()
+    private let viewWillAppear = PublishRelay<Void>()
+    private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
     
@@ -52,16 +55,22 @@ final class HomeViewController: UIViewController {
         )
         cv.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 20, right: 16)
         cv.isScrollEnabled = false
-        cv.dataSource = self
         return cv
     }()
     
     // MARK: - LifeCycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.viewWillAppear.accept(())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
+        bindViewModel()
         setHierarchy()
         setLayout()
     }
@@ -72,7 +81,29 @@ extension HomeViewController {
     func setUI() {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
-        todayBookView.bindTodayBook(model: todayBookDummy)
+    }
+    
+    func bindViewModel() {
+        let input = HomeViewModel.Input(
+            viewWillAppear: viewWillAppear
+        )
+        
+        let output = homeVM.transform(input: input)
+        
+        output.todayBookData
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                todayBookView.bindTodayBook(model: data)
+            })
+            .disposed(by: disposeBag)
+        
+        output.bestSellerData
+            .bind(to: collectionView.rx
+                .items(cellIdentifier: BookCollectionViewCell.className,
+                       cellType: BookCollectionViewCell.self)) { (_, dto, cell) in
+                cell.bindBestSeller(model: dto)
+            }
+            .disposed(by: disposeBag)
     }
     
     func setHierarchy() {
@@ -109,21 +140,5 @@ extension HomeViewController {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(1600)
         }
-    }
-}
-
-extension HomeViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        return bestSellerDummy.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, 
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.className, for: indexPath) as? BookCollectionViewCell
-        else { return UICollectionViewCell() }
-        cell.bindBestSeller(model: bestSellerDummy[indexPath.item])
-        return cell
     }
 }
