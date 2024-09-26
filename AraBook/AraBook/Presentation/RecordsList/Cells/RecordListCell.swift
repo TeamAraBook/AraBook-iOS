@@ -45,6 +45,7 @@ extension RecordListCell {
         
         bookImage.do {
             $0.makeShadow(radius: 8, offset: CGSize(width: 0, height: 2), opacity: 0.5)
+            $0.makeCornerRound(radius: 8)
         }
         
         titleLabel.do {
