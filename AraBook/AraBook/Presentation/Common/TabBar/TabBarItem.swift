@@ -8,8 +8,8 @@
 import UIKit
 
 enum TabBarItemType: Int, CaseIterable {
-    case home
     case record
+    case home
     case myPage
 }
 
