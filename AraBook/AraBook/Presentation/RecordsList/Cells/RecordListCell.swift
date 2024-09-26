@@ -16,7 +16,7 @@ final class RecordListCell: UICollectionViewCell {
     
     private let bookImage = UIImageView(image: .imgBook)
     private let titleLabel = UILabel()
-    private let recordIcon = UIImageView(image: .icMypageSelected)
+    private let recordIcon = UIImageView(image: .icRecordList)
     private let underLine = UIView()
     private let totalReadDate = UILabel()
     private let readingDate = UILabel()
