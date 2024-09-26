@@ -13,6 +13,7 @@ enum FontType: String {
     case PretandardSemiBold = "Pretendard-SemiBold"
     
     case PyeongChangBold = "PyeongChang-Bold"
+    case PyeongChangRegular = "PyeongChang-Regular"
 }
 
 extension UIFont {

@@ -14,6 +14,7 @@ final class TabBarController: UITabBarController {
     // MARK: - Properties
     
     private let tabBarHeight: CGFloat = 84
+    private var tabItems: [UIViewController] = []
     
     // MARK: - View Life Cycle
     
@@ -34,35 +35,35 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     
     func setTabBarItems() {
-        let homeVC = UINavigationController(rootViewController: ViewController())
         let recordVC = UINavigationController(rootViewController: ViewController())
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         let mypageVC = UINavigationController(rootViewController: ViewController())
         
-        let tabs = [
-            homeVC,
+        tabItems = [
             recordVC,
+            homeVC,
             mypageVC
         ]
         
         TabBarItemType.allCases.forEach {
             let tabBarItem = $0.setTabBarItem()
-            tabs[$0.rawValue].tabBarItem = tabBarItem
-            tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
+            tabItems[$0.rawValue].tabBarItem = tabBarItem
+            tabItems[$0.rawValue].tabBarItem.tag = $0.rawValue
         }
         
-        let tabBarItemTitles: [String] = ["홈",
-                                          "내 기록",
+        let tabBarItemTitles: [String] = ["내 기록",
+                                          "홈",
                                           "MY"]
         
         for (index, tabTitle) in tabBarItemTitles.enumerated() {
             let tabBarItem = TabBarItemType(rawValue: index)?.setTabBarItem()
-            tabs[index].tabBarItem = tabBarItem
-            tabs[index].tabBarItem.tag = index
-            tabs[index].title = tabTitle
+            tabItems[index].tabBarItem = tabBarItem
+            tabItems[index].tabBarItem.tag = index
+            tabItems[index].title = tabTitle
         }
         
-        setViewControllers(tabs, animated: false)
-        selectedViewController = tabs[1]
+        setViewControllers(tabItems, animated: false)
+        selectedViewController = tabItems[1]
     }
     
     func setTabBarUI() {
