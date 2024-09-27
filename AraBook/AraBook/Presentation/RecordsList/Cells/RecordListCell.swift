@@ -41,7 +41,7 @@ extension RecordListCell {
     
     private func setUI() {
         
-        self.makeCornerRound(radius: 40)
+        self.makeCornerRound(radius: 30)
         
         bookImage.do {
             $0.makeShadow(radius: 8, offset: CGSize(width: 0, height: 2), opacity: 0.5)
