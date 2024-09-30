@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,6 +72,10 @@
 		A48AC3D92CA5B85A00212432 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		033518562CA5C35000F60B61 /* RecordsList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordsList; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		A48AC3722CA28F6A00212432 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -118,6 +122,7 @@
 		A48AC38C2CA291BD00212432 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				033518562CA5C35000F60B61 /* RecordsList */,
 				A48AC3BE2CA41D6100212432 /* Home */,
 				A48AC3942CA292AA00212432 /* Common */,
 				A48AC37C2CA28F6A00212432 /* ViewController.swift */,
@@ -264,6 +269,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				033518562CA5C35000F60B61 /* RecordsList */,
 			);
 			name = AraBook;
 			packageProductDependencies = (
