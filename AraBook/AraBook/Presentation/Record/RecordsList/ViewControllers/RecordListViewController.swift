@@ -53,6 +53,7 @@ private extension RecordListViewController {
                 guard let self else { return }
                 print(indexPath)
                 let nav = RecordDetailViewController(viewModel: self.recordListVM)
+                nav.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(nav, animated: true)
             })
             .disposed(by: disposeBag)

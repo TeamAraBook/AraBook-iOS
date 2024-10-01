@@ -35,6 +35,14 @@ final class RecordDetailViewController: UIViewController {
     private lazy var frontCardView = RecordDetailFrontView()
     private lazy var backCardView = RecordDetailBackView()
     
+    private let touchTitle = {
+        let label = UILabel()
+        label.text = "카드를 터치해주세요!"
+        label.textColor = .gray400
+        label.font = .araFont(type: .PretandardBold, size: 20)
+        return label
+    }()
+    
     // MARK: - LifeCycle
     
     init(viewModel: RecordListViewModel) {
@@ -70,6 +78,10 @@ extension RecordDetailViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.view.isUserInteractionEnabled = true
         backCardView.isHidden = true
+        
+        navigationBar.backButtonAction = {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func bindViewModel() {
@@ -98,7 +110,8 @@ extension RecordDetailViewController {
     func setHierarchy() {
         view.addSubviews(navigationBar,
                          frontCardView,
-                         backCardView)
+                         backCardView,
+                         touchTitle)
     }
     
     func setLayout() {
@@ -114,6 +127,11 @@ extension RecordDetailViewController {
         
         backCardView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        touchTitle.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
             $0.centerX.equalToSuperview()
         }
     }
