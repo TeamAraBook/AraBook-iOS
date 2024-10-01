@@ -30,7 +30,7 @@ final class RecordListViewController: UIViewController {
         
         self.viewWillAppear.accept(())
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,11 +47,21 @@ private extension RecordListViewController {
     func setUI() {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        
+        recordListView.recordListCollectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self else { return }
+                print(indexPath)
+                let nav = RecordDetailViewController(viewModel: self.recordListVM)
+                self.navigationController?.pushViewController(nav, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindViewModel() {
         let input = RecordListViewModel.Input(
-            viewWillAppear: viewWillAppear
+            viewWillAppear: viewWillAppear,
+            detailViewWillAppear: PublishRelay()
         )
         
         let output = recordListVM.transform(input: input)
@@ -70,7 +80,7 @@ private extension RecordListViewController {
     }
     
     func setLayout() {
-
+        
         recordListView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.horizontalEdges.bottom.equalToSuperview()
@@ -86,5 +96,6 @@ private extension RecordListViewController {
     func setRegister() {
         recordListView.recordListCollectionView.register(RecordListCell.self,
                                                          forCellWithReuseIdentifier: RecordListCell.className)
+        
     }
 }
