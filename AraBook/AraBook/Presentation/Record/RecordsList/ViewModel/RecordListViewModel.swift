@@ -14,10 +14,13 @@ final class RecordListViewModel: ViewModel {
     
     struct Input {
         let viewWillAppear: PublishRelay<Void>
+        let detailViewWillAppear: PublishRelay<Void>
     }
     
     struct Output {
         let recordListData = PublishRelay<[RecordListModel]>()
+        let recordFrontData = PublishRelay<RecordFrontModel>()
+        let recordBackData = PublishRelay<RecordBackModel>()
     }
     
     func transform(input: Input) -> Output {
@@ -27,6 +30,14 @@ final class RecordListViewModel: ViewModel {
         input.viewWillAppear
             .subscribe(with: self, onNext: { owner, _ in
                 output.recordListData.accept(RecordListModel.dummy())
+            })
+            .disposed(by: disposeBag)
+        
+        input.detailViewWillAppear
+            .subscribe(with: self, onNext: { owner, index in
+                print(index)
+                output.recordFrontData.accept(RecordFrontModel.dummy())
+                output.recordBackData.accept(RecordBackModel.dummy())
             })
             .disposed(by: disposeBag)
         
