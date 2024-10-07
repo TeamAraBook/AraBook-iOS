@@ -38,6 +38,19 @@
 		A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3D42CA5B83200212432 /* RxCocoa */; };
 		A48AC3D72CA5B83200212432 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3D62CA5B83200212432 /* RxSwift */; };
 		A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3D92CA5B85A00212432 /* ViewModel.swift */; };
+		A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58642CB426B0004F3A74 /* BaseTargetType.swift */; };
+		A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58662CB426B8004F3A74 /* GeneralResponse.swift */; };
+		A48F586A2CB426E3004F3A74 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A48F58692CB426E3004F3A74 /* CombineMoya */; };
+		A48F586C2CB426E3004F3A74 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A48F586B2CB426E3004F3A74 /* Moya */; };
+		A48F586E2CB426E3004F3A74 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A48F586D2CB426E3004F3A74 /* ReactiveMoya */; };
+		A48F58702CB426E3004F3A74 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A48F586F2CB426E3004F3A74 /* RxMoya */; };
+		A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58732CB42717004F3A74 /* HeaderConstant.swift */; };
+		A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58752CB4282B004F3A74 /* URLConstant.swift */; };
+		A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58772CB42849004F3A74 /* NetworkLoggerPlugin.swift */; };
+		A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F587F2CB428BC004F3A74 /* RecommendAiResponseDto.swift */; };
+		A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58812CB428CF004F3A74 /* RecommendBestSellerResponseDto.swift */; };
+		A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58832CB42909004F3A74 /* HomeTarget.swift */; };
+		A48F58862CB42943004F3A74 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58852CB4293F004F3A74 /* HomeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +83,16 @@
 		A48AC3CF2CA431A400212432 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 		A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A48AC3D92CA5B85A00212432 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		A48F57AB2CB42425004F3A74 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A48F58642CB426B0004F3A74 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
+		A48F58662CB426B8004F3A74 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
+		A48F58732CB42717004F3A74 /* HeaderConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderConstant.swift; sourceTree = "<group>"; };
+		A48F58752CB4282B004F3A74 /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
+		A48F58772CB42849004F3A74 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
+		A48F587F2CB428BC004F3A74 /* RecommendAiResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendAiResponseDto.swift; sourceTree = "<group>"; };
+		A48F58812CB428CF004F3A74 /* RecommendBestSellerResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendBestSellerResponseDto.swift; sourceTree = "<group>"; };
+		A48F58832CB42909004F3A74 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
+		A48F58852CB4293F004F3A74 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -82,9 +105,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48F586E2CB426E3004F3A74 /* ReactiveMoya in Frameworks */,
 				A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */,
 				A48AC3A12CA2982A00212432 /* Then in Frameworks */,
+				A48F586C2CB426E3004F3A74 /* Moya in Frameworks */,
 				A48AC3D72CA5B83200212432 /* RxSwift in Frameworks */,
+				A48F586A2CB426E3004F3A74 /* CombineMoya in Frameworks */,
+				A48F58702CB426E3004F3A74 /* RxMoya in Frameworks */,
 				A48AC3A42CA2983700212432 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +143,7 @@
 				A48AC38D2CA291CA00212432 /* Network */,
 				A48AC38C2CA291BD00212432 /* Presentation */,
 				A48AC3862CA28F6B00212432 /* Info.plist */,
+				A48F57AB2CB42425004F3A74 /* Config.xcconfig */,
 			);
 			path = AraBook;
 			sourceTree = "<group>";
@@ -135,6 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				A48AC3912CA2920A00212432 /* Base */,
+				A48F58792CB4285C004F3A74 /* Data */,
+				A48F587A2CB42860004F3A74 /* Target */,
+				A48F587B2CB42863004F3A74 /* Service */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -173,6 +204,11 @@
 		A48AC3912CA2920A00212432 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				A48F58772CB42849004F3A74 /* NetworkLoggerPlugin.swift */,
+				A48F58752CB4282B004F3A74 /* URLConstant.swift */,
+				A48F58732CB42717004F3A74 /* HeaderConstant.swift */,
+				A48F58662CB426B8004F3A74 /* GeneralResponse.swift */,
+				A48F58642CB426B0004F3A74 /* BaseTargetType.swift */,
 				A48AC3922CA2921200212432 /* Config.swift */,
 			);
 			path = Base;
@@ -256,6 +292,39 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A48F58792CB4285C004F3A74 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A48F587C2CB428AA004F3A74 /* Home */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A48F587A2CB42860004F3A74 /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				A48F58832CB42909004F3A74 /* HomeTarget.swift */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
+		A48F587B2CB42863004F3A74 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A48F58852CB4293F004F3A74 /* HomeService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		A48F587C2CB428AA004F3A74 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A48F58812CB428CF004F3A74 /* RecommendBestSellerResponseDto.swift */,
+				A48F587F2CB428BC004F3A74 /* RecommendAiResponseDto.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		A4B716622CAC146000F28562 /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +359,10 @@
 				A48AC3A32CA2983700212432 /* SnapKit */,
 				A48AC3D42CA5B83200212432 /* RxCocoa */,
 				A48AC3D62CA5B83200212432 /* RxSwift */,
+				A48F58692CB426E3004F3A74 /* CombineMoya */,
+				A48F586B2CB426E3004F3A74 /* Moya */,
+				A48F586D2CB426E3004F3A74 /* ReactiveMoya */,
+				A48F586F2CB426E3004F3A74 /* RxMoya */,
 			);
 			productName = AraBook;
 			productReference = A48AC3752CA28F6A00212432 /* AraBook.app */;
@@ -323,6 +396,7 @@
 				A48AC39F2CA2982A00212432 /* XCRemoteSwiftPackageReference "Then" */,
 				A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = A48AC3762CA28F6A00212432 /* Products */;
 			projectDirPath = "";
@@ -360,17 +434,26 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
+				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
+				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
 				A48AC3CE2CA42EC800212432 /* BestSellerModel.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
+				A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */,
+				A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */,
 				A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */,
+				A48F58862CB42943004F3A74 /* HomeService.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
+				A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */,
 				A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */,
+				A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
+				A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
+				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */,
@@ -625,6 +708,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -647,6 +738,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		A48F58692CB426E3004F3A74 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		A48F586B2CB426E3004F3A74 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		A48F586D2CB426E3004F3A74 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		A48F586F2CB426E3004F3A74 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
