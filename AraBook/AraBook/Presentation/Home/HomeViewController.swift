@@ -90,14 +90,14 @@ extension HomeViewController {
         
         let output = homeVM.transform(input: input)
         
-        output.todayBookData
+        output.homeAiData
             .subscribe(onNext: { [weak self] data in
                 guard let self else { return }
                 todayBookView.bindTodayBook(model: data)
             })
             .disposed(by: disposeBag)
         
-        output.bestSellerData
+        output.homeBestSellerData
             .bind(to: collectionView.rx
                 .items(cellIdentifier: BookCollectionViewCell.className,
                        cellType: BookCollectionViewCell.self)) { (_, dto, cell) in

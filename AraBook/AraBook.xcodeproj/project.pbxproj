@@ -30,9 +30,7 @@
 		A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */; };
 		A48AC3C62CA427BA00212432 /* PyeongChang-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3C52CA427BA00212432 /* PyeongChang-Regular.otf */; };
 		A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3C72CA4284800212432 /* UIStackView+.swift */; };
-		A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3C92CA4299800212432 /* TodayBookModel.swift */; };
 		A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */; };
-		A48AC3CE2CA42EC800212432 /* BestSellerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3CD2CA42EC800212432 /* BestSellerModel.swift */; };
 		A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3CF2CA431A400212432 /* NSObject+.swift */; };
 		A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */; };
 		A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A48AC3D42CA5B83200212432 /* RxCocoa */; };
@@ -51,6 +49,8 @@
 		A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58812CB428CF004F3A74 /* RecommendBestSellerResponseDto.swift */; };
 		A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58832CB42909004F3A74 /* HomeTarget.swift */; };
 		A48F58862CB42943004F3A74 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58852CB4293F004F3A74 /* HomeService.swift */; };
+		A48F58892CB43569004F3A74 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A48F58882CB43569004F3A74 /* Kingfisher */; };
+		A48F588D2CB439F3004F3A74 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F588C2CB439ED004F3A74 /* UIImageView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,9 +77,7 @@
 		A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTodayBookView.swift; sourceTree = "<group>"; };
 		A48AC3C52CA427BA00212432 /* PyeongChang-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PyeongChang-Regular.otf"; sourceTree = "<group>"; };
 		A48AC3C72CA4284800212432 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
-		A48AC3C92CA4299800212432 /* TodayBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBookModel.swift; sourceTree = "<group>"; };
 		A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
-		A48AC3CD2CA42EC800212432 /* BestSellerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerModel.swift; sourceTree = "<group>"; };
 		A48AC3CF2CA431A400212432 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 		A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A48AC3D92CA5B85A00212432 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +91,7 @@
 		A48F58812CB428CF004F3A74 /* RecommendBestSellerResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendBestSellerResponseDto.swift; sourceTree = "<group>"; };
 		A48F58832CB42909004F3A74 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		A48F58852CB4293F004F3A74 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		A48F588C2CB439ED004F3A74 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -108,6 +107,7 @@
 				A48F586E2CB426E3004F3A74 /* ReactiveMoya in Frameworks */,
 				A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */,
 				A48AC3A12CA2982A00212432 /* Then in Frameworks */,
+				A48F58892CB43569004F3A74 /* Kingfisher in Frameworks */,
 				A48F586C2CB426E3004F3A74 /* Moya in Frameworks */,
 				A48AC3D72CA5B83200212432 /* RxSwift in Frameworks */,
 				A48F586A2CB426E3004F3A74 /* CombineMoya in Frameworks */,
@@ -264,6 +264,7 @@
 		A48AC3B32CA29A9900212432 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A48F588C2CB439ED004F3A74 /* UIImageView+.swift */,
 				A48AC3B42CA29AA600212432 /* UIView+.swift */,
 				A48AC3C72CA4284800212432 /* UIStackView+.swift */,
 				A48AC3CF2CA431A400212432 /* NSObject+.swift */,
@@ -274,8 +275,6 @@
 		A48AC3BE2CA41D6100212432 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A48AC3C92CA4299800212432 /* TodayBookModel.swift */,
-				A48AC3CD2CA42EC800212432 /* BestSellerModel.swift */,
 				A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */,
 				A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */,
 				A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */,
@@ -363,6 +362,7 @@
 				A48F586B2CB426E3004F3A74 /* Moya */,
 				A48F586D2CB426E3004F3A74 /* ReactiveMoya */,
 				A48F586F2CB426E3004F3A74 /* RxMoya */,
+				A48F58882CB43569004F3A74 /* Kingfisher */,
 			);
 			productName = AraBook;
 			productReference = A48AC3752CA28F6A00212432 /* AraBook.app */;
@@ -397,6 +397,7 @@
 				A48AC3A22CA2983700212432 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */,
+				A48F58872CB43569004F3A74 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A48AC3762CA28F6A00212432 /* Products */;
 			projectDirPath = "";
@@ -430,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48F588D2CB439F3004F3A74 /* UIImageView+.swift in Sources */,
 				A48AC3A72CA2993C00212432 /* SizeLiterals.swift in Sources */,
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
@@ -439,7 +441,6 @@
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
-				A48AC3CE2CA42EC800212432 /* BestSellerModel.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
 				A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */,
 				A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */,
@@ -456,7 +457,6 @@
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
-				A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +477,7 @@
 /* Begin XCBuildConfiguration section */
 		A48AC3872CA28F6B00212432 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A48F57AB2CB42425004F3A74 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -540,6 +541,7 @@
 		};
 		A48AC3882CA28F6B00212432 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A48F57AB2CB42425004F3A74 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -716,6 +718,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		A48F58872CB43569004F3A74 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -758,6 +768,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		A48F58882CB43569004F3A74 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48F58872CB43569004F3A74 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

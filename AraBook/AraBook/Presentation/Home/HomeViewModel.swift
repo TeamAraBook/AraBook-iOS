@@ -11,34 +11,43 @@ import RxCocoa
 final class HomeViewModel: ViewModel {
     
     private let disposeBag = DisposeBag()
+    private let homeService: HomeService
+    
+    init(homeService: HomeService = HomeService.shared) {
+        self.homeService = homeService
+    }
     
     struct Input {
         let viewWillAppear: PublishRelay<Void>
     }
     
     struct Output {
-        let todayBookData = PublishRelay<TodayBookModel>()
-        let bestSellerData = PublishRelay<[BestSellerModel]>()
+        let homeAiData = PublishRelay<RecommendAiResponseDto>()
+        let homeBestSellerData = PublishRelay<[BestSellerBook]>()
     }
     
     func transform(input: Input) -> Output {
         let output = Output()
-        self.bindOutput(output: output, disposeBag: disposeBag)
+        bindOutput(output: output)
         
         input.viewWillAppear
             .subscribe(with: self, onNext: { owner, _ in
-                output.todayBookData.accept(TodayBookModel.dummy())
-                output.bestSellerData.accept(BestSellerModel.dummy())
+                owner.bindOutput(output: output)
             })
             .disposed(by: disposeBag)
         
         return output
     }
-}
-
-extension HomeViewModel {
     
-    private func bindOutput(output: Output, disposeBag: DisposeBag) {
+    private func bindOutput(output: Output) {
+        homeService.getHomeAi { response in
+            guard let data = response?.data else { return }
+            output.homeAiData.accept(data)
+        }
         
+        homeService.getHomeBestSeller {  response in
+            guard let data = response?.data else { return }
+            output.homeBestSellerData.accept(data.books)
+        }
     }
 }

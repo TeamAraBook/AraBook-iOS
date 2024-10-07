@@ -7,11 +7,11 @@
 
 struct RecommendBestSellerResponseDto: Codable {
     let totalCount: Int
-    let books: [Book]
+    let books: [BestSellerBook]
 }
 
 // MARK: - Book
-struct Book: Codable {
+struct BestSellerBook: Codable {
     let bookID: Int
     let coverURL: String
     let title, author: String
