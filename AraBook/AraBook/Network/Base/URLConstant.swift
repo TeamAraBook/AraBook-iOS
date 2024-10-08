@@ -17,5 +17,5 @@ enum URLConstant {
     
     static let recommendAiURL = "/recommend/ai"
     static let recommendBestSellerURL = "/recommend/best-seller"
-    
+    static let bookSearchURL = "/books/search"
 }

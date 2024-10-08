@@ -13,6 +13,7 @@ enum HomeTarget {
     
     case getRecommendAi
     case getRecommendBestSeller
+    case getBookSearch(keyword: String)
 }
 
 extension HomeTarget: BaseTargetType {
@@ -23,6 +24,8 @@ extension HomeTarget: BaseTargetType {
             return URLConstant.recommendAiURL
         case .getRecommendBestSeller:
             return URLConstant.recommendBestSellerURL
+        case .getBookSearch:
+            return URLConstant.bookSearchURL
         }
     }
     
@@ -31,7 +34,13 @@ extension HomeTarget: BaseTargetType {
     }
     
     var task: Moya.Task {
-        return .requestPlain
+        switch self {
+        case .getBookSearch(let keyword):
+            return .requestParameters(parameters: ["keyword" : keyword],
+                                      encoding: URLEncoding.queryString)
+        default:
+            return .requestPlain
+        }
     }
     
     var headers: [String : String]? {

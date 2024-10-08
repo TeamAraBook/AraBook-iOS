@@ -18,6 +18,7 @@ final class HomeService {
     
     public private(set) var homeAiData: GeneralResponse<RecommendAiResponseDto>?
     public private(set) var homeBestSellerData: GeneralResponse<RecommendBestSellerResponseDto>?
+    public private(set) var bookSearchData: GeneralResponse<SearchBookResponseDto>?
     
     // MARK: - GET
     
@@ -49,6 +50,26 @@ final class HomeService {
                     self.homeBestSellerData = try response.map(GeneralResponse<RecommendBestSellerResponseDto>.self)
                     guard let homeBestSellerData = self.homeBestSellerData else { return }
                     completion(homeBestSellerData)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    func getSearchBook(keyword: String,
+                       completion: @escaping(GeneralResponse<SearchBookResponseDto>?) -> Void) {
+        homeProvider.request(.getBookSearch(keyword: keyword)) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let response):
+                do {
+                    self.bookSearchData = try response.map(GeneralResponse<SearchBookResponseDto>.self)
+                    guard let bookSearchData = self.bookSearchData else { return }
+                    completion(bookSearchData)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
