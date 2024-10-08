@@ -88,4 +88,10 @@ extension BookCollectionViewCell {
         bookTitle.text = model.title
         bookAuthor.text = model.author
     }
+    
+    func bindSearchBook(model: SearchBook) {
+        bookImage.kf.setImage(with: URL(string: model.coverURL))
+        bookTitle.text = model.title
+        bookAuthor.text = model.author
+    }
 }
