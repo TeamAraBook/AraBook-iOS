@@ -15,9 +15,10 @@ final class SerachViewController: UIViewController {
     
     // MARK: - Properties
     
-//    private let homeVM = HomeViewModel()
-//    private let viewWillAppear = PublishRelay<Void>()
-//    private let disposeBag = DisposeBag()
+    private let searchVM = SearchViewModel()
+    private let viewWillAppear = PublishRelay<Void>()
+    private let searchTapped = PublishRelay<String>()
+    private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
     
@@ -29,22 +30,26 @@ final class SerachViewController: UIViewController {
         return navi
     }()
     
-    private let searchTextField = SearchTextField()
+    private lazy var searchTextField = SearchTextField()
+    
+    private let searchResultView = SearchResultView()
     
     // MARK: - LifeCycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        self.viewWillAppear.accept(())
+        //        self.viewWillAppear.accept(())
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setHierarchy()
         setLayout()
+        bindSearchTextField()
+        bindViewModel()
     }
 }
 
@@ -61,7 +66,8 @@ extension SerachViewController {
     
     func setHierarchy() {
         view.addSubviews(navigationBar,
-                         searchTextField)
+                         searchTextField,
+                         searchResultView)
     }
     
     func setLayout() {
@@ -74,5 +80,44 @@ extension SerachViewController {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
+        
+        searchResultView.snp.makeConstraints {
+            $0.top.equalTo(searchTextField.snp.bottom).offset(20)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    func bindSearchTextField() {
+        searchTextField.rx.text
+            .orEmpty
+            .subscribe(onNext: { text in
+                self.searchTapped.accept(text)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindViewModel() {
+        let input = SearchViewModel.Input(
+            viewWillAppear: viewWillAppear,
+            searchTapped: searchTapped
+        )
+        
+        let output = searchVM.transform(input: input)
+        
+        output.bookSearchData
+            .bind(to: searchResultView.resultCollectionView.rx
+                .items(cellIdentifier: BookCollectionViewCell.className,
+                       cellType: BookCollectionViewCell.self)) { (_, dto, cell) in
+                cell.bindSearchBook(model: dto)
+            }
+            .disposed(by: disposeBag)
+        
+        output.bookSearchCount
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                searchResultView.bindSearchCount(title: searchTextField.text ?? "",
+                                                 cnt: data)
+            })
+            .disposed(by: disposeBag)
     }
 }
