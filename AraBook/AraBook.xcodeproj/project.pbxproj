@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		033FEACE2CAD6FF800E1A928 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033FEACD2CAD6FF200E1A928 /* BookDetailViewController.swift */; };
 		03C61EAE2CB4281700D2BFCC /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61EAD2CB4281200D2BFCC /* BookDetailViewModel.swift */; };
+		03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		033FEACD2CAD6FF200E1A928 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		03C61EAD2CB4281200D2BFCC /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
+		03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		033FEACC2CAD6FD200E1A928 /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
+				03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */,
 				03C61EAD2CB4281200D2BFCC /* BookDetailViewModel.swift */,
 				033FEACD2CAD6FF200E1A928 /* BookDetailViewController.swift */,
 			);
@@ -376,6 +379,7 @@
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
+				03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */,

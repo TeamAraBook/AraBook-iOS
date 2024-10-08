@@ -13,6 +13,10 @@ import RxCocoa
 
 final class BookDetailViewController: UIViewController {
     
+    // MARK: - UI Components
+    
+    private let navigationBar = CustomNavigationBar()
+    
     // MARK: - Properties
     
     private let bookDetailVM = BookDetailViewModel()
@@ -42,6 +46,12 @@ extension BookDetailViewController {
     func setUI() {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        
+        navigationBar.do {
+            $0.isBackButtonIncluded = true
+            $0.isTitleLabelIncluded = "도서상세"
+            $0.isTitleViewIncluded = true
+        }
     }
     
     func bindViewModel() {
@@ -54,10 +64,15 @@ extension BookDetailViewController {
     }
     
     func setHierarchy() {
-
+        view.addSubviews(navigationBar)
     }
     
     func setLayout() {
+        
+        navigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+        }
 
     }
 }
