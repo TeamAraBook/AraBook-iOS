@@ -10,6 +10,8 @@
 		033FEACE2CAD6FF800E1A928 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033FEACD2CAD6FF200E1A928 /* BookDetailViewController.swift */; };
 		03C61EAE2CB4281700D2BFCC /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61EAD2CB4281200D2BFCC /* BookDetailViewModel.swift */; };
 		03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */; };
+		03C61F672CB5ABA500D2BFCC /* BookDetailCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */; };
+		03C61F692CB5ABB100D2BFCC /* BookDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		033FEACD2CAD6FF200E1A928 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		03C61EAD2CB4281200D2BFCC /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
+		03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoverView.swift; sourceTree = "<group>"; };
+		03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDescriptionView.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,11 +104,21 @@
 		033FEACC2CAD6FD200E1A928 /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
+				03C61F652CB5AB8100D2BFCC /* Views */,
 				03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */,
 				03C61EAD2CB4281200D2BFCC /* BookDetailViewModel.swift */,
 				033FEACD2CAD6FF200E1A928 /* BookDetailViewController.swift */,
 			);
 			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		03C61F652CB5AB8100D2BFCC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */,
+				03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A48AC36C2CA28F6A00212432 = {
@@ -366,6 +380,7 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
 				03C61EAE2CB4281700D2BFCC /* BookDetailViewModel.swift in Sources */,
+				03C61F672CB5ABA500D2BFCC /* BookDetailCoverView.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				033FEACE2CAD6FF800E1A928 /* BookDetailViewController.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
@@ -382,6 +397,7 @@
 				03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
+				03C61F692CB5ABB100D2BFCC /* BookDetailDescriptionView.swift in Sources */,
 				A48AC3CA2CA4299800212432 /* TodayBookModel.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
 			);

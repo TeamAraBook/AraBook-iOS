@@ -14,6 +14,10 @@ final class BookDetailView: UIScrollView {
     
     // MARK: - UI Components
     
+    private let bookCoverView = BookDetailCoverView()
+    private let bookDescriptionView = BookDetailDescriptionView()
+    private let writeButton = UIButton()
+    
     // MARK: - Properties
     
     // MARK: - Initializer
@@ -43,6 +47,24 @@ extension BookDetailView {
     
     private func setLayout() {
         
+        addSubviews(bookCoverView, bookDescriptionView, writeButton)
+        
+        bookCoverView.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(450)
+        }
+        
+        writeButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+            $0.height.equalTo(60)
+        }
+        
+        bookDescriptionView.snp.makeConstraints {
+            $0.top.equalTo(bookCoverView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(writeButton.snp.top).inset(22)
+        }
     }
     
     // MARK: - Methods
