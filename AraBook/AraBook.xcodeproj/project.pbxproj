@@ -51,6 +51,14 @@
 		A48F58862CB42943004F3A74 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58852CB4293F004F3A74 /* HomeService.swift */; };
 		A48F58892CB43569004F3A74 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A48F58882CB43569004F3A74 /* Kingfisher */; };
 		A48F588D2CB439F3004F3A74 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F588C2CB439ED004F3A74 /* UIImageView+.swift */; };
+		A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58A92CB5773F004F3A74 /* SerachViewController.swift */; };
+		A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58AB2CB57A11004F3A74 /* SearchResultView.swift */; };
+		A48F58AE2CB57AEE004F3A74 /* RecentSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58AD2CB57AE7004F3A74 /* RecentSearchView.swift */; };
+		A48F58B02CB57B50004F3A74 /* RecentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F58AF2CB57B33004F3A74 /* RecentCollectionViewCell.swift */; };
+		A48F596B2CB582FC004F3A74 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F596A2CB582F6004F3A74 /* BaseTextField.swift */; };
+		A48F596D2CB58304004F3A74 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F596C2CB582FF004F3A74 /* SearchTextField.swift */; };
+		A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F596E2CB58D40004F3A74 /* SearchBookResponseDto.swift */; };
+		A48F59712CB58EF8004F3A74 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +100,14 @@
 		A48F58832CB42909004F3A74 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		A48F58852CB4293F004F3A74 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		A48F588C2CB439ED004F3A74 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		A48F58A92CB5773F004F3A74 /* SerachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachViewController.swift; sourceTree = "<group>"; };
+		A48F58AB2CB57A11004F3A74 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		A48F58AD2CB57AE7004F3A74 /* RecentSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchView.swift; sourceTree = "<group>"; };
+		A48F58AF2CB57B33004F3A74 /* RecentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCollectionViewCell.swift; sourceTree = "<group>"; };
+		A48F596A2CB582F6004F3A74 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		A48F596C2CB582FF004F3A74 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		A48F596E2CB58D40004F3A74 /* SearchBookResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookResponseDto.swift; sourceTree = "<group>"; };
+		A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -275,10 +291,8 @@
 		A48AC3BE2CA41D6100212432 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */,
-				A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */,
-				A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */,
-				A48AC3BF2CA41D6C00212432 /* HomeViewController.swift */,
+				A48F58A62CB576FA004F3A74 /* Search */,
+				A48F58A52CB576E6004F3A74 /* Main */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -318,10 +332,52 @@
 		A48F587C2CB428AA004F3A74 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A48F596E2CB58D40004F3A74 /* SearchBookResponseDto.swift */,
 				A48F58812CB428CF004F3A74 /* RecommendBestSellerResponseDto.swift */,
 				A48F587F2CB428BC004F3A74 /* RecommendAiResponseDto.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		A48F58A52CB576E6004F3A74 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A48AC3CB2CA42EBE00212432 /* BookCollectionViewCell.swift */,
+				A48AC3C12CA4207600212432 /* HomeTodayBookView.swift */,
+				A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */,
+				A48AC3BF2CA41D6C00212432 /* HomeViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A48F58A62CB576FA004F3A74 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A48F59692CB582EB004F3A74 /* SearchTextField */,
+				A48F59722CB595B8004F3A74 /* View */,
+				A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */,
+				A48F58AF2CB57B33004F3A74 /* RecentCollectionViewCell.swift */,
+				A48F58A92CB5773F004F3A74 /* SerachViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		A48F59692CB582EB004F3A74 /* SearchTextField */ = {
+			isa = PBXGroup;
+			children = (
+				A48F596C2CB582FF004F3A74 /* SearchTextField.swift */,
+				A48F596A2CB582F6004F3A74 /* BaseTextField.swift */,
+			);
+			path = SearchTextField;
+			sourceTree = "<group>";
+		};
+		A48F59722CB595B8004F3A74 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A48F58AD2CB57AE7004F3A74 /* RecentSearchView.swift */,
+				A48F58AB2CB57A11004F3A74 /* SearchResultView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A4B716622CAC146000F28562 /* Record */ = {
@@ -434,29 +490,37 @@
 				A48F588D2CB439F3004F3A74 /* UIImageView+.swift in Sources */,
 				A48AC3A72CA2993C00212432 /* SizeLiterals.swift in Sources */,
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
+				A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
+				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
 				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
+				A48F596D2CB58304004F3A74 /* SearchTextField.swift in Sources */,
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
 				A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */,
 				A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */,
 				A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */,
 				A48F58862CB42943004F3A74 /* HomeService.swift in Sources */,
+				A48F58B02CB57B50004F3A74 /* RecentCollectionViewCell.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
 				A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */,
 				A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */,
+				A48F59712CB58EF8004F3A74 /* SearchViewModel.swift in Sources */,
+				A48F596B2CB582FC004F3A74 /* BaseTextField.swift in Sources */,
 				A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
 				A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
+				A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
+				A48F58AE2CB57AEE004F3A74 /* RecentSearchView.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
