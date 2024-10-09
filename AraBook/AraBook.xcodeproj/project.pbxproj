@@ -86,6 +86,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		033518562CA5C35000F60B61 /* RecordsList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordsList; sourceTree = "<group>"; };
+		A4B716632CAC146700F28562 /* RecordDetail */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordDetail; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +157,7 @@
 			children = (
 				033FEACC2CAD6FD200E1A928 /* BookDetail */,
 				033518562CA5C35000F60B61 /* RecordsList */,
+				A4B716622CAC146000F28562 /* Record */,
 				A48AC3BE2CA41D6100212432 /* Home */,
 				A48AC3942CA292AA00212432 /* Common */,
 				A48AC37C2CA28F6A00212432 /* ViewController.swift */,
@@ -289,6 +291,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A4B716622CAC146000F28562 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				A4B716632CAC146700F28562 /* RecordDetail */,
+				033518562CA5C35000F60B61 /* RecordsList */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -306,6 +317,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				033518562CA5C35000F60B61 /* RecordsList */,
+				A4B716632CAC146700F28562 /* RecordDetail */,
 			);
 			name = AraBook;
 			packageProductDependencies = (
