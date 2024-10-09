@@ -13,6 +13,11 @@
 		03C61F672CB5ABA500D2BFCC /* BookDetailCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */; };
 		03C61F692CB5ABB100D2BFCC /* BookDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */; };
 		03C61F6B2CB6642800D2BFCC /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F6A2CB6642500D2BFCC /* UIImageView+.swift */; };
+		03F11F852CB6808B00DC11C7 /* RecordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F11F842CB6808400DC11C7 /* RecordListCell.swift */; };
+		03F11F882CB680A500DC11C7 /* RecordListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F11F872CB680A200DC11C7 /* RecordListModel.swift */; };
+		03F11F8B2CB680C700DC11C7 /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F11F8A2CB680C000DC11C7 /* RecordListViewController.swift */; };
+		03F11F8E2CB6812C00DC11C7 /* RecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F11F8D2CB6812700DC11C7 /* RecordListViewModel.swift */; };
+		03F11F912CB6814200DC11C7 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F11F902CB6814000DC11C7 /* RecordListView.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -53,6 +58,11 @@
 		03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoverView.swift; sourceTree = "<group>"; };
 		03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDescriptionView.swift; sourceTree = "<group>"; };
 		03C61F6A2CB6642500D2BFCC /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		03F11F842CB6808400DC11C7 /* RecordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListCell.swift; sourceTree = "<group>"; };
+		03F11F872CB680A200DC11C7 /* RecordListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListModel.swift; sourceTree = "<group>"; };
+		03F11F8A2CB680C000DC11C7 /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
+		03F11F8D2CB6812700DC11C7 /* RecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewModel.swift; sourceTree = "<group>"; };
+		03F11F902CB6814000DC11C7 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +95,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		033518562CA5C35000F60B61 /* RecordsList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordsList; sourceTree = "<group>"; };
 		A4B716632CAC146700F28562 /* RecordDetail */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordDetail; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -124,6 +133,58 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		03F11F822CB6800A00DC11C7 /* RecordsList */ = {
+			isa = PBXGroup;
+			children = (
+				03F11F8F2CB6813B00DC11C7 /* Views */,
+				03F11F8C2CB680E100DC11C7 /* ViewModel */,
+				03F11F892CB680B500DC11C7 /* ViewControllers */,
+				03F11F862CB6809800DC11C7 /* Model */,
+				03F11F832CB6807E00DC11C7 /* Cells */,
+			);
+			path = RecordsList;
+			sourceTree = "<group>";
+		};
+		03F11F832CB6807E00DC11C7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				03F11F842CB6808400DC11C7 /* RecordListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		03F11F862CB6809800DC11C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				03F11F872CB680A200DC11C7 /* RecordListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		03F11F892CB680B500DC11C7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				03F11F8A2CB680C000DC11C7 /* RecordListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		03F11F8C2CB680E100DC11C7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				03F11F8D2CB6812700DC11C7 /* RecordListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03F11F8F2CB6813B00DC11C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03F11F902CB6814000DC11C7 /* RecordListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A48AC36C2CA28F6A00212432 = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				033FEACC2CAD6FD200E1A928 /* BookDetail */,
-				033518562CA5C35000F60B61 /* RecordsList */,
 				A4B716622CAC146000F28562 /* Record */,
 				A48AC3BE2CA41D6100212432 /* Home */,
 				A48AC3942CA292AA00212432 /* Common */,
@@ -294,8 +354,8 @@
 		A4B716622CAC146000F28562 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				03F11F822CB6800A00DC11C7 /* RecordsList */,
 				A4B716632CAC146700F28562 /* RecordDetail */,
-				033518562CA5C35000F60B61 /* RecordsList */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -316,7 +376,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				033518562CA5C35000F60B61 /* RecordsList */,
 				A4B716632CAC146700F28562 /* RecordDetail */,
 			);
 			name = AraBook;
@@ -398,6 +457,7 @@
 				03C61F672CB5ABA500D2BFCC /* BookDetailCoverView.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				033FEACE2CAD6FF800E1A928 /* BookDetailViewController.swift in Sources */,
+				03F11F8E2CB6812C00DC11C7 /* RecordListViewModel.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
@@ -407,8 +467,12 @@
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
 				A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
+				03F11F882CB680A500DC11C7 /* RecordListModel.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
+				03F11F912CB6814200DC11C7 /* RecordListView.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
+				03F11F8B2CB680C700DC11C7 /* RecordListViewController.swift in Sources */,
+				03F11F852CB6808B00DC11C7 /* RecordListCell.swift in Sources */,
 				03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */,
 				03C61F6B2CB6642800D2BFCC /* UIImageView+.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
