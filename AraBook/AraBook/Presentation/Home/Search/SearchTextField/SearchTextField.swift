@@ -25,8 +25,8 @@ class SearchTextField: BaseTextField {
         attributedPlaceholder = NSAttributedString(string: "도서명을 입력해주세요",
                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
-        layer.borderWidth = 2.0
-        layer.borderColor = UIColor.gray800.cgColor
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.gray500.cgColor
         layer.cornerRadius = 10.0
         
         clearButtonMode = .never
