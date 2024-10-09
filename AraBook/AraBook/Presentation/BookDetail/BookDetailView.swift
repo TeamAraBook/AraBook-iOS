@@ -40,7 +40,14 @@ extension BookDetailView {
     // MARK: - UI Components Property
     
     private func setUI() {
-    
+        
+        writeButton.do {
+            $0.setTitle("기록하기", for: .normal)
+            $0.titleLabel?.font = .araFont(type: .PretandardBold, size: 20)
+            $0.setTitleColor(.white, for: .normal)
+            $0.backgroundColor = .chGreen
+            $0.makeCornerRound(radius: 16)
+        }
     }
     
     // MARK: - Layout Helper
