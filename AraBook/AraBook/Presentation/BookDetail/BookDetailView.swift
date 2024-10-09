@@ -55,16 +55,16 @@ extension BookDetailView {
             $0.height.equalTo(450)
         }
         
+        bookDescriptionView.snp.makeConstraints {
+            $0.top.equalTo(bookCoverView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(writeButton.snp.top)
+        }
+        
         writeButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(20)
             $0.horizontalEdges.equalToSuperview().inset(24)
             $0.height.equalTo(60)
-        }
-        
-        bookDescriptionView.snp.makeConstraints {
-            $0.top.equalTo(bookCoverView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(writeButton.snp.top).inset(22)
         }
     }
     
