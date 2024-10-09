@@ -10,10 +10,11 @@ import UIKit
 import SnapKit
 import Then
 
-final class BookDetailCoverView: UIScrollView {
+final class BookDetailCoverView: UIView {
     
     // MARK: - UI Components
     
+    let navigationBar = CustomNavigationBar()
     private let bookBackgroundImageView = UIImageView(image: .imgBook)
     private let bookImageView = UIImageView(image: .imgBook)
     private let bookTitleLabel = UILabel()
@@ -42,12 +43,63 @@ extension BookDetailCoverView {
     
     private func setUI() {
         
+        navigationBar.do {
+            $0.isWhiteBackButtonIncluded = true
+            $0.isTitleLabelIncluded = "도서상세"
+            $0.isTitleViewIncluded = true
+            $0.titleLabel.textColor = .white
+            $0.backgroundColor = .clear
+        }
+        
+        bookBackgroundImageView.do {
+            $0.addBlurEffect(style: .dark)
+        }
+        
+        bookTitleLabel.do {
+            $0.text = "퀸의 대각선"
+            $0.textColor = .white
+            $0.font = .araFont(type: .PyeongChangBold, size: 20)
+        }
+        
+        authorLabel.do {
+            $0.text = "베르나르베르베르"
+            $0.textColor = .white
+            $0.font = .araFont(type: .PyeongChangRegular, size: 14)
+        }
     }
     
     // MARK: - Layout Helper
     
     private func setLayout() {
         
+        addSubviews(bookBackgroundImageView)
+        bookBackgroundImageView.addSubviews(navigationBar, bookImageView, bookTitleLabel, authorLabel)
+        
+        bookBackgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        navigationBar.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(50)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        bookImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(148)
+            $0.height.equalTo(245)
+            $0.top.equalToSuperview().inset(115)
+        }
+        
+        bookTitleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(bookImageView.snp.bottom).offset(16)
+        }
+        
+        authorLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(bookTitleLabel.snp.bottom).offset(4)
+        }
     }
     
     // MARK: - Methods

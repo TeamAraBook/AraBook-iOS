@@ -12,6 +12,7 @@
 		03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */; };
 		03C61F672CB5ABA500D2BFCC /* BookDetailCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */; };
 		03C61F692CB5ABB100D2BFCC /* BookDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */; };
+		03C61F6B2CB6642800D2BFCC /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61F6A2CB6642500D2BFCC /* UIImageView+.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -51,6 +52,7 @@
 		03C61EAF2CB5A54100D2BFCC /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		03C61F662CB5AB8A00D2BFCC /* BookDetailCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoverView.swift; sourceTree = "<group>"; };
 		03C61F682CB5ABA800D2BFCC /* BookDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDescriptionView.swift; sourceTree = "<group>"; };
+		03C61F6A2CB6642500D2BFCC /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		A48AC3B32CA29A9900212432 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				03C61F6A2CB6642500D2BFCC /* UIImageView+.swift */,
 				A48AC3B42CA29AA600212432 /* UIView+.swift */,
 				A48AC3C72CA4284800212432 /* UIStackView+.swift */,
 				A48AC3CF2CA431A400212432 /* NSObject+.swift */,
@@ -395,6 +398,7 @@
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
 				03C61EB02CB5A54600D2BFCC /* BookDetailView.swift in Sources */,
+				03C61F6B2CB6642800D2BFCC /* UIImageView+.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				03C61F692CB5ABB100D2BFCC /* BookDetailDescriptionView.swift in Sources */,

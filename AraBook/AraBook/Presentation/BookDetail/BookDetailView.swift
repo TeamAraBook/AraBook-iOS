@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BookDetailView: UIScrollView {
+final class BookDetailView: UIView {
     
     // MARK: - UI Components
     
@@ -40,7 +40,7 @@ extension BookDetailView {
     // MARK: - UI Components Property
     
     private func setUI() {
-        
+    
     }
     
     // MARK: - Layout Helper
@@ -50,7 +50,8 @@ extension BookDetailView {
         addSubviews(bookCoverView, bookDescriptionView, writeButton)
         
         bookCoverView.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview().inset(-60)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(450)
         }
         
