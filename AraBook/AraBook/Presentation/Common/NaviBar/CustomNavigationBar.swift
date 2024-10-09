@@ -15,9 +15,10 @@ final class CustomNavigationBar: UIView {
     // MARK: - UI Components
 
     private lazy var titleView = UIView()
-    private lazy var titleLabel = UILabel()
+    lazy var titleLabel = UILabel()
     private lazy var backButton = UIButton()
     private lazy var closeButton = UIButton()
+    private lazy var whiteBackButton = UIButton()
     
     // MARK: - Properties
     
@@ -39,6 +40,11 @@ final class CustomNavigationBar: UIView {
     var isCloseButtonIncluded: Bool {
         get { !closeButton.isHidden }
         set { closeButton.isHidden = !newValue }
+    }
+    
+    var isWhiteBackButtonIncluded: Bool {
+        get { !whiteBackButton.isHidden }
+        set { whiteBackButton.isHidden = !newValue }
     }
     
     var backButtonAction: (() -> Void)?
@@ -85,11 +91,17 @@ private extension CustomNavigationBar {
             $0.isHidden = true
             $0.isEnabled = true
         }
+        
+        whiteBackButton.do {
+            $0.setImage(.icBackWhite, for: .normal)
+            $0.isHidden = true
+            $0.isEnabled = true
+        }
     }
     
     func setHierarchy() {
         
-        self.addSubviews(backButton, closeButton, titleView)
+        self.addSubviews(backButton, closeButton, titleView, whiteBackButton)
         titleView.addSubview(titleLabel)
     }
     
@@ -116,6 +128,12 @@ private extension CustomNavigationBar {
         
         closeButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(8)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(48)
+        }
+        
+        whiteBackButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(8)
             $0.centerY.equalToSuperview()
             $0.size.equalTo(48)
         }
