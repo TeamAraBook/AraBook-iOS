@@ -59,6 +59,7 @@
 		A48F596D2CB58304004F3A74 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F596C2CB582FF004F3A74 /* SearchTextField.swift */; };
 		A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F596E2CB58D40004F3A74 /* SearchBookResponseDto.swift */; };
 		A48F59712CB58EF8004F3A74 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */; };
+		A48F5A712CB6BF69004F3A74 /* LocalDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5A702CB6BF5F004F3A74 /* LocalDBService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		A48F596C2CB582FF004F3A74 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		A48F596E2CB58D40004F3A74 /* SearchBookResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookResponseDto.swift; sourceTree = "<group>"; };
 		A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		A48F5A702CB6BF5F004F3A74 /* LocalDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDBService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -353,6 +355,7 @@
 		A48F58A62CB576FA004F3A74 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				A48F5A702CB6BF5F004F3A74 /* LocalDBService.swift */,
 				A48F59692CB582EB004F3A74 /* SearchTextField */,
 				A48F59722CB595B8004F3A74 /* View */,
 				A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */,
@@ -522,6 +525,7 @@
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				A48F58AE2CB57AEE004F3A74 /* RecentSearchView.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
+				A48F5A712CB6BF69004F3A74 /* LocalDBService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
