@@ -33,14 +33,14 @@ private extension RecentCollectionViewCell {
      
     func setUI() {
         self.backgroundColor = .white
-        self.makeCornerRound(radius: 12)
+        self.makeCornerRound(radius: 17)
         self.layer.borderColor = UIColor.gray300.cgColor
         self.layer.borderWidth = 1
         
         recentTitle.do {
             $0.textColor = .gray800
             $0.textAlignment = .left
-            $0.font = .araFont(type: .PretandardRegular, size: 12)
+            $0.font = .araFont(type: .PretandardSemiBold, size: 12)
         }
         
         recentDelButton.do {
@@ -61,11 +61,18 @@ private extension RecentCollectionViewCell {
     
     func setLayout() {
         recentDelButton.snp.makeConstraints {
-            $0.size.equalTo(10)
+            $0.size.equalTo(18)
         }
         
         recentStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+    }
+}
+
+extension RecentCollectionViewCell {
+    
+    func bindRecentView(title: String) {
+        recentTitle.text = title
     }
 }
