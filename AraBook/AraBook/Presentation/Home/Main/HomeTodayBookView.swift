@@ -56,7 +56,7 @@ private extension HomeTodayBookView {
         }
         
         todayBookBackView.do {
-            $0.contentMode = .center
+            $0.contentMode = .scaleAspectFit
         }
         
         backgroundView.do {
@@ -100,6 +100,7 @@ private extension HomeTodayBookView {
     func setLayout() {
         todayBookBackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.height.equalTo(390)
         }
         
         backgroundView.snp.makeConstraints {
