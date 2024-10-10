@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class HomeViewController: UIViewController {
     
@@ -31,6 +32,8 @@ final class HomeViewController: UIViewController {
     private let contentView = UIView()
     
     private let todayBookView = HomeTodayBookView()
+    
+    private let searchImageView = UIImageView(image: .imgSearch)
     
     private let bestSellerTitle = {
         let label = UILabel()
@@ -81,6 +84,15 @@ extension HomeViewController {
     func setUI() {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        
+        searchImageView.isUserInteractionEnabled = true
+        searchImageView.rx.tapGesture()
+            .when(.recognized)
+            .bind { _ in
+                let nav = SerachViewController()
+                nav.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(nav, animated: true)
+            }
     }
     
     func bindViewModel() {
@@ -109,7 +121,8 @@ extension HomeViewController {
     func setHierarchy() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(todayBookView,
+        contentView.addSubviews(searchImageView,
+                                todayBookView,
                                 bestSellerTitle,
                                 collectionView)
     }
@@ -130,9 +143,16 @@ extension HomeViewController {
             $0.height.equalTo(390)
         }
         
+        searchImageView.snp.makeConstraints {
+            $0.top.equalTo(todayBookView.snp.bottom).offset(12)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
+            $0.width.equalTo(343)
+        }
+        
         bestSellerTitle.snp.makeConstraints {
-            $0.top.equalTo(todayBookView.snp.bottom).offset(36)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalTo(searchImageView.snp.bottom).offset(10)
+            $0.leading.equalTo(searchImageView.snp.leading)
         }
         
         collectionView.snp.makeConstraints {

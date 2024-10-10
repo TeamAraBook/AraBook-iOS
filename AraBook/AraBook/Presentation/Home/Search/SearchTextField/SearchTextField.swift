@@ -25,8 +25,8 @@ class SearchTextField: BaseTextField {
         attributedPlaceholder = NSAttributedString(string: "도서명을 입력해주세요",
                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
-        layer.borderWidth = 2.0
-        layer.borderColor = UIColor.gray800.cgColor
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.gray500.cgColor
         layer.cornerRadius = 10.0
         
         clearButtonMode = .never
@@ -51,6 +51,11 @@ class SearchTextField: BaseTextField {
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: UIEdgeInsets(top: 16.0, left: 38.0, bottom: 14.0, right: 36.0))
+    }
+    
+    func setKeyword() {
+        layer.borderColor = UIColor.mainGreen.cgColor
+        searchButton.setImage(.icSearchGreen, for: .normal)
     }
     
 }
