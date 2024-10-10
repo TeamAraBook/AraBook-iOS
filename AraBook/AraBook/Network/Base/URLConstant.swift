@@ -13,6 +13,10 @@ enum URLConstant {
     
     static let baseURL = Config.baseURL
     
+    // auth
+    
+    static let authSocialLoginURL = "/auth/social-login"
+    
     // home
     
     static let recommendAiURL = "/recommend/ai"

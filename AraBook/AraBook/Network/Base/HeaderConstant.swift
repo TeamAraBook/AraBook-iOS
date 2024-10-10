@@ -25,7 +25,7 @@ enum HeaderConstant {
     static var hasTokenHeader: [String: String] {
         [
             NetworkHeaderKey.contentType.rawValue: "application/json",
-            NetworkHeaderKey.authorization.rawValue: "Bearer"
+            NetworkHeaderKey.authorization.rawValue: "Bearer \(UserManager.shared.getAccessToken)"
         ]
     }
 }
