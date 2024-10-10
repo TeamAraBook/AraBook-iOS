@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Kingfisher
 
 final class HomeTodayBookView: UIView {
     
@@ -16,13 +17,13 @@ final class HomeTodayBookView: UIView {
     
     private let iconImageView = UIImageView(image: .icRecommend)
     private let titleLabel = UILabel()
-    private let todayBookBackView = UIImageView(image: .imgBook)
+    private let todayBookBackView = UIImageView()
     private let backgroundView = UIView()
-    private let todayBookImageView = UIImageView(image: .imgBook)
+    private let todayBookImageView = UIImageView()
     private let toayBookTitleLabel = UILabel()
     private let todayBookInfoStackView = UIStackView()
     private let todayBookAuthorLabel = UILabel()
-    private let todayBookPageLabel = UILabel()
+    private let todayBookCategoryLabel = UILabel()
     
     // MARK: - Life Cycles
     
@@ -55,7 +56,7 @@ private extension HomeTodayBookView {
         }
         
         todayBookBackView.do {
-            $0.contentMode = .scaleToFill
+            $0.contentMode = .center
         }
         
         backgroundView.do {
@@ -78,7 +79,7 @@ private extension HomeTodayBookView {
             $0.axis = .horizontal
         }
         
-        [todayBookAuthorLabel, todayBookPageLabel].forEach {
+        [todayBookAuthorLabel, todayBookCategoryLabel].forEach {
             $0.textColor = .white
             $0.font = .araFont(type: .PyeongChangRegular, size: 12)
         }
@@ -93,7 +94,7 @@ private extension HomeTodayBookView {
                     todayBookInfoStackView)
         todayBookBackView.addSubview(backgroundView)
         todayBookInfoStackView.addArrangedSubviews(todayBookAuthorLabel,
-                                                   todayBookPageLabel)
+                                                   todayBookCategoryLabel)
     }
     
     func setLayout() {
@@ -140,9 +141,15 @@ private extension HomeTodayBookView {
 
 extension HomeTodayBookView {
     
-    func bindTodayBook(model: TodayBookModel){
+    func bindTodayBook(model: RecommendAiResponseDto){
+//        let cropRect = CGRect(x: 0, y: 0,
+//                              width: 375,
+//                              height: 390)
+//        todayBookBackView.loadAndCropImage(from: model.coverURL, cropRect: cropRect)
+        todayBookBackView.kf.setImage(with: URL(string: model.coverURL))
+        todayBookImageView.kf.setImage(with: URL(string: model.coverURL))
         toayBookTitleLabel.text = model.title
         todayBookAuthorLabel.text = model.author
-        todayBookPageLabel.text = "\(model.page)페이지"
+        todayBookCategoryLabel.text = model.categories.first?.categoryName
     }
 }

@@ -9,10 +9,11 @@ import UIKit
 
 import SnapKit
 import Then
+import Kingfisher
 
 final class BookCollectionViewCell: UICollectionViewCell {
     
-    private let bookImage = UIImageView(image: .imgBook)
+    private let bookImage = UIImageView()
     private let bookTitle = UILabel()
     private let bookAuthor = UILabel()
     
@@ -82,7 +83,14 @@ private extension BookCollectionViewCell {
 
 extension BookCollectionViewCell {
     
-    func bindBestSeller(model: BestSellerModel) {
+    func bindBestSeller(model: BestSellerBook) {
+        bookImage.kf.setImage(with: URL(string: model.coverURL))
+        bookTitle.text = model.title
+        bookAuthor.text = model.author
+    }
+    
+    func bindSearchBook(model: SearchBook) {
+        bookImage.kf.setImage(with: URL(string: model.coverURL))
         bookTitle.text = model.title
         bookAuthor.text = model.author
     }
