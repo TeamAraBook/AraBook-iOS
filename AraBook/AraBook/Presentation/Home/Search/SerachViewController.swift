@@ -16,8 +16,8 @@ final class SerachViewController: UIViewController {
     // MARK: - Properties
     
     private let searchVM = SearchViewModel()
-    private let viewWillAppear = PublishRelay<Void>()
     private let showRecent = PublishRelay<Void>()
+    private let selectRecent = PublishRelay<Int>()
     private let searchTapped = PublishRelay<String>()
     private let disposeBag = DisposeBag()
     
@@ -41,28 +41,22 @@ final class SerachViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //        self.viewWillAppear.accept(())
         self.showRecent.accept(())
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        createLocalDatabase()
         setUI()
         setHierarchy()
         setLayout()
         bindSearchTextField()
         bindViewModel()
+        bindCollectionView()
     }
 }
 
 extension SerachViewController {
-    
-    func createLocalDatabase() {
-        _ = LocalDBService.shared
-        LocalDBService.shared.createTable()
-    }
     
     func setUI() {
         view.backgroundColor = .white
@@ -127,11 +121,19 @@ extension SerachViewController {
             .disposed(by: disposeBag)
     }
     
+    func bindCollectionView() {
+        recentSearchView.recentCollectionView.rx.itemSelected
+            .subscribe(onNext: { indexPath in
+                self.selectRecent.accept(indexPath.item)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func bindViewModel() {
         let input = SearchViewModel.Input(
-            viewWillAppear: viewWillAppear,
             searchTapped: searchTapped,
-            showRecent: showRecent
+            showRecent: showRecent,
+            selectRecent: selectRecent
         )
         
         let output = searchVM.transform(input: input)
@@ -158,6 +160,15 @@ extension SerachViewController {
                        cellType: RecentCollectionViewCell.self)) { (_, dto, cell) in
                 cell.bindRecentView(title: dto.word)
             }
+            .disposed(by: disposeBag)
+        
+        output.selectKeywordData
+            .subscribe(onNext: { keyword in
+                self.searchTextField.text = keyword
+                self.recentSearchView.isHidden = true
+                self.searchResultView.isHidden = false
+                self.searchTextField.setKeyword()
+            })
             .disposed(by: disposeBag)
     }
 }

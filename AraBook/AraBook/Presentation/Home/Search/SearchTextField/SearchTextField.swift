@@ -53,6 +53,11 @@ class SearchTextField: BaseTextField {
         return bounds.inset(by: UIEdgeInsets(top: 16.0, left: 38.0, bottom: 14.0, right: 36.0))
     }
     
+    func setKeyword() {
+        layer.borderColor = UIColor.mainGreen.cgColor
+        searchButton.setImage(.icSearchGreen, for: .normal)
+    }
+    
 }
 
 extension SearchTextField: UITextFieldDelegate {

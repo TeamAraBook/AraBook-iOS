@@ -20,15 +20,16 @@ final class SearchViewModel: ViewModel {
     }
     
     struct Input {
-        let viewWillAppear: PublishRelay<Void>
         let searchTapped: PublishRelay<String>
         let showRecent: PublishRelay<Void>
+        let selectRecent: PublishRelay<Int>
     }
     
     struct Output {
         let bookSearchCount = PublishRelay<Int>()
         let bookSearchData = PublishRelay<[SearchBook]>()
         let recentSearchData = PublishRelay<[RecentSearchInfo]>()
+        let selectKeywordData = PublishRelay<String>()
     }
     
     func transform(input: Input) -> Output {
@@ -43,6 +44,12 @@ final class SearchViewModel: ViewModel {
         input.showRecent
             .subscribe(with: self, onNext: { owner, keyword in
                 owner.getRecentSearchData(output: output)
+            })
+            .disposed(by: disposeBag)
+        
+        input.selectRecent
+            .subscribe(with: self, onNext: { owner, selectPath in
+                owner.getRecentKeyword(with: selectPath,output: output)
             })
             .disposed(by: disposeBag)
         
@@ -62,5 +69,11 @@ final class SearchViewModel: ViewModel {
         DispatchQueue.main.async {
             output.recentSearchData.accept(recentSearches)
         }
+    }
+    
+    private func getRecentKeyword(with item:Int, output: Output) {
+        let selectedKeyword = LocalDBService.shared.getData()[item].word
+        self.searchBook(with: selectedKeyword, output: output)
+        output.selectKeywordData.accept(selectedKeyword)
     }
 }
