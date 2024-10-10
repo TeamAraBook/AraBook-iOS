@@ -23,6 +23,7 @@ final class SearchViewModel: ViewModel {
         let searchTapped: PublishRelay<String>
         let showRecent: PublishRelay<Void>
         let selectRecent: PublishRelay<Int>
+        let deleteRecent: PublishRelay<Int>
     }
     
     struct Output {
@@ -53,6 +54,12 @@ final class SearchViewModel: ViewModel {
             })
             .disposed(by: disposeBag)
         
+        input.deleteRecent
+            .subscribe(with: self, onNext: { owner, selectPath in
+                owner.deleteKeyword(with: selectPath, output: output)
+            })
+            .disposed(by: disposeBag)
+        
         return output
     }
     
@@ -66,14 +73,26 @@ final class SearchViewModel: ViewModel {
     
     private func getRecentSearchData(output: Output) {
         let recentSearches = LocalDBService.shared.getData()
+        print("🐸🐸🐸🐸🐸")
+        print(recentSearches)
+        print("🐸🐸🐸🐸🐸")
         DispatchQueue.main.async {
             output.recentSearchData.accept(recentSearches)
         }
     }
     
-    private func getRecentKeyword(with item:Int, output: Output) {
+    private func getRecentKeyword(with item: Int, output: Output) {
         let selectedKeyword = LocalDBService.shared.getData()[item].word
         self.searchBook(with: selectedKeyword, output: output)
         output.selectKeywordData.accept(selectedKeyword)
+    }
+    
+    private func deleteKeyword(with item: Int, output: Output) {
+        let selectedKeyword = LocalDBService.shared.getData()[item].word
+        print("🐙🐙🐙🐙")
+        print(selectedKeyword)
+        print("🐙🐙🐙🐙")
+        LocalDBService.shared.deleteRecentSearch(word: selectedKeyword)
+        self.getRecentSearchData(output: output)
     }
 }

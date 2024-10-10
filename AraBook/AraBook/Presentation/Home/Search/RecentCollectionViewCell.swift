@@ -9,11 +9,20 @@ import UIKit
 
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
+
+protocol RecentCellDelegate: AnyObject {
+    func tapDeleteButtonDelegate(cell: RecentCollectionViewCell)
+}
 
 final class RecentCollectionViewCell: UICollectionViewCell {
     
+    let disposeBag = DisposeBag()
+    var delegate: RecentCellDelegate?
+    
     private let recentTitle = UILabel()
-    private let recentDelButton = UIButton()
+    let recentDelButton = UIButton()
     private let recentStackView = UIStackView()
     
     override init(frame: CGRect) {
@@ -45,6 +54,12 @@ private extension RecentCollectionViewCell {
         
         recentDelButton.do {
             $0.setImage(.icClose, for: .normal)
+            $0.rx.tap
+                .bind { [weak self] in
+                    guard let self = self else { return }
+                    self.delegate?.tapDeleteButtonDelegate(cell: self)
+                }
+                .disposed(by: disposeBag)
         }
         
         recentStackView.do {

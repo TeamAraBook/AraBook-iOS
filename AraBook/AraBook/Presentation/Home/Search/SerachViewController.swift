@@ -18,6 +18,7 @@ final class SerachViewController: UIViewController {
     private let searchVM = SearchViewModel()
     private let showRecent = PublishRelay<Void>()
     private let selectRecent = PublishRelay<Int>()
+    private let deleteRecent = PublishRelay<Int>()
     private let searchTapped = PublishRelay<String>()
     private let disposeBag = DisposeBag()
     
@@ -133,7 +134,8 @@ extension SerachViewController {
         let input = SearchViewModel.Input(
             searchTapped: searchTapped,
             showRecent: showRecent,
-            selectRecent: selectRecent
+            selectRecent: selectRecent,
+            deleteRecent: deleteRecent
         )
         
         let output = searchVM.transform(input: input)
@@ -157,8 +159,9 @@ extension SerachViewController {
         output.recentSearchData
             .bind(to: recentSearchView.recentCollectionView.rx
                 .items(cellIdentifier: RecentCollectionViewCell.className,
-                       cellType: RecentCollectionViewCell.self)) { (_, dto, cell) in
+                       cellType: RecentCollectionViewCell.self)) { (indexpath, dto, cell) in
                 cell.bindRecentView(title: dto.word)
+                cell.delegate = self
             }
             .disposed(by: disposeBag)
         
@@ -170,5 +173,14 @@ extension SerachViewController {
                 self.searchTextField.setKeyword()
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension SerachViewController: RecentCellDelegate {
+    
+    func tapDeleteButtonDelegate(cell: RecentCollectionViewCell) {
+        if let indexPath = recentSearchView.recentCollectionView.indexPath(for: cell) {
+            self.deleteRecent.accept(indexPath.item)
+        }
     }
 }
