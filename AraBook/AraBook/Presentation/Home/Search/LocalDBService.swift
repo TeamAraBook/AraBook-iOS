@@ -79,7 +79,33 @@ class LocalDBService {
         sqlite3_finalize(statement)
     }
     
+    func checkDuplicateWord(word: String) -> Bool {
+        let query = "SELECT COUNT(*) FROM myDB WHERE word = ?;"
+        var statement: OpaquePointer? = nil
+        var isDuplicate = false
+        
+        if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_bind_text(statement, 1, NSString(string: word).utf8String, -1, nil)
+            
+            if sqlite3_step(statement) == SQLITE_ROW {
+                let count = sqlite3_column_int(statement, 0)
+                isDuplicate = (count > 0)
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("Check duplicate prepare failed: \(errorMessage)")
+        }
+        
+        sqlite3_finalize(statement)
+        return isDuplicate
+    }
+    
     func insertData(word: String){
+        if checkDuplicateWord(word: word) {
+            print("Word '\(word)' already exists in the database.")
+            deleteRecentSearch(word: word)
+        }
+        
         let query = "insert into myDB (id, word) values (?,?);"
         var statement : OpaquePointer? = nil
         if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {
