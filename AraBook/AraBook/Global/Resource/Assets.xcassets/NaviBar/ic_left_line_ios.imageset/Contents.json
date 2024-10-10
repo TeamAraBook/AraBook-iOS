@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_left_line_ios.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
