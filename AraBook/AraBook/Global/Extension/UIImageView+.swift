@@ -31,6 +31,20 @@ extension UIImageView {
             }
         }.resume()
     }
+    
+    func addBlurEffect(style: UIBlurEffect.Style) {
+        if !subviews.contains(where: { $0 is UIVisualEffectView }) {
+            let blurEffect = UIBlurEffect(style: style)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.addSubview(blurEffectView)
+        }
+    }
+    
+    func removeBlurEffect() {
+        subviews.filter { $0 is UIVisualEffectView }.forEach { $0.removeFromSuperview() }
+    }
 }
 
 extension UIImage {

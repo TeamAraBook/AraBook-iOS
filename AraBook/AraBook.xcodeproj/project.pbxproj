@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03CECE222CB8219A000E8FF0 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE212CB82195000E8FF0 /* BookDetailView.swift */; };
+		03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */; };
+		03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */; };
+		03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */; };
+		03CECE2B2CB821ED000E8FF0 /* BookDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -88,6 +93,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03CECE1F2CB81E27000E8FF0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		03CECE212CB82195000E8FF0 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
+		03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
+		03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoverView.swift; sourceTree = "<group>"; };
+		03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDescriptionView.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +126,6 @@
 		A48AC3CF2CA431A400212432 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 		A48AC3D12CA5B7D400212432 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		A48AC3D92CA5B85A00212432 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		A48F57AB2CB42425004F3A74 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A48F58642CB426B0004F3A74 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		A48F58662CB426B8004F3A74 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		A48F58732CB42717004F3A74 /* HeaderConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderConstant.swift; sourceTree = "<group>"; };
@@ -187,6 +197,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03CECE202CB8218C000E8FF0 /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				03CECE272CB821C7000E8FF0 /* Views */,
+				03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */,
+				03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */,
+				03CECE212CB82195000E8FF0 /* BookDetailView.swift */,
+			);
+			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		03CECE272CB821C7000E8FF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */,
+				03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A48AC36C2CA28F6A00212432 = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +241,7 @@
 				A48AC38D2CA291CA00212432 /* Network */,
 				A48AC38C2CA291BD00212432 /* Presentation */,
 				A48AC3862CA28F6B00212432 /* Info.plist */,
-				A48F57AB2CB42425004F3A74 /* Config.xcconfig */,
+				03CECE1F2CB81E27000E8FF0 /* Config.xcconfig */,
 			);
 			path = AraBook;
 			sourceTree = "<group>";
@@ -221,6 +251,7 @@
 			children = (
 				A48F5B8C2CB8201C004F3A74 /* Mypage */,
 				A48F5AA32CB80C44004F3A74 /* Onboarding */,
+				03CECE202CB8218C000E8FF0 /* BookDetail */,
 				A4B716622CAC146000F28562 /* Record */,
 				A48AC3BE2CA41D6100212432 /* Home */,
 				A48AC3942CA292AA00212432 /* Common */,
@@ -627,6 +658,7 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
+				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
@@ -636,8 +668,10 @@
 				A48F5AD32CB81328004F3A74 /* AuthService.swift in Sources */,
 				A48F5AAC2CB80DEC004F3A74 /* LoginViewModel.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
+				03CECE2B2CB821ED000E8FF0 /* BookDetailDescriptionView.swift in Sources */,
 				A48F596D2CB58304004F3A74 /* SearchTextField.swift in Sources */,
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
+				03CECE222CB8219A000E8FF0 /* BookDetailView.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
 				A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */,
 				A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */,
@@ -655,9 +689,11 @@
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
+				03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */,
 				A48F5AAA2CB80DE7004F3A74 /* LoginViewController.swift in Sources */,
 				A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
+				03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				A48F58AE2CB57AEE004F3A74 /* RecentSearchView.swift in Sources */,
 				A48F5AD12CB81322004F3A74 /* AuthTarget.swift in Sources */,
@@ -682,7 +718,7 @@
 /* Begin XCBuildConfiguration section */
 		A48AC3872CA28F6B00212432 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A48F57AB2CB42425004F3A74 /* Config.xcconfig */;
+			baseConfigurationReference = 03CECE1F2CB81E27000E8FF0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -746,7 +782,7 @@
 		};
 		A48AC3882CA28F6B00212432 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A48F57AB2CB42425004F3A74 /* Config.xcconfig */;
+			baseConfigurationReference = 03CECE1F2CB81E27000E8FF0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -803,6 +839,7 @@
 		};
 		A48AC38A2CA28F6B00212432 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03CECE1F2CB81E27000E8FF0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -836,6 +873,7 @@
 		};
 		A48AC38B2CA28F6B00212432 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03CECE1F2CB81E27000E8FF0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
