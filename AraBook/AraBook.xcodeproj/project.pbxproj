@@ -60,6 +60,7 @@
 		A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F596E2CB58D40004F3A74 /* SearchBookResponseDto.swift */; };
 		A48F59712CB58EF8004F3A74 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F59702CB58EF4004F3A74 /* SearchViewModel.swift */; };
 		A48F5A712CB6BF69004F3A74 /* LocalDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5A702CB6BF5F004F3A74 /* LocalDBService.swift */; };
+		A48F5AA22CB7FC5F004F3A74 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = A48F5AA12CB7FC5F004F3A74 /* RxGesture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 			files = (
 				A48F586E2CB426E3004F3A74 /* ReactiveMoya in Frameworks */,
 				A48AC3D52CA5B83200212432 /* RxCocoa in Frameworks */,
+				A48F5AA22CB7FC5F004F3A74 /* RxGesture in Frameworks */,
 				A48AC3A12CA2982A00212432 /* Then in Frameworks */,
 				A48F58892CB43569004F3A74 /* Kingfisher in Frameworks */,
 				A48F586C2CB426E3004F3A74 /* Moya in Frameworks */,
@@ -422,6 +424,7 @@
 				A48F586D2CB426E3004F3A74 /* ReactiveMoya */,
 				A48F586F2CB426E3004F3A74 /* RxMoya */,
 				A48F58882CB43569004F3A74 /* Kingfisher */,
+				A48F5AA12CB7FC5F004F3A74 /* RxGesture */,
 			);
 			productName = AraBook;
 			productReference = A48AC3752CA28F6A00212432 /* AraBook.app */;
@@ -457,6 +460,7 @@
 				A48AC3D32CA5B83200212432 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A48F58682CB426E3004F3A74 /* XCRemoteSwiftPackageReference "Moya" */,
 				A48F58872CB43569004F3A74 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				A48F5AA02CB7FC5E004F3A74 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = A48AC3762CA28F6A00212432 /* Products */;
 			projectDirPath = "";
@@ -794,6 +798,14 @@
 				minimumVersion = 8.0.3;
 			};
 		};
+		A48F5AA02CB7FC5E004F3A74 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -841,6 +853,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A48F58872CB43569004F3A74 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		A48F5AA12CB7FC5F004F3A74 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A48F5AA02CB7FC5E004F3A74 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
