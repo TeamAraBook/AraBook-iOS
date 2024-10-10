@@ -171,6 +171,8 @@ extension SerachViewController {
                 self.recentSearchView.isHidden = true
                 self.searchResultView.isHidden = false
                 self.searchTextField.setKeyword()
+                self.searchTextField.resignFirstResponder()
+                LocalDBService.shared.insertData(word: keyword)
             })
             .disposed(by: disposeBag)
     }
