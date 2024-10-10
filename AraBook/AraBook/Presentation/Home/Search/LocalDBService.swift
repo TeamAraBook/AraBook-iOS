@@ -82,29 +82,22 @@ class LocalDBService {
     func insertData(word: String){
         let query = "insert into myDB (id, word) values (?,?);"
         var statement : OpaquePointer? = nil
-        do {
-            let data = try JSONEncoder().encode(word)
-            let dataToString = String(data: data, encoding: .utf8)
-            if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {
-                sqlite3_bind_text(statement, 2, NSString(string: word).utf8String, -1, nil)
-                
-                if sqlite3_step(statement) == SQLITE_DONE {
-                    print("Insert data SuccessFully : \(String(describing: db))")
-                }
-                else {
-                    let errorMessage = String(cString: sqlite3_errmsg(db))
-                    print("\n insert Data sqlite3 step fail! : \(errorMessage)")
-                }
+        if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_bind_text(statement, 2, NSString(string: word).utf8String, -1, nil)
+            
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Insert data SuccessFully : \(String(describing: db))")
             }
             else {
                 let errorMessage = String(cString: sqlite3_errmsg(db))
-                print("\n insert Data prepare fail! : \(errorMessage)")
+                print("\n insert Data sqlite3 step fail! : \(errorMessage)")
             }
-            sqlite3_finalize(statement)
         }
-        catch {
-            print("JSONEncoder Error : \(error.localizedDescription)")
+        else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\n insert Data prepare fail! : \(errorMessage)")
         }
+        sqlite3_finalize(statement)
     }
     
     func getData() -> [RecentSearchInfo] {
@@ -131,35 +124,25 @@ class LocalDBService {
         return recentSearchList
     }
     
-    func deleteRecentSearch(id: UUID) {
+    func deleteRecentSearch(word: String) {
         let query = "DELETE FROM myDB WHERE word = ?;"
         
         var statement: OpaquePointer? = nil
         
-        do {
-            let recentSearchInfo = RecentSearchInfo(id: id, word: "")
-            let data = try JSONEncoder().encode(recentSearchInfo)
-            let dataToString = String(data: data, encoding: .utf8)
-            
-            if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {
-                sqlite3_bind_text(statement, 1, NSString(string: dataToString!).utf8String, -1, nil)
-                
-                if sqlite3_step(statement) == SQLITE_DONE {
-                    print("Delete search successfully by id: \(id)")
-                } else {
-                    let errorMessage = String(cString: sqlite3_errmsg(db))
-                    print("Delete search step fail: \(errorMessage)")
-                }
+        if sqlite3_prepare_v2(self.db, query, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_bind_text(statement, 1, NSString(string: word).utf8String, -1, nil)
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Delete search successfully for word: \(word)")
             } else {
                 let errorMessage = String(cString: sqlite3_errmsg(db))
-                print("Delete search prepare fail: \(errorMessage)")
+                print("Delete search step failed: \(errorMessage)")
             }
-            
-            sqlite3_finalize(statement)
-            
-        } catch {
-            print("JSONEncoder Error: \(error.localizedDescription)")
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("Delete search prepare failed: \(errorMessage)")
         }
+        
+        sqlite3_finalize(statement)
     }
     
     func deleteDatabase() {
