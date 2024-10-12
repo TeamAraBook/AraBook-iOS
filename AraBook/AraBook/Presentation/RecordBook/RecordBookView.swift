@@ -15,7 +15,7 @@ final class RecordBookView: UIView {
     // MARK: - UI Components
     
     private let navigationBar = CustomNavigationBar()
-    private let characterView = CharacterView()
+    let characterView = CharacterView()
     private let recordDateView = RecordDateView()
     private let bookReviewView = BookReviewView()
     private let submitButton = UIButton()

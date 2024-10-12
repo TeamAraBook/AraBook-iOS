@@ -23,6 +23,8 @@ final class RecordBookViewController: UIViewController {
     private let recordBookVM = RecordBookViewModel()
     private let viewWillAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
+    private let selectedCharacter =
+    BehaviorRelay<CharacterType>(value: .notMuch)
     
     // MARK: - LifeCycle
     
@@ -39,6 +41,7 @@ final class RecordBookViewController: UIViewController {
         bindViewModel()
         setHierarchy()
         setLayout()
+        bindCharacterButton()
     }
 }
 
@@ -49,13 +52,51 @@ extension RecordBookViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    func bindCharacterButton() {
+        recordBookView.characterView.notMuchButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.selectedCharacter.accept(.notMuch)
+            })
+            .disposed(by: disposeBag)
+        
+        recordBookView.characterView.littleBitButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.selectedCharacter.accept(.littleBit)
+            })
+            .disposed(by: disposeBag)
+        
+        recordBookView.characterView.normalButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.selectedCharacter.accept(.normal)
+            })
+            .disposed(by: disposeBag)
+        
+        recordBookView.characterView.funButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.selectedCharacter.accept(.fun)
+            })
+            .disposed(by: disposeBag)
+        
+        recordBookView.characterView.lifeBookButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.selectedCharacter.accept(.lifeBook)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func bindViewModel() {
         let input = RecordBookViewModel.Input(
-            viewWillAppear: viewWillAppear
+            characterButtonTapped: selectedCharacter
         )
         
         let output = recordBookVM.transform(input: input)
-    
+        
+        output.selectedCharacter
+            .subscribe(onNext: { [weak self] character in
+                guard let self else { return }
+                recordBookView.characterView.updateButtonSelection(character)
+            })
+            .disposed(by: disposeBag)
     }
     
     func setHierarchy() {

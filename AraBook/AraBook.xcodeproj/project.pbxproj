@@ -19,6 +19,7 @@
 		03CECE522CB832A7000E8FF0 /* RecordDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE512CB8329F000E8FF0 /* RecordDateView.swift */; };
 		03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE532CB832B0000E8FF0 /* BookReviewView.swift */; };
 		03CECE582CB83EDB000E8FF0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE572CB83ED7000E8FF0 /* CalendarView.swift */; };
+		03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF252CBA4718000E8FF0 /* CharacterModel.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -89,6 +90,7 @@
 		03CECE512CB8329F000E8FF0 /* RecordDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDateView.swift; sourceTree = "<group>"; };
 		03CECE532CB832B0000E8FF0 /* BookReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReviewView.swift; sourceTree = "<group>"; };
 		03CECE572CB83ED7000E8FF0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		03CECF252CBA4718000E8FF0 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		03CECE472CB82E29000E8FF0 /* RecordBook */ = {
 			isa = PBXGroup;
 			children = (
+				03CECF242CBA4711000E8FF0 /* Models */,
 				03CECE4C2CB83207000E8FF0 /* Views */,
 				03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */,
 				03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */,
@@ -203,6 +206,14 @@
 				03CECE532CB832B0000E8FF0 /* BookReviewView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		03CECF242CBA4711000E8FF0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03CECF252CBA4718000E8FF0 /* CharacterModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A48AC36C2CA28F6A00212432 = {
@@ -593,6 +604,7 @@
 				A48F596B2CB582FC004F3A74 /* BaseTextField.swift in Sources */,
 				03CECE522CB832A7000E8FF0 /* RecordDateView.swift in Sources */,
 				03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */,
+				03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */,
 				A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */,
 				03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,

@@ -10,6 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+enum CharacterType {
+    case notMuch
+    case littleBit
+    case normal
+    case fun
+    case lifeBook
+    case none // Default value
+}
+
 final class CharacterView: UIView {
     
     // MARK: - UI Components
@@ -17,15 +26,17 @@ final class CharacterView: UIView {
     private let characterLabel = UILabel()
     
     private let buttonView = UIView()
-    private let notMuchButton = UIButton()
-    private let littleBitButton = UIButton()
-    private let normalButton = UIButton()
-    private let funButton = UIButton()
-    private let lifeBookButton = UIButton()
+    let notMuchButton = UIButton()
+    let littleBitButton = UIButton()
+    let normalButton = UIButton()
+    let funButton = UIButton()
+    let lifeBookButton = UIButton()
     
-    private let pickLabel = UILabel()
+    let pickLabel = UILabel()
     
     // MARK: - Properties
+    
+    private var selectedButton: UIButton?
     
     // MARK: - Initializer
     
@@ -58,25 +69,32 @@ extension CharacterView {
         
         notMuchButton.do {
             $0.setImage(.unSelectedNotMuch, for: .normal)
+            $0.setImage(.selectedNotMuch, for: .selected)
         }
         
         littleBitButton.do {
             $0.setImage(.unSelectedLittleBit, for: .normal)
+            $0.setImage(.selectedLittleBit, for: .selected)
         }
         
         normalButton.do {
             $0.setImage(.unSelectedNormal, for: .normal)
+            $0.setImage(.selectedNormal, for: .selected)
         }
         
         funButton.do {
             $0.setImage(.unSelectedFun, for: .normal)
+            $0.setImage(.selectedFun, for: .selected)
         }
         
         lifeBookButton.do {
             $0.setImage(.unSelectedLifeBook, for: .normal)
+            $0.setImage(.selectedLifeBook, for: .selected)
         }
         
         pickLabel.do {
+            $0.text = "선택 전입니다."
+            $0.isHidden = true
             $0.font = .araFont(type: .PretandardRegular, size: 16)
             $0.textColor = .chGreen
         }
@@ -134,5 +152,18 @@ extension CharacterView {
     
     // MARK: - Methods
     
+    func updateButtonSelection(_ model: CharacterModel) {
+        notMuchButton.isSelected = (model.type == .notMuch)
+        littleBitButton.isSelected = (model.type == .littleBit)
+        normalButton.isSelected = (model.type == .normal)
+        funButton.isSelected = (model.type == .fun)
+        lifeBookButton.isSelected = (model.type == .lifeBook)
+        
+        pickLabel.isHidden = false
+        pickLabel.text = model.text
+        pickLabel.textColor = model.color
+    }
+    
     // MARK: - @objc Methods
+
 }
