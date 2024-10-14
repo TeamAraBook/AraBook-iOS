@@ -17,9 +17,9 @@ final class RecordDateView: UIView {
     private let dateLabel = UILabel()
     
     private let startDateLabel = UILabel()
-    private let startDate = CalendarView()
+    let startDate = CalendarView()
     private let endDateLabel = UILabel()
-    private let endDate = CalendarView()
+    let endDate = CalendarView()
     
     // MARK: - Properties
     
@@ -103,6 +103,14 @@ extension RecordDateView {
     }
     
     // MARK: - Methods
+    
+    func bindStartDate(_ date: String) {
+        startDate.dateLabel.text = date
+    }
+    
+    func bindEndDate(_ date: String) {
+        endDate.dateLabel.text = date
+    }
     
     // MARK: - @objc Methods
 }

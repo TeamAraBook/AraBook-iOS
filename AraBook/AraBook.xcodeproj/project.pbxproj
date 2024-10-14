@@ -20,6 +20,7 @@
 		03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE532CB832B0000E8FF0 /* BookReviewView.swift */; };
 		03CECE582CB83EDB000E8FF0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE572CB83ED7000E8FF0 /* CalendarView.swift */; };
 		03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF252CBA4718000E8FF0 /* CharacterModel.swift */; };
+		03CECF2A2CBA563C000E8FF0 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -91,6 +92,7 @@
 		03CECE532CB832B0000E8FF0 /* BookReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReviewView.swift; sourceTree = "<group>"; };
 		03CECE572CB83ED7000E8FF0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		03CECF252CBA4718000E8FF0 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		03CECE4C2CB83207000E8FF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */,
 				03CECE572CB83ED7000E8FF0 /* CalendarView.swift */,
 				03CECE4F2CB8327E000E8FF0 /* CharacterView.swift */,
 				03CECE512CB8329F000E8FF0 /* RecordDateView.swift */,
@@ -615,6 +618,7 @@
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
 				03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */,
 				A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */,
+				03CECF2A2CBA563C000E8FF0 /* DatePickerViewController.swift in Sources */,
 				03CECE582CB83EDB000E8FF0 /* CalendarView.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */,

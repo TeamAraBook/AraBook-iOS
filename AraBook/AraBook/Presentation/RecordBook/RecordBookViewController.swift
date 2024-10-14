@@ -17,7 +17,8 @@ final class RecordBookViewController: UIViewController {
 
     private let recordBookView = RecordBookView()
     private let scrollView = UIScrollView()
-    
+    private let datePicker = UIDatePicker()
+
     // MARK: - Properties
     
     private let recordBookVM = RecordBookViewModel()
@@ -32,6 +33,7 @@ final class RecordBookViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.viewWillAppear.accept(())
+        bindViewModel()
     }
 
     override func viewDidLoad() {
@@ -42,6 +44,8 @@ final class RecordBookViewController: UIViewController {
         setHierarchy()
         setLayout()
         bindCharacterButton()
+        bindDate()
+        setDelegate()
     }
 }
 
@@ -84,9 +88,35 @@ extension RecordBookViewController {
             .disposed(by: disposeBag)
     }
     
+    func bindDate() {
+
+        recordBookView.recordDateView.startDate.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.recordBookView.recordDateView.startDate.selectedCalendar()
+                self.presentToHalfModalViewController(.start)
+                
+            })
+            .disposed(by: disposeBag)
+        
+        recordBookView.recordDateView.endDate.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.recordBookView.recordDateView.endDate.selectedCalendar()
+                self.presentToHalfModalViewController(.end)
+                
+            })
+            .disposed(by: disposeBag)
+    }
+
+    
     func bindViewModel() {
         let input = RecordBookViewModel.Input(
-            characterButtonTapped: selectedCharacter
+            characterButtonTapped: selectedCharacter,
+            startDate: BehaviorRelay(value: ""),
+            endDate: BehaviorRelay(value: "")
         )
         
         let output = recordBookVM.transform(input: input)
@@ -95,6 +125,7 @@ extension RecordBookViewController {
             .subscribe(onNext: { [weak self] character in
                 guard let self else { return }
                 recordBookView.characterView.updateButtonSelection(character)
+                print(character)
             })
             .disposed(by: disposeBag)
     }
@@ -110,5 +141,60 @@ extension RecordBookViewController {
         recordBookView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func setDelegate() {
+        recordBookVM.delegate = self
+    }
+}
+
+extension RecordBookViewController {
+    
+    // MARK: - Methods
+    
+    private func getCurrentDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let currentDate = Date()
+        return dateFormatter.string(from: currentDate)
+    }
+    
+    private func setupDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+    }
+    
+    private func presentToHalfModalViewController(_ type: DatePickerType) {
+        
+        let datePickVC = DatePickerViewController(viewModel: recordBookVM, type: type)
+        datePickVC.modalPresentationStyle = .pageSheet
+        let customDetentIdentifier = UISheetPresentationController.Detent.Identifier("DatePickerModal")
+        let customDetent = UISheetPresentationController.Detent.custom(identifier: customDetentIdentifier) { (_) in
+            return SizeLiterals.Screen.screenHeight * 330 / 812
+        }
+        
+        if let sheet = datePickVC.sheetPresentationController {
+            sheet.detents = [customDetent]
+            sheet.preferredCornerRadius = 15
+            sheet.prefersGrabberVisible = true
+            sheet.delegate = datePickVC as? any UISheetPresentationControllerDelegate
+        }
+        
+//        caveListVC.indexPath = self.indexPath
+        present(datePickVC, animated: true)
+    }
+}
+
+extension RecordBookViewController: RecordBookViewModelDelegate {
+    
+    func didUpdateStartDate(_ date: String) {
+        recordBookView.recordDateView.bindStartDate(date)
+    }
+    
+    func didUpdateEndDate(_ date: String) {
+        recordBookView.recordDateView.bindEndDate(date)
     }
 }

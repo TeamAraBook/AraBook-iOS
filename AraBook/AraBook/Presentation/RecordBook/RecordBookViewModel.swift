@@ -10,9 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol RecordBookViewModelDelegate: AnyObject {
+    func didUpdateStartDate(_ date: String)
+    func didUpdateEndDate(_ date: String)
+}
+
 final class RecordBookViewModel: ViewModel {
     
     private let disposeBag = DisposeBag()
+    weak var delegate: RecordBookViewModelDelegate?
     
     init() {
         
@@ -21,16 +27,18 @@ final class RecordBookViewModel: ViewModel {
     struct Input {
 //        let viewWillAppear: PublishRelay<Void>
         let characterButtonTapped: BehaviorRelay<CharacterType>
+        let startDate: BehaviorRelay<String>
+        let endDate: BehaviorRelay<String>
     }
     
     struct Output {
         let selectedCharacter: PublishRelay<CharacterModel> = PublishRelay<CharacterModel>()
+        var startDate: PublishRelay<String> = PublishRelay<String>()
     }
     
     func transform(input: Input) -> Output {
         let output = Output()
         
-        // Input의 viewWillAppear와 characterButtonTapped 처리
 //        input.viewWillAppear
 //            .subscribe(with: self, onNext: { owner, _ in
 //                // viewWillAppear 시 필요한 동작을 여기에 추가 가능
@@ -40,6 +48,18 @@ final class RecordBookViewModel: ViewModel {
         input.characterButtonTapped
             .bind(with: self, onNext: { owner, type in
                 owner.selectedCharacter(with: type, output: output)
+            })
+            .disposed(by: disposeBag)
+        
+        input.startDate
+            .subscribe(onNext: { [weak self] date in
+                self?.delegate?.didUpdateStartDate(date) // Delegate 호출
+            })
+            .disposed(by: disposeBag)
+
+        input.endDate
+            .subscribe(onNext: { [weak self] date in
+                self?.delegate?.didUpdateEndDate(date) // Delegate 호출
             })
             .disposed(by: disposeBag)
         
@@ -73,5 +93,13 @@ final class RecordBookViewModel: ViewModel {
         
         let character = CharacterModel(type: type, text: text, color: color)
         output.selectedCharacter.accept(character)
+    }
+    
+    func updateStartDate(date: String) {
+        delegate?.didUpdateStartDate(date)
+    }
+    
+    func updateEndDate(date: String) {
+        delegate?.didUpdateEndDate(date)
     }
 }

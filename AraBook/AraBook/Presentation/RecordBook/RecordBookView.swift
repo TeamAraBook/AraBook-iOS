@@ -16,7 +16,7 @@ final class RecordBookView: UIView {
     
     private let navigationBar = CustomNavigationBar()
     let characterView = CharacterView()
-    private let recordDateView = RecordDateView()
+    let recordDateView = RecordDateView()
     private let bookReviewView = BookReviewView()
     private let submitButton = UIButton()
     
