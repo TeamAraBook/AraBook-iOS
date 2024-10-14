@@ -27,8 +27,8 @@ final class RecordBookViewModel: ViewModel {
     struct Input {
 //        let viewWillAppear: PublishRelay<Void>
         let characterButtonTapped: BehaviorRelay<CharacterType>
-        let startDate: BehaviorRelay<String>
-        let endDate: BehaviorRelay<String>
+        let startDate: PublishRelay<String>
+        let endDate: PublishRelay<String>
     }
     
     struct Output {
@@ -48,6 +48,12 @@ final class RecordBookViewModel: ViewModel {
         input.characterButtonTapped
             .bind(with: self, onNext: { owner, type in
                 owner.selectedCharacter(with: type, output: output)
+            })
+            .disposed(by: disposeBag)
+        
+        input.startDate
+            .subscribe(onNext: { [weak self] date in
+                output.startDate.accept(date)
             })
             .disposed(by: disposeBag)
         

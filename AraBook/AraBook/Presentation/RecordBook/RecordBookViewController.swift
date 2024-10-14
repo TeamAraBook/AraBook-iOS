@@ -26,6 +26,8 @@ final class RecordBookViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let selectedCharacter =
     BehaviorRelay<CharacterType>(value: .notMuch)
+    private let startDate = PublishRelay<String>()
+    private let endDate = PublishRelay<String>()
     
     // MARK: - LifeCycle
     
@@ -115,8 +117,8 @@ extension RecordBookViewController {
     func bindViewModel() {
         let input = RecordBookViewModel.Input(
             characterButtonTapped: selectedCharacter,
-            startDate: BehaviorRelay(value: ""),
-            endDate: BehaviorRelay(value: "")
+            startDate: PublishRelay(),
+            endDate: PublishRelay()
         )
         
         let output = recordBookVM.transform(input: input)
@@ -152,13 +154,6 @@ extension RecordBookViewController {
     
     // MARK: - Methods
     
-    private func getCurrentDateString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let currentDate = Date()
-        return dateFormatter.string(from: currentDate)
-    }
-    
     private func setupDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -169,7 +164,7 @@ extension RecordBookViewController {
     
     private func presentToHalfModalViewController(_ type: DatePickerType) {
         
-        let datePickVC = DatePickerViewController(viewModel: recordBookVM, type: type)
+        let datePickVC = DatePickerViewController(viewModel: recordBookVM, type: type, start: startDate, end: endDate)
         datePickVC.modalPresentationStyle = .pageSheet
         let customDetentIdentifier = UISheetPresentationController.Detent.Identifier("DatePickerModal")
         let customDetent = UISheetPresentationController.Detent.custom(identifier: customDetentIdentifier) { (_) in
@@ -192,9 +187,11 @@ extension RecordBookViewController: RecordBookViewModelDelegate {
     
     func didUpdateStartDate(_ date: String) {
         recordBookView.recordDateView.bindStartDate(date)
+        recordBookView.recordDateView.startDate.unSelectedCalendar()
     }
     
     func didUpdateEndDate(_ date: String) {
         recordBookView.recordDateView.bindEndDate(date)
+        recordBookView.recordDateView.endDate.unSelectedCalendar()
     }
 }

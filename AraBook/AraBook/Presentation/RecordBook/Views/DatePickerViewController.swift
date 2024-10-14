@@ -29,15 +29,17 @@ final class DatePickerViewController: UIViewController {
     
     private var recordBookVM: RecordBookViewModel
     private let disposeBag = DisposeBag()
-    let startDate = BehaviorRelay(value: "123123456")
-    let endDate = BehaviorRelay(value: "")
     private var dateType: DatePickerType
+    private let startDate: PublishRelay<String>
+    private let endDate: PublishRelay<String>
     
     // MARK: - Initializer
 
-    init(viewModel: RecordBookViewModel, type: DatePickerType){
+    init(viewModel: RecordBookViewModel, type: DatePickerType, start: PublishRelay<String>, end: PublishRelay<String>){
         self.recordBookVM = viewModel
         self.dateType = type
+        self.startDate = start
+        self.endDate = end
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -129,6 +131,5 @@ extension DatePickerViewController {
     // MARK: - Methods
     
     // MARK: - @objc Methods
-    
-    
+
 }

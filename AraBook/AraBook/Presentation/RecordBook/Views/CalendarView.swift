@@ -40,7 +40,7 @@ extension CalendarView {
         self.makeCornerRound(radius: 10)
         
         dateLabel.do {
-            $0.text = "2024.10.11"
+            $0.text = getCurrentDateString()
             $0.font = .araFont(type: .PretandardRegular, size: 14)
             $0.textColor = .gray500
         }
@@ -74,6 +74,13 @@ extension CalendarView {
     
     func unSelectedCalendar() {
         self.layer.borderColor = UIColor.gray800.cgColor
+    }
+    
+    func getCurrentDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd" 
+        let currentDate = Date()
+        return dateFormatter.string(from: currentDate)
     }
     
     // MARK: - @objc Methods
