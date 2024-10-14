@@ -65,5 +65,16 @@ extension CalendarView {
     
     // MARK: - Methods
     
+    func selectedCalendar() {
+        self.backgroundColor = .white
+        self.layer.borderColor = UIColor.chGreen.cgColor
+        self.layer.borderWidth = 2
+        self.dateLabel.textColor = .black
+    }
+    
+    func unSelectedCalendar() {
+        self.layer.borderColor = UIColor.gray800.cgColor
+    }
+    
     // MARK: - @objc Methods
 }
