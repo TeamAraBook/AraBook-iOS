@@ -10,7 +10,7 @@ struct RecommendAiResponseDto: Codable {
     let coverURL: String
     let title, author: String
     let categories: [Category]
-
+    
     enum CodingKeys: String, CodingKey {
         case bookID = "bookId"
         case coverURL = "coverUrl"
@@ -20,11 +20,11 @@ struct RecommendAiResponseDto: Codable {
 
 // MARK: - Category
 struct Category: Codable {
-    let categoryID: Int
-    let categoryName: String
-
+    let subCategoryID: Int
+    let subCategoryName: String
+    
     enum CodingKeys: String, CodingKey {
-        case categoryID = "categoryId"
-        case categoryName
+        case subCategoryID = "subCategoryId"
+        case subCategoryName
     }
 }
