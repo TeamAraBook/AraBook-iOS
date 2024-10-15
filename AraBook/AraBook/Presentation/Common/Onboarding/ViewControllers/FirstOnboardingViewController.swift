@@ -10,6 +10,8 @@ import UIKit
 import Moya
 import SnapKit
 import Then
+import RxCocoa
+import RxSwift
 
 final class FirstOnboardingViewController: UIViewController {
     
@@ -19,6 +21,10 @@ final class FirstOnboardingViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let onboardingVM = OnboardingViewModel()
+    private let disposeBag = DisposeBag()
+    private let selectedGender = BehaviorRelay<GenderType?>(value: nil)
+    
     // MARK: - Initializer
     
     // MARK: - View Life Cycle
@@ -27,10 +33,42 @@ final class FirstOnboardingViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        bindGender()
+        bindViewModel()
     }
 }
 
 extension FirstOnboardingViewController {
+    
+    private func bindGender() {
+        
+        firstView.manButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.onboardingVM.inputs.genderButtonTapped(.man)
+            })
+            .disposed(by: disposeBag)
+        
+        firstView.womanButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.onboardingVM.inputs.genderButtonTapped(.woman)
+            })
+            .disposed(by: disposeBag)
+        
+        firstView.unSelectGenderButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.onboardingVM.inputs.genderButtonTapped(.none)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        
+        onboardingVM.outputs.selectedGenderType
+            .subscribe(onNext: { [weak self] type in
+                self?.firstView.selectedGenderButton(type)
+            })
+            .disposed(by: disposeBag)
+    }
     
     // MARK: - UI Components Property
     

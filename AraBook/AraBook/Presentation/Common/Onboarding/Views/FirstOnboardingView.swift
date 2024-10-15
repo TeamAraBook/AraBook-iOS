@@ -10,6 +10,12 @@ import UIKit
 import SnapKit
 import Then
 
+enum GenderType {
+    case man
+    case woman
+    case none
+}
+
 final class FirstOnboardingView: UIView {
     
     // MARK: - UI Components
@@ -22,13 +28,19 @@ final class FirstOnboardingView: UIView {
     private let birthYearLabel = UILabel()
     
     private let genderLabel = UILabel()
-    private let manButton = UIButton()
-    private let womanButton = UIButton()
-    private let unSelectGenderButton = UIButton()
+    let manButton = UIButton()
+    let womanButton = UIButton()
+    let unSelectGenderButton = UIButton()
     
     private let nextButton = CheckButton()
     
     // MARK: - Properties
+    
+    private var selectedGender: GenderType = .man {
+        didSet {
+            updateGenderSelectionUI() 
+        }
+    }
     
     // MARK: - Initializer
     
@@ -210,6 +222,29 @@ extension FirstOnboardingView {
     }
     
     // MARK: - Methods
+    
+    func selectedGenderButton(_ type: GenderType) {
+        selectedGender = type
+    }
+    
+    private func updateGenderSelectionUI() {
+        resetButtonColors()
+        
+        switch selectedGender {
+        case .man:
+            manButton.backgroundColor = .chGreen
+        case .woman:
+            womanButton.backgroundColor = .chGreen
+        case .none:
+            unSelectGenderButton.backgroundColor = .chGreen
+        }
+    }
+    
+    private func resetButtonColors() {
+        manButton.backgroundColor = .gray500
+        womanButton.backgroundColor = .gray500
+        unSelectGenderButton.backgroundColor = .gray500
+    }
     
     // MARK: - @objc Methods
 }

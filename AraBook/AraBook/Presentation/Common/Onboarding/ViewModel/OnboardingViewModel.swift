@@ -12,11 +12,11 @@ import RxCocoa
 import Moya
 
 protocol OnboardingViewModelInputs {
-
+    func genderButtonTapped(_ type: GenderType)
 }
 
 protocol OnboardingViewModelOutputs {
-
+    var selectedGenderType: BehaviorRelay<GenderType> { get }
 }
 
 protocol OnboardingViewModelType {
@@ -28,12 +28,19 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     
     private let disposeBag = DisposeBag()
     
+    var selectedGenderType: BehaviorRelay<GenderType> = BehaviorRelay<GenderType>(value: .man)
+    
     var inputs: OnboardingViewModelInputs { return self }
     var outputs: OnboardingViewModelOutputs { return self }
     
     init() {
 
     }
-    
+}
 
+extension OnboardingViewModel {
+    
+    func genderButtonTapped(_ type: GenderType) {
+        self.selectedGenderType.accept(type)
+    }
 }
