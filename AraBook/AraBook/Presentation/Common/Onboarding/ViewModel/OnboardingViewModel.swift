@@ -15,11 +15,13 @@ protocol OnboardingViewModelInputs {
     func genderButtonTapped(_ type: GenderType)
     func userInfo(_ model: OnboardingUserInfo)
     func getCategoryMain()
+    func getCategorySub(_ list: [Int])
 }
 
 protocol OnboardingViewModelOutputs {
     var selectedGenderType: BehaviorRelay<GenderType> { get }
     var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> { get }
+    var categorySub: BehaviorRelay<[CategorySubResponseDTO]> { get }
 }
 
 protocol OnboardingViewModelType {
@@ -37,6 +39,7 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     var gender: GenderType = .man
     
     var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> = BehaviorRelay<[CategoryMainResponseDTO]>(value: [])
+    var categorySub: BehaviorRelay<[CategorySubResponseDTO]> = BehaviorRelay<[CategorySubResponseDTO]>(value: [])
     
     var inputs: OnboardingViewModelInputs { return self }
     var outputs: OnboardingViewModelOutputs { return self }
@@ -64,6 +67,16 @@ extension OnboardingViewModel {
             .subscribe(onNext:  { [weak self] data in
                 guard let self else { return }
                 self.categoryMain.accept(data)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func getCategorySub(_ list: [Int]) {
+        var query = list.map { String($0) }.joined(separator: ",")
+        OnboardingService.getCategorySub(query)
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                self.categorySub.accept(data)
             })
             .disposed(by: disposeBag)
     }

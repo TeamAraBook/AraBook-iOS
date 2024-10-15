@@ -15,7 +15,7 @@ import RxSwift
 enum OnboardingTarget {
     
     case getCategoryMain
-    case getCategorySub
+    case getCategorySub(list: String)
     case putOnboarding(dto: OnboardingRequestDTO)
 }
 
@@ -47,8 +47,11 @@ extension OnboardingTarget: BaseTargetType {
         switch self {
         case .getCategoryMain:
             return .requestPlain
-        case .getCategorySub:
-            return .requestPlain
+        case .getCategorySub(let list):
+            let parameters: [String: Any] = [
+                "mainIds": list,
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         case .putOnboarding(dto: let dto):
             return .requestJSONEncodable(dto)
         }
@@ -73,6 +76,13 @@ struct OnboardingService: Networkable {
             .asObservable()
             .mapError()
             .decode(decodeType: [CategoryMainResponseDTO].self)
+    }
+    
+    static func getCategorySub(_ list: String) -> Observable<[CategorySubResponseDTO]> {
+        return provider.rx.request(.getCategorySub(list: list))
+            .asObservable()
+            .mapError()
+            .decode(decodeType: [CategorySubResponseDTO].self)
     }
 }
 

@@ -14,11 +14,11 @@ final class TopicCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
-    private let titleLabel = UILabel()
+    let titleLabel = UILabel()
     
     // MARK: - Properties
     
-    private var categoryId: Int = 0
+    var categoryId: Int = 0
     
     // MARK: - Initializer
     
@@ -64,6 +64,10 @@ extension TopicCollectionViewCell {
     func configureCell(_ model: CategoryMainResponseDTO) {
         titleLabel.text = model.mainCategoryName
         categoryId = model.mainCategoryId
+    }
+    
+    func setSelectedCell() {
+        self.backgroundColor = .chGreen
     }
 }
 

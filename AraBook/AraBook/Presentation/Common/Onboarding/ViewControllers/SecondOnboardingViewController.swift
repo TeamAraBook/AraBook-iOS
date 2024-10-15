@@ -24,6 +24,8 @@ final class SecondOnboardingViewController: UIViewController {
     
     private let onboardingVM: OnboardingViewModel
     private let disposeBag = DisposeBag()
+    private var selectedIndexPaths: [IndexPath] = []
+    private var mainCategory: [Int] = []
     
     // MARK: - Initializer
     
@@ -58,7 +60,14 @@ extension SecondOnboardingViewController {
                 }
                 .disposed(by: disposeBag)
         
-        secondView.secondCollectionView.rx.setDelegate(self) 
+        secondView.secondCollectionView.rx.setDelegate(self)
+        
+        nextButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                onboardingVM.inputs.getCategorySub(mainCategory)
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - UI Components Property
@@ -118,6 +127,25 @@ extension SecondOnboardingViewController: UICollectionViewDelegateFlowLayout {
             context: nil
         )
         
-        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36) 
+        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
+    }
+}
+
+extension SecondOnboardingViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TopicCollectionViewCell {
+            if selectedIndexPaths.contains(indexPath) {
+                selectedIndexPaths.removeAll { $0 == indexPath }
+                mainCategory.removeAll { $0 == cell.categoryId }
+                cell.contentView.backgroundColor = .gray400
+                cell.makeCornerRound(radius: cell.contentView.frame.height / 2)
+            } else {
+                selectedIndexPaths.append(indexPath)
+                mainCategory.append(cell.categoryId)
+                cell.contentView.backgroundColor = .chGreen
+                cell.makeCornerRound(radius: cell.contentView.frame.height / 2)
+            }
+        }
     }
 }
