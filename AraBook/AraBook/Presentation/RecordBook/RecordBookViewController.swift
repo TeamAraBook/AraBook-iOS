@@ -178,14 +178,6 @@ extension RecordBookViewController {
                 self.buttonState()
             })
             .disposed(by: disposeBag)
-
-        // textViewDidChange
-        recordBookView.bookReviewView.reviewTextView.rx.text
-            .orEmpty // Ensure it's always a non-optional String
-            .subscribe(onNext: { [weak self] _ in
-//                self?.validateFields()
-            })
-            .disposed(by: disposeBag)
     }
 
     private func recordBookButtonTap() {
@@ -195,9 +187,24 @@ extension RecordBookViewController {
                 let text = recordBookView.bookReviewView.reviewTextView.text ?? ""
                 let start = convertDateFormat(recordBookView.recordDateView.startDate.dateLabel.text ?? "")
                 let end = convertDateFormat(recordBookView.recordDateView.endDate.dateLabel.text ?? "")
-                let character = "DISAPPOINTED"
+                // 여기 캐릭터 매핑해야댐~~!!
+                var tag: String
+                switch selectedCharacter.value {
+                case .notMuch:
+                    tag = "DISAPPOINTED"
+                case .littleBit:
+                    tag = "SLIGHTLY_DISAPPOINTED"
+                case .normal:
+                    tag = "AVERAGE"
+                case .fun:
+                    tag = "ENJOYABLE"
+                case .lifeBook:
+                    tag = "LIFE_CHANGING"
+                case .none:
+                    tag = ""
+                }
                 
-                self.postReviews.onNext(RecordBookRequestDTO(bookId: 1, reviewTag: character, content: text, readStartDate: start, readEndDate: end))
+                self.postReviews.onNext(RecordBookRequestDTO(bookId: self.bookId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
             })
             .disposed(by: disposeBag)
     }
