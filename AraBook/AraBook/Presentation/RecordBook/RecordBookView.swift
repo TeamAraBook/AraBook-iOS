@@ -10,15 +10,16 @@ import UIKit
 import SnapKit
 import Then
 
-final class RecordBookView: UIView {
+final class RecordBookView: UIScrollView {
     
     // MARK: - UI Components
     
     private let navigationBar = CustomNavigationBar()
     let characterView = CharacterView()
     let recordDateView = RecordDateView()
-    private let bookReviewView = BookReviewView()
+    let bookReviewView = BookReviewView()
     private let submitButton = UIButton()
+    private let contentView = UIView()
     
     // MARK: - Properties
     
@@ -64,11 +65,12 @@ extension RecordBookView {
     
     private func setLayout() {
         
-        self.addSubviews(navigationBar, characterView, recordDateView,
+        self.addSubviews(contentView)
+        contentView.addSubviews(navigationBar, characterView, recordDateView,
                          bookReviewView, submitButton)
         
         navigationBar.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -95,9 +97,20 @@ extension RecordBookView {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(60)
         }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(self.snp.width)
+            $0.bottom.equalTo(submitButton.snp.bottom).offset(40)
+        }
     }
     
     // MARK: - Methods
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentSize = contentView.frame.size
+    }
     
     // MARK: - @objc Methods
 }

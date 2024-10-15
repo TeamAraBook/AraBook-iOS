@@ -15,7 +15,7 @@ final class BookReviewView: UIView {
     // MARK: - UI Components
     
     private let memoLabel = UILabel()
-    private let reviewTextView = UITextView()
+    let reviewTextView = UITextView()
     
     // MARK: - Properties
     

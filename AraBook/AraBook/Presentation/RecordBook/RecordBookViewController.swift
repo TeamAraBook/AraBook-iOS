@@ -16,7 +16,6 @@ final class RecordBookViewController: UIViewController {
     // MARK: - UI Components
 
     private let recordBookView = RecordBookView()
-    private let scrollView = UIScrollView()
     private let datePicker = UIDatePicker()
 
     // MARK: - Properties
@@ -31,13 +30,6 @@ final class RecordBookViewController: UIViewController {
     
     // MARK: - LifeCycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.viewWillAppear.accept(())
-        bindViewModel()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +40,24 @@ final class RecordBookViewController: UIViewController {
         bindCharacterButton()
         bindDate()
         setDelegate()
+        setTapScreen()
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForKeyboardNotifications()
+        self.viewWillAppear.accept(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterFromKeyboardNotifications()
+    }
+    
+    deinit {
+        unregisterFromKeyboardNotifications()
     }
 }
 
@@ -56,6 +66,12 @@ extension RecordBookViewController {
     func setUI() {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        
+        recordBookView.do {
+            $0.isScrollEnabled = true
+            $0.showsVerticalScrollIndicator = true
+            $0.showsHorizontalScrollIndicator = false
+        }
     }
     
     func bindCharacterButton() {
@@ -135,18 +151,20 @@ extension RecordBookViewController {
     func setHierarchy() {
         
         self.view.addSubviews(recordBookView)
-        
+    
     }
     
     func setLayout() {
         
         recordBookView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.width.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
     
     func setDelegate() {
         recordBookVM.delegate = self
+//        recordBookView.bookReviewView.reviewTextView.delegate = self
     }
 }
 
@@ -180,6 +198,70 @@ extension RecordBookViewController {
         
 //        caveListVC.indexPath = self.indexPath
         present(datePickVC, animated: true)
+    }
+    
+    private func setTapScreen() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapScreen))
+            tapGestureRecognizer.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    private func unregisterFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func didTapScreen(_ gesture: UITapGestureRecognizer) {
+        gesture.location(in: self.view)
+        self.view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        
+        let keyboardHeight = keyboardFrame.height
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
+        
+        recordBookView.contentInset = contentInsets
+        recordBookView.scrollIndicatorInsets = contentInsets
+        
+        let activeField = recordBookView.bookReviewView
+        var rect = activeField.convert(activeField.bounds, to: recordBookView)
+        recordBookView.scrollRectToVisible(rect, animated: true)
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        recordBookView.contentInset = contentInsets
+        recordBookView.scrollIndicatorInsets = contentInsets
     }
 }
 
