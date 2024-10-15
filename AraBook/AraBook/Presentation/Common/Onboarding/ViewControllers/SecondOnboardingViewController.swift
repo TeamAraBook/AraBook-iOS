@@ -107,20 +107,17 @@ extension SecondOnboardingViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        // 셀에 표시할 텍스트를 가져와서 그 텍스트에 맞는 너비를 계산해
         let model = onboardingVM.outputs.categoryMain.value[indexPath.item]
         let title = model.mainCategoryName
         
-        // titleLabel의 동적 너비 계산
-        let maxCellWidth = collectionView.bounds.width - 40 // 양쪽 여백을 고려한 최대 너비
+        let maxCellWidth = collectionView.bounds.width - 40
         let size = (title as NSString).boundingRect(
             with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
-            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],  // 라벨의 폰트와 일치시켜야 함
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
             context: nil
         )
         
-        // 셀의 최소 높이와 계산된 너비로 크기 반환
-        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36) // 패딩을 약간 추가
+        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36) 
     }
 }
