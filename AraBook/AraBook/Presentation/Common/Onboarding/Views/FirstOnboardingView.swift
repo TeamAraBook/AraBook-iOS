@@ -38,11 +38,9 @@ final class FirstOnboardingView: UIView {
     
     private var selectedGender: GenderType = .man {
         didSet {
-            updateGenderSelectionUI() 
+            updateGenderSelectionUI()
         }
     }
-    
-    // MARK: - Initializer
     
     // MARK: - View Life Cycle
     
@@ -245,6 +243,4 @@ extension FirstOnboardingView {
         womanButton.backgroundColor = .gray500
         unSelectGenderButton.backgroundColor = .gray500
     }
-    
-    // MARK: - @objc Methods
 }
