@@ -64,7 +64,10 @@ extension DatePickerViewController {
         let input = RecordBookViewModel.Input(
             characterButtonTapped: BehaviorRelay(value: .notMuch),
             startDate: startDate,
-            endDate: endDate)
+            endDate: endDate,
+            reviewText: Observable.empty(),
+            checkButton: PublishRelay()
+        )
         
         let output = recordBookVM.transform(input: input)
         

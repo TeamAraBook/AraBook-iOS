@@ -18,7 +18,7 @@ final class RecordBookView: UIScrollView {
     let characterView = CharacterView()
     let recordDateView = RecordDateView()
     let bookReviewView = BookReviewView()
-    private let submitButton = UIButton()
+    let submitButton = CheckButton()
     private let contentView = UIView()
     
     // MARK: - Properties
@@ -54,10 +54,7 @@ extension RecordBookView {
         
         submitButton.do {
             $0.setTitle("다음", for: .normal)
-            $0.setTitleColor(.white, for: .normal)
-            $0.titleLabel?.font = .araFont(type: .PretandardBold, size: 20)
-            $0.backgroundColor = .gray200
-            $0.makeCornerRound(radius: 16)
+            $0.setState(.notAllow)
         }
     }
     

@@ -28,6 +28,11 @@ final class RecordBookViewController: UIViewController {
     private let startDate = PublishRelay<String>()
     private let endDate = PublishRelay<String>()
     private let textViewPlaceholder: String = "책에 대한 간단한 소감을 적어주세요."
+    private let checkButton = PublishRelay<Void>()
+    
+    private var isCharacter: Bool = false
+    private var isStart: Bool = false
+    private var isEnd: Bool = false
     
     // MARK: - LifeCycle
     
@@ -44,6 +49,7 @@ final class RecordBookViewController: UIViewController {
         setTapScreen()
         registerForKeyboardNotifications()
         bindTextView()
+        buttonState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +112,8 @@ extension RecordBookViewController {
                 self?.selectedCharacter.accept(.lifeBook)
             })
             .disposed(by: disposeBag)
+        isCharacter = true
+        buttonState()
     }
     
     func bindDate() {
@@ -116,7 +124,7 @@ extension RecordBookViewController {
                 guard let self else { return }
                 self.recordBookView.recordDateView.startDate.selectedCalendar()
                 self.presentToHalfModalViewController(.start)
-                
+                self.isStart = true
             })
             .disposed(by: disposeBag)
         
@@ -126,13 +134,13 @@ extension RecordBookViewController {
                 guard let self else { return }
                 self.recordBookView.recordDateView.endDate.selectedCalendar()
                 self.presentToHalfModalViewController(.end)
-                
+                self.isEnd = true
             })
             .disposed(by: disposeBag)
+        buttonState()
     }
     
     private func bindTextView() {
-        // textViewDidBeginEditing
         recordBookView.bookReviewView.reviewTextView.rx.didBeginEditing
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -143,7 +151,6 @@ extension RecordBookViewController {
             })
             .disposed(by: disposeBag)
 
-        // textViewDidEndEditing
         recordBookView.bookReviewView.reviewTextView.rx.didEndEditing
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -154,7 +161,7 @@ extension RecordBookViewController {
                     self.recordBookView.bookReviewView.reviewTextView.textColor = UIColor.gray900
                     self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 0
                 }
-//                self.validateFields()
+                self.buttonState()
             })
             .disposed(by: disposeBag)
 
@@ -172,7 +179,9 @@ extension RecordBookViewController {
         let input = RecordBookViewModel.Input(
             characterButtonTapped: selectedCharacter,
             startDate: PublishRelay(),
-            endDate: PublishRelay()
+            endDate: PublishRelay(),
+            reviewText: recordBookView.bookReviewView.reviewTextView.rx.text.orEmpty.asObservable(),
+            checkButton: checkButton
         )
         
         let output = recordBookVM.transform(input: input)
@@ -181,7 +190,13 @@ extension RecordBookViewController {
             .subscribe(onNext: { [weak self] character in
                 guard let self else { return }
                 recordBookView.characterView.updateButtonSelection(character)
-                print(character)
+            })
+            .disposed(by: disposeBag)
+        
+        output.enableButton
+            .subscribe(onNext: { [weak self] isEnabled in
+                guard let self else { return }
+                recordBookView.submitButton.setState(isEnabled ? .allow : .notAllow)
             })
             .disposed(by: disposeBag)
     }
@@ -272,7 +287,16 @@ extension RecordBookViewController {
             object: nil
         )
     }
-
+    
+    private func buttonState() {
+        let isText = recordBookView.bookReviewView.reviewTextView.text != textViewPlaceholder && !recordBookView.bookReviewView.reviewTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        
+        if isText && isCharacter && isStart && isEnd {
+            recordBookView.submitButton.setState(.allow)
+        } else {
+            recordBookView.submitButton.setState(.notAllow)
+        }
+    }
     
     // MARK: - @objc Methods
     
