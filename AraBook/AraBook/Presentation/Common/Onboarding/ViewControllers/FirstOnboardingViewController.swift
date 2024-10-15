@@ -23,7 +23,6 @@ final class FirstOnboardingViewController: UIViewController {
     
     private let onboardingVM = OnboardingViewModel()
     private let disposeBag = DisposeBag()
-    private let selectedGender = BehaviorRelay<GenderType?>(value: nil)
     
     // MARK: - Initializer
     
@@ -36,6 +35,7 @@ final class FirstOnboardingViewController: UIViewController {
         bindGender()
         bindViewModel()
         bindButtonActive()
+        setTapScreen()
     }
 }
 
@@ -63,12 +63,6 @@ extension FirstOnboardingViewController {
     }
     
     private func bindButtonActive() {
-        let isNickname = firstView.nicknameTextField.text != ""
-        let isBirthYear = firstView.birthYearTextField.text != ""
-        
-        if isNickname && isBirthYear {
-            firstView.nextButton.setState(.allow)
-        }
         
         firstView.nextButton.rx.tap
             .subscribe(onNext: { [weak self] in
@@ -112,5 +106,17 @@ extension FirstOnboardingViewController {
     
     // MARK: - Methods
     
+    private func setTapScreen() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapScreen))
+            tapGestureRecognizer.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
     // MARK: - @objc Methods
+    
+    @objc
+    private func didTapScreen(_ gesture: UITapGestureRecognizer) {
+        gesture.location(in: self.view)
+        self.view.endEditing(true)
+    }
 }

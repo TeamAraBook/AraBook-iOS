@@ -140,6 +140,7 @@ extension FirstOnboardingView {
         
         nextButton.do {
             $0.setTitle("다음", for: .normal)
+            $0.setState(.allow)
         }
     }
     
