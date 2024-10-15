@@ -93,6 +93,7 @@ extension FirstOnboardingView {
         }
         
         birthYearTextField.do {
+            $0.placeholder = "200X"
             $0.textColor = .black
             $0.font = .araFont(type: .PyeongChangBold, size: 20)
             $0.makeCornerRound(radius: 20)
@@ -100,6 +101,7 @@ extension FirstOnboardingView {
             $0.layer.borderWidth = 2
             $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: self.frame.size.height))
             $0.leftViewMode = .always
+            $0.keyboardType = .numberPad
         }
         
         birthYearLabel.do {
