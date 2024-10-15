@@ -10,17 +10,20 @@ import UIKit
 import Moya
 import SnapKit
 import Then
+import RxCocoa
+import RxSwift
 
 final class SecondOnboardingViewController: UIViewController {
     
     // MARK: - UI Components
     
     private let secondView = SecondOnboardingView()
-    private let nextButton = UIButton()
+    private let nextButton = CheckButton()
     
     // MARK: - Properties
     
     private let onboardingVM: OnboardingViewModel
+    private let disposeBag = DisposeBag()
     
     // MARK: - Initializer
     
@@ -35,6 +38,8 @@ final class SecondOnboardingViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        bindViewModel()
+        setRegister()
     }
     
     required init?(coder: NSCoder) {
@@ -44,19 +49,78 @@ final class SecondOnboardingViewController: UIViewController {
 
 extension SecondOnboardingViewController {
     
+    private func bindViewModel() {
+        
+        onboardingVM.outputs.categoryMain
+            .bind(to: secondView.secondCollectionView.rx
+                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
+                    cell.configureCell(model)
+                }
+                .disposed(by: disposeBag)
+        
+        secondView.secondCollectionView.rx.setDelegate(self) 
+    }
+    
     // MARK: - UI Components Property
     
     private func setUI() {
+
+        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true
         
+        nextButton.do {
+            $0.setTitle("다음", for: .normal)
+            $0.setState(.allow)
+        }
     }
     
     // MARK: - Layout Helper
     
     private func setLayout() {
         
+        self.view.addSubviews(secondView, nextButton)
+        
+        secondView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        nextButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(60)
+        }
     }
     
     // MARK: - Methods
     
+    private func setRegister() {
+        secondView.secondCollectionView.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+    }
+    
     // MARK: - @objc Methods
+}
+
+
+extension SecondOnboardingViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        // 셀에 표시할 텍스트를 가져와서 그 텍스트에 맞는 너비를 계산해
+        let model = onboardingVM.outputs.categoryMain.value[indexPath.item]
+        let title = model.mainCategoryName
+        
+        // titleLabel의 동적 너비 계산
+        let maxCellWidth = collectionView.bounds.width - 40 // 양쪽 여백을 고려한 최대 너비
+        let size = (title as NSString).boundingRect(
+            with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],  // 라벨의 폰트와 일치시켜야 함
+            context: nil
+        )
+        
+        // 셀의 최소 높이와 계산된 너비로 크기 반환
+        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36) // 패딩을 약간 추가
+    }
 }

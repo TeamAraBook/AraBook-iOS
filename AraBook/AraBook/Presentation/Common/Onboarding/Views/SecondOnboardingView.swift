@@ -49,16 +49,17 @@ extension SecondOnboardingView {
             $0.numberOfLines = 2
         }
         
-        secondCollectionView.do {
-            $0.isScrollEnabled = true
-            $0.backgroundColor = .clear
-            $0.showsHorizontalScrollIndicator = false
+        flowLayout.do {
+            $0.minimumInteritemSpacing = 12
+            $0.minimumLineSpacing = 16 // 각 셀 간의 간격을 설정
+            $0.scrollDirection = .vertical // 가로 스크롤 방지
         }
         
-        flowLayout.do {
-            $0.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 96)
-            $0.minimumInteritemSpacing = 12
-            $0.scrollDirection = .vertical
+        secondCollectionView.do {
+            $0.collectionViewLayout = flowLayout
+            $0.isScrollEnabled = true // 수직 스크롤만 허용
+            $0.backgroundColor = .clear
+            $0.showsHorizontalScrollIndicator = false
         }
     }
     

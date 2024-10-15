@@ -72,6 +72,7 @@ extension FirstOnboardingViewController {
                     birth: firstView.birthYearTextField.text ?? "",
                     gender: firstView.selectedGender)
                 onboardingVM.inputs.userInfo(model)
+                self.navigationController?.pushViewController(SecondOnboardingViewController(viewModel: onboardingVM), animated: true)
             })
             .disposed(by: disposeBag)
     }

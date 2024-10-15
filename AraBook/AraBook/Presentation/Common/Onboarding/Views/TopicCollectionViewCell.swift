@@ -16,6 +16,12 @@ final class TopicCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel = UILabel()
     
+    // MARK: - Properties
+    
+    private var categoryId: Int = 0
+    
+    // MARK: - Initializer
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,7 +38,7 @@ private extension TopicCollectionViewCell {
      
     func setUI() {
         self.backgroundColor = .gray500
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = self.contentView.frame.height / 2
         
         titleLabel.do {
             $0.text = "소설"
@@ -53,6 +59,11 @@ private extension TopicCollectionViewCell {
 
 extension TopicCollectionViewCell {
     
-
+    // MARK: - Methods
+    
+    func configureCell(_ model: CategoryMainResponseDTO) {
+        titleLabel.text = model.mainCategoryName
+        categoryId = model.mainCategoryId
+    }
 }
 

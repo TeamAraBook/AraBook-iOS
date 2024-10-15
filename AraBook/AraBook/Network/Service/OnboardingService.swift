@@ -27,7 +27,7 @@ extension OnboardingTarget: BaseTargetType {
             return URLConstant.categoryMain
         case .getCategorySub:
             return URLConstant.categorySub
-        case .putOnboarding(let dto):
+        case .putOnboarding:
             return URLConstant.onboarding
         }
     }
@@ -38,7 +38,7 @@ extension OnboardingTarget: BaseTargetType {
             return .get
         case .getCategorySub:
             return .get
-        case .putOnboarding(dto: let dto):
+        case .putOnboarding:
             return .put
         }
     }
