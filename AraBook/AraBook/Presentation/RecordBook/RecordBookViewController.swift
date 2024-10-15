@@ -27,6 +27,7 @@ final class RecordBookViewController: UIViewController {
     BehaviorRelay<CharacterType>(value: .notMuch)
     private let startDate = PublishRelay<String>()
     private let endDate = PublishRelay<String>()
+    private let textViewPlaceholder: String = "책에 대한 간단한 소감을 적어주세요."
     
     // MARK: - LifeCycle
     
@@ -42,6 +43,7 @@ final class RecordBookViewController: UIViewController {
         setDelegate()
         setTapScreen()
         registerForKeyboardNotifications()
+        bindTextView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +127,42 @@ extension RecordBookViewController {
                 self.recordBookView.recordDateView.endDate.selectedCalendar()
                 self.presentToHalfModalViewController(.end)
                 
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindTextView() {
+        // textViewDidBeginEditing
+        recordBookView.bookReviewView.reviewTextView.rx.didBeginEditing
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.recordBookView.bookReviewView.reviewTextView.text = nil
+                self.recordBookView.bookReviewView.reviewTextView.textColor = .black
+                self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 1
+                self.recordBookView.bookReviewView.reviewTextView.layer.borderColor = UIColor.chGreen.cgColor
+            })
+            .disposed(by: disposeBag)
+
+        // textViewDidEndEditing
+        recordBookView.bookReviewView.reviewTextView.rx.didEndEditing
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 0
+
+                if self.recordBookView.bookReviewView.reviewTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    self.recordBookView.bookReviewView.reviewTextView.text = self.textViewPlaceholder
+                    self.recordBookView.bookReviewView.reviewTextView.textColor = UIColor.gray900
+                    self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 0
+                }
+//                self.validateFields()
+            })
+            .disposed(by: disposeBag)
+
+        // textViewDidChange
+        recordBookView.bookReviewView.reviewTextView.rx.text
+            .orEmpty // Ensure it's always a non-optional String
+            .subscribe(onNext: { [weak self] _ in
+//                self?.validateFields()
             })
             .disposed(by: disposeBag)
     }
@@ -253,7 +291,7 @@ extension RecordBookViewController {
         recordBookView.contentInset = contentInsets
         recordBookView.scrollIndicatorInsets = contentInsets
         
-        let activeField = recordBookView.bookReviewView
+        let activeField = recordBookView.bookReviewView.reviewTextView
         var rect = activeField.convert(activeField.bounds, to: recordBookView)
         recordBookView.scrollRectToVisible(rect, animated: true)
     }
