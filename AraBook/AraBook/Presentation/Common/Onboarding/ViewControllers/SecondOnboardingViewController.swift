@@ -15,9 +15,19 @@ final class SecondOnboardingViewController: UIViewController {
     
     // MARK: - UI Components
     
+    private let secondView = SecondOnboardingView()
+    private let nextButton = UIButton()
+    
     // MARK: - Properties
     
+    private let onboardingVM: OnboardingViewModel
+    
     // MARK: - Initializer
+    
+    init(viewModel: OnboardingViewModel) {
+        self.onboardingVM = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
     // MARK: - View Life Cycle
     
@@ -25,6 +35,10 @@ final class SecondOnboardingViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

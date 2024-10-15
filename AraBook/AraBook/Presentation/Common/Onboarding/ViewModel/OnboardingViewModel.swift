@@ -14,11 +14,12 @@ import Moya
 protocol OnboardingViewModelInputs {
     func genderButtonTapped(_ type: GenderType)
     func userInfo(_ model: OnboardingUserInfo)
+    func getCategoryMain()
 }
 
 protocol OnboardingViewModelOutputs {
     var selectedGenderType: BehaviorRelay<GenderType> { get }
-    
+    var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> { get }
 }
 
 protocol OnboardingViewModelType {
@@ -35,11 +36,13 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     var birth: String = ""
     var gender: GenderType = .man
     
+    var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> = BehaviorRelay<[CategoryMainResponseDTO]>(value: [])
+    
     var inputs: OnboardingViewModelInputs { return self }
     var outputs: OnboardingViewModelOutputs { return self }
     
     init() {
-
+        getCategoryMain()
     }
 }
 
@@ -54,5 +57,14 @@ extension OnboardingViewModel {
         self.birth = model.birth
         self.gender = model.gender
         print(model, "유저정보 저장")
+    }
+    
+    func getCategoryMain() {
+        OnboardingService.getCategoryMain()
+            .subscribe(onNext:  { [weak self] data in
+                guard let self else { return }
+                self.categoryMain.accept(data)
+            })
+            .disposed(by: disposeBag)
     }
 }
