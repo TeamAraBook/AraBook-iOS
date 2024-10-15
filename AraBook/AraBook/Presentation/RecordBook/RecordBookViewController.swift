@@ -70,7 +70,7 @@ extension RecordBookViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         recordBookView.do {
-            $0.isScrollEnabled = true
+            $0.isScrollEnabled = false
             $0.showsVerticalScrollIndicator = true
             $0.showsHorizontalScrollIndicator = false
         }

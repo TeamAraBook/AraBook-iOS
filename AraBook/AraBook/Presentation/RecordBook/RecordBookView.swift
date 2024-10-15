@@ -101,7 +101,7 @@ extension RecordBookView {
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalTo(self.snp.width)
-            $0.bottom.equalTo(submitButton.snp.bottom).offset(40)
+            $0.bottom.equalTo(submitButton.snp.bottom)
         }
     }
     
