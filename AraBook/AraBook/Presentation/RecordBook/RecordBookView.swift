@@ -53,7 +53,7 @@ extension RecordBookView {
         }
         
         submitButton.do {
-            $0.setTitle("다음", for: .normal)
+            $0.setTitle("등록하기", for: .normal)
             $0.setState(.notAllow)
         }
     }
