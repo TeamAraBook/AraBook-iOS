@@ -26,9 +26,10 @@ final class RecordDetailViewController: UIViewController {
     
     private let navigationBar = {
         let navi = CustomNavigationBar()
-        navi.isTitleLabelIncluded = "검색하기"
+        navi.isTitleLabelIncluded = "나의 독서 기록"
         navi.isTitleViewIncluded = true
         navi.isBackButtonIncluded = true
+        navi.isEditButtonIncluded = true
         return navi
     }()
     
@@ -81,6 +82,10 @@ extension RecordDetailViewController {
         
         navigationBar.backButtonAction = {
             self.navigationController?.popViewController(animated: true)
+        }
+        
+        navigationBar.editButtonAction = {
+            // 수정하기 뷰로 이동
         }
     }
     

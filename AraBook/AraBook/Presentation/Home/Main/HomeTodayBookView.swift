@@ -151,6 +151,6 @@ extension HomeTodayBookView {
         todayBookImageView.kf.setImage(with: URL(string: model.coverURL))
         toayBookTitleLabel.text = model.title
         todayBookAuthorLabel.text = model.author
-        todayBookCategoryLabel.text = model.categories.first?.categoryName
+        todayBookCategoryLabel.text = model.categories[0].subCategoryName
     }
 }
