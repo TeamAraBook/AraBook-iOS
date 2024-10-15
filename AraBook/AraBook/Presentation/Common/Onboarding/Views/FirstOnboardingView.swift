@@ -23,8 +23,8 @@ final class FirstOnboardingView: UIView {
     private let araBookDescriptionLabel = UILabel()
     private let recommendLabel = UILabel()
     private let nicknameLabel = UILabel()
-    private let nicknameTextField = UITextField()
-    private let birthYearTextField = UITextField()
+    let nicknameTextField = UITextField()
+    let birthYearTextField = UITextField()
     private let birthYearLabel = UILabel()
     
     private let genderLabel = UILabel()
@@ -32,11 +32,11 @@ final class FirstOnboardingView: UIView {
     let womanButton = UIButton()
     let unSelectGenderButton = UIButton()
     
-    private let nextButton = CheckButton()
+    let nextButton = CheckButton()
     
     // MARK: - Properties
     
-    private var selectedGender: GenderType = .man {
+    var selectedGender: GenderType = .man {
         didSet {
             updateGenderSelectionUI()
         }

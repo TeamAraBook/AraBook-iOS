@@ -35,6 +35,7 @@ final class FirstOnboardingViewController: UIViewController {
         setLayout()
         bindGender()
         bindViewModel()
+        bindButtonActive()
     }
 }
 
@@ -57,6 +58,26 @@ extension FirstOnboardingViewController {
         firstView.unSelectGenderButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.onboardingVM.inputs.genderButtonTapped(.none)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindButtonActive() {
+        let isNickname = firstView.nicknameTextField.text != ""
+        let isBirthYear = firstView.birthYearTextField.text != ""
+        
+        if isNickname && isBirthYear {
+            firstView.nextButton.setState(.allow)
+        }
+        
+        firstView.nextButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                let model: OnboardingUserInfo = OnboardingUserInfo(
+                    nickname: firstView.nicknameTextField.text ?? "",
+                    birth: firstView.birthYearTextField.text ?? "",
+                    gender: firstView.selectedGender)
+                onboardingVM.inputs.userInfo(model)
             })
             .disposed(by: disposeBag)
     }

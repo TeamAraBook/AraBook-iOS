@@ -33,6 +33,7 @@
 		03DA63DD2CBE783C00AD351B /* SecondOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63DC2CBE783800AD351B /* SecondOnboardingView.swift */; };
 		03DA63DF2CBE784300AD351B /* ThirdOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63DE2CBE783F00AD351B /* ThirdOnboardingView.swift */; };
 		03DA63E22CBE787700AD351B /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63E12CBE787200AD351B /* OnboardingViewModel.swift */; };
+		03DA63E82CBEBD0500AD351B /* OnboardingUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63E72CBEBCF900AD351B /* OnboardingUserInfo.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -141,6 +142,7 @@
 		03DA63DC2CBE783800AD351B /* SecondOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingView.swift; sourceTree = "<group>"; };
 		03DA63DE2CBE783F00AD351B /* ThirdOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingView.swift; sourceTree = "<group>"; };
 		03DA63E12CBE787200AD351B /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		03DA63E72CBEBCF900AD351B /* OnboardingUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserInfo.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		03DA63D02CBE771F00AD351B /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				03DA63E62CBEBCF500AD351B /* Models */,
 				03DA63E02CBE786D00AD351B /* ViewModel */,
 				03DA63D92CBE782600AD351B /* Views */,
 				03DA63D42CBE77BF00AD351B /* ViewControllers */,
@@ -328,6 +331,14 @@
 				03DA63E12CBE787200AD351B /* OnboardingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03DA63E62CBEBCF500AD351B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03DA63E72CBEBCF900AD351B /* OnboardingUserInfo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A48AC36C2CA28F6A00212432 = {
@@ -778,6 +789,7 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
+				03DA63E82CBEBD0500AD351B /* OnboardingUserInfo.swift in Sources */,
 				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
