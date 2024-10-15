@@ -37,7 +37,7 @@ final class TopicCollectionViewCell: UICollectionViewCell {
 private extension TopicCollectionViewCell {
      
     func setUI() {
-        self.backgroundColor = .gray500
+        self.backgroundColor = .gray400
         self.layer.cornerRadius = self.contentView.frame.height / 2
         
         titleLabel.do {

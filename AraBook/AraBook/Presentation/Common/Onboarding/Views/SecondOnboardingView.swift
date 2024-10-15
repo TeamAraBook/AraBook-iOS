@@ -50,9 +50,9 @@ extension SecondOnboardingView {
         }
         
         flowLayout.do {
-            $0.minimumInteritemSpacing = 12
-            $0.minimumLineSpacing = 16 // 각 셀 간의 간격을 설정
-            $0.scrollDirection = .vertical // 가로 스크롤 방지
+            $0.minimumInteritemSpacing = 6 // 셀 사이
+            $0.minimumLineSpacing = 8
+            $0.scrollDirection = .vertical
         }
         
         secondCollectionView.do {
@@ -81,7 +81,7 @@ extension SecondOnboardingView {
         
         secondCollectionView.snp.makeConstraints {
             $0.top.equalTo(categoryLabel.snp.bottom).offset(25)
-            $0.horizontalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(100)
         }
     }
