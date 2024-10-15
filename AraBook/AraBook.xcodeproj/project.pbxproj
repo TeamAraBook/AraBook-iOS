@@ -12,6 +12,20 @@
 		03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */; };
 		03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */; };
 		03CECE2B2CB821ED000E8FF0 /* BookDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */; };
+		03CECE492CB82E3B000E8FF0 /* RecordBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE482CB82E36000E8FF0 /* RecordBookViewController.swift */; };
+		03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */; };
+		03CECE4E2CB83271000E8FF0 /* RecordBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */; };
+		03CECE502CB83282000E8FF0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE4F2CB8327E000E8FF0 /* CharacterView.swift */; };
+		03CECE522CB832A7000E8FF0 /* RecordDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE512CB8329F000E8FF0 /* RecordDateView.swift */; };
+		03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE532CB832B0000E8FF0 /* BookReviewView.swift */; };
+		03CECE582CB83EDB000E8FF0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE572CB83ED7000E8FF0 /* CalendarView.swift */; };
+		03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF252CBA4718000E8FF0 /* CharacterModel.swift */; };
+		03CECF2A2CBA563C000E8FF0 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */; };
+		03DA637D2CBE548400AD351B /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA637C2CBE547F00AD351B /* CheckButton.swift */; };
+		03DA639B2CBE639D00AD351B /* RecordBookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639A2CBE639800AD351B /* RecordBookService.swift */; };
+		03DA639D2CBE661800AD351B /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639C2CBE661300AD351B /* Networkable.swift */; };
+		03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639E2CBE671C00AD351B /* ObservableType+.swift */; };
+		03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63A02CBE674900AD351B /* ServiceError.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -99,6 +113,20 @@
 		03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoverView.swift; sourceTree = "<group>"; };
 		03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDescriptionView.swift; sourceTree = "<group>"; };
+		03CECE482CB82E36000E8FF0 /* RecordBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookViewController.swift; sourceTree = "<group>"; };
+		03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookViewModel.swift; sourceTree = "<group>"; };
+		03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookView.swift; sourceTree = "<group>"; };
+		03CECE4F2CB8327E000E8FF0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		03CECE512CB8329F000E8FF0 /* RecordDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDateView.swift; sourceTree = "<group>"; };
+		03CECE532CB832B0000E8FF0 /* BookReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReviewView.swift; sourceTree = "<group>"; };
+		03CECE572CB83ED7000E8FF0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		03CECF252CBA4718000E8FF0 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		03DA637C2CBE547F00AD351B /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		03DA639A2CBE639800AD351B /* RecordBookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookService.swift; sourceTree = "<group>"; };
+		03DA639C2CBE661300AD351B /* Networkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
+		03DA639E2CBE671C00AD351B /* ObservableType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+.swift"; sourceTree = "<group>"; };
+		03DA63A02CBE674900AD351B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +245,39 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		03CECE472CB82E29000E8FF0 /* RecordBook */ = {
+			isa = PBXGroup;
+			children = (
+				03CECF242CBA4711000E8FF0 /* Models */,
+				03CECE4C2CB83207000E8FF0 /* Views */,
+				03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */,
+				03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */,
+				03CECE482CB82E36000E8FF0 /* RecordBookViewController.swift */,
+			);
+			path = RecordBook;
+			sourceTree = "<group>";
+		};
+		03CECE4C2CB83207000E8FF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03DA637C2CBE547F00AD351B /* CheckButton.swift */,
+				03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */,
+				03CECE572CB83ED7000E8FF0 /* CalendarView.swift */,
+				03CECE4F2CB8327E000E8FF0 /* CharacterView.swift */,
+				03CECE512CB8329F000E8FF0 /* RecordDateView.swift */,
+				03CECE532CB832B0000E8FF0 /* BookReviewView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03CECF242CBA4711000E8FF0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03CECF252CBA4718000E8FF0 /* CharacterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A48AC36C2CA28F6A00212432 = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +310,7 @@
 		A48AC38C2CA291BD00212432 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				03CECE472CB82E29000E8FF0 /* RecordBook */,
 				A48F5B8C2CB8201C004F3A74 /* Mypage */,
 				A48F5AA32CB80C44004F3A74 /* Onboarding */,
 				03CECE202CB8218C000E8FF0 /* BookDetail */,
@@ -306,6 +368,8 @@
 		A48AC3912CA2920A00212432 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				03DA63A02CBE674900AD351B /* ServiceError.swift */,
+				03DA639C2CBE661300AD351B /* Networkable.swift */,
 				A48F58772CB42849004F3A74 /* NetworkLoggerPlugin.swift */,
 				A48F58752CB4282B004F3A74 /* URLConstant.swift */,
 				A48F58732CB42717004F3A74 /* HeaderConstant.swift */,
@@ -366,6 +430,7 @@
 		A48AC3B32CA29A9900212432 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				03DA639E2CBE671C00AD351B /* ObservableType+.swift */,
 				A48F588C2CB439ED004F3A74 /* UIImageView+.swift */,
 				A48AC3B42CA29AA600212432 /* UIView+.swift */,
 				A48AC3C72CA4284800212432 /* UIStackView+.swift */,
@@ -412,6 +477,7 @@
 		A48F587B2CB42863004F3A74 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				03DA639A2CBE639800AD351B /* RecordBookService.swift */,
 				A48F5AD22CB81325004F3A74 /* AuthService.swift */,
 				A48F58852CB4293F004F3A74 /* HomeService.swift */,
 			);
@@ -658,12 +724,14 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
+				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
 				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
+				03DA639B2CBE639D00AD351B /* RecordBookService.swift in Sources */,
 				A48F5AB12CB80E48004F3A74 /* UserManager.swift in Sources */,
 				A48F5AD32CB81328004F3A74 /* AuthService.swift in Sources */,
 				A48F5AAC2CB80DEC004F3A74 /* LoginViewModel.swift in Sources */,
@@ -673,31 +741,43 @@
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
 				03CECE222CB8219A000E8FF0 /* BookDetailView.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
+				03CECE492CB82E3B000E8FF0 /* RecordBookViewController.swift in Sources */,
 				A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */,
 				A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */,
 				A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */,
 				A48F58862CB42943004F3A74 /* HomeService.swift in Sources */,
 				A48F58B02CB57B50004F3A74 /* RecentCollectionViewCell.swift in Sources */,
+				03CECE4E2CB83271000E8FF0 /* RecordBookView.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
 				A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */,
 				A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */,
 				A48F59712CB58EF8004F3A74 /* SearchViewModel.swift in Sources */,
 				A48F596B2CB582FC004F3A74 /* BaseTextField.swift in Sources */,
+				03CECE522CB832A7000E8FF0 /* RecordDateView.swift in Sources */,
+				03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */,
+				03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */,
 				A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */,
+				03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
 				A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */,
+				03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */,
+				03CECE502CB83282000E8FF0 /* CharacterView.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
+				03DA639D2CBE661800AD351B /* Networkable.swift in Sources */,
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
 				03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */,
 				A48F5AAA2CB80DE7004F3A74 /* LoginViewController.swift in Sources */,
 				A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */,
+				03CECF2A2CBA563C000E8FF0 /* DatePickerViewController.swift in Sources */,
+				03CECE582CB83EDB000E8FF0 /* CalendarView.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				A48F58AE2CB57AEE004F3A74 /* RecentSearchView.swift in Sources */,
 				A48F5AD12CB81322004F3A74 /* AuthTarget.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
+				03DA637D2CBE548400AD351B /* CheckButton.swift in Sources */,
 				A48F5A712CB6BF69004F3A74 /* LocalDBService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
