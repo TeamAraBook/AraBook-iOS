@@ -29,10 +29,19 @@ final class RecordBookViewController: UIViewController {
     private let endDate = PublishRelay<String>()
     private let textViewPlaceholder: String = "책에 대한 간단한 소감을 적어주세요."
     private let checkButton = PublishRelay<Void>()
+    private let postReviews = PublishSubject<RecordBookRequestDTO>()
     
     private var isCharacter: Bool = false
     private var isStart: Bool = false
     private var isEnd: Bool = false
+    private let bookId: Int
+    
+    // MARK: - Initializer
+
+    init(bookId: Int) {
+        self.bookId = bookId
+        super.init(nibName: nil, bundle: nil)
+    }
     
     // MARK: - LifeCycle
     
@@ -50,6 +59,7 @@ final class RecordBookViewController: UIViewController {
         registerForKeyboardNotifications()
         bindTextView()
         buttonState()
+        recordBookButtonTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +76,10 @@ final class RecordBookViewController: UIViewController {
     
     deinit {
         unregisterFromKeyboardNotifications()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -174,29 +188,35 @@ extension RecordBookViewController {
             .disposed(by: disposeBag)
     }
 
+    private func recordBookButtonTap() {
+        recordBookView.submitButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self else { return }
+                let text = recordBookView.bookReviewView.reviewTextView.text ?? ""
+                let start = convertDateFormat(recordBookView.recordDateView.startDate.dateLabel.text ?? "")
+                let end = convertDateFormat(recordBookView.recordDateView.endDate.dateLabel.text ?? "")
+                let character = "DISAPPOINTED"
+                
+                self.postReviews.onNext(RecordBookRequestDTO(bookId: 1, reviewTag: character, content: text, readStartDate: start, readEndDate: end))
+            })
+            .disposed(by: disposeBag)
+    }
     
     func bindViewModel() {
         let input = RecordBookViewModel.Input(
             characterButtonTapped: selectedCharacter,
-            startDate: PublishRelay(),
-            endDate: PublishRelay(),
+            startDate: PublishRelay<String>(),
+            endDate: PublishRelay<String>(),
             reviewText: recordBookView.bookReviewView.reviewTextView.rx.text.orEmpty.asObservable(),
-            checkButton: checkButton
+            checkButton: checkButton,
+            postReviews: postReviews
         )
         
         let output = recordBookVM.transform(input: input)
         
         output.selectedCharacter
-            .subscribe(onNext: { [weak self] character in
-                guard let self else { return }
-                recordBookView.characterView.updateButtonSelection(character)
-            })
-            .disposed(by: disposeBag)
-        
-        output.enableButton
-            .subscribe(onNext: { [weak self] isEnabled in
-                guard let self else { return }
-                recordBookView.submitButton.setState(isEnabled ? .allow : .notAllow)
+            .subscribe(onNext: { character in
+                self.recordBookView.characterView.updateButtonSelection(character)
             })
             .disposed(by: disposeBag)
     }
@@ -295,6 +315,17 @@ extension RecordBookViewController {
             recordBookView.submitButton.setState(.allow)
         } else {
             recordBookView.submitButton.setState(.notAllow)
+        }
+    }
+    
+    func convertDateFormat(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        if let dateObject = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.string(from: dateObject)
+        } else {
+            return "Invalid Date"
         }
     }
     

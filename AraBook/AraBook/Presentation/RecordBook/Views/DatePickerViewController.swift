@@ -62,11 +62,12 @@ extension DatePickerViewController {
     private func bindPicker() {
         
         let input = RecordBookViewModel.Input(
-            characterButtonTapped: BehaviorRelay(value: .notMuch),
+            characterButtonTapped: BehaviorRelay<CharacterType>(value: .none),
             startDate: startDate,
             endDate: endDate,
-            reviewText: Observable.empty(),
-            checkButton: PublishRelay()
+            reviewText: Observable<String>.empty(),
+            checkButton: PublishRelay<Void>(),
+            postReviews: PublishSubject<RecordBookRequestDTO>()
         )
         
         let output = recordBookVM.transform(input: input)

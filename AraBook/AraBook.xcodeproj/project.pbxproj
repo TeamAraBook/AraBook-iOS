@@ -22,6 +22,10 @@
 		03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF252CBA4718000E8FF0 /* CharacterModel.swift */; };
 		03CECF2A2CBA563C000E8FF0 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */; };
 		03DA637D2CBE548400AD351B /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA637C2CBE547F00AD351B /* CheckButton.swift */; };
+		03DA639B2CBE639D00AD351B /* RecordBookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639A2CBE639800AD351B /* RecordBookService.swift */; };
+		03DA639D2CBE661800AD351B /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639C2CBE661300AD351B /* Networkable.swift */; };
+		03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639E2CBE671C00AD351B /* ObservableType+.swift */; };
+		03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63A02CBE674900AD351B /* ServiceError.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -119,6 +123,10 @@
 		03CECF252CBA4718000E8FF0 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		03CECF292CBA5638000E8FF0 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		03DA637C2CBE547F00AD351B /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		03DA639A2CBE639800AD351B /* RecordBookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookService.swift; sourceTree = "<group>"; };
+		03DA639C2CBE661300AD351B /* Networkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
+		03DA639E2CBE671C00AD351B /* ObservableType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+.swift"; sourceTree = "<group>"; };
+		03DA63A02CBE674900AD351B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -360,6 +368,8 @@
 		A48AC3912CA2920A00212432 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				03DA63A02CBE674900AD351B /* ServiceError.swift */,
+				03DA639C2CBE661300AD351B /* Networkable.swift */,
 				A48F58772CB42849004F3A74 /* NetworkLoggerPlugin.swift */,
 				A48F58752CB4282B004F3A74 /* URLConstant.swift */,
 				A48F58732CB42717004F3A74 /* HeaderConstant.swift */,
@@ -420,6 +430,7 @@
 		A48AC3B32CA29A9900212432 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				03DA639E2CBE671C00AD351B /* ObservableType+.swift */,
 				A48F588C2CB439ED004F3A74 /* UIImageView+.swift */,
 				A48AC3B42CA29AA600212432 /* UIView+.swift */,
 				A48AC3C72CA4284800212432 /* UIStackView+.swift */,
@@ -466,6 +477,7 @@
 		A48F587B2CB42863004F3A74 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				03DA639A2CBE639800AD351B /* RecordBookService.swift */,
 				A48F5AD22CB81325004F3A74 /* AuthService.swift */,
 				A48F58852CB4293F004F3A74 /* HomeService.swift */,
 			);
@@ -712,12 +724,14 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
+				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
 				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
 				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
+				03DA639B2CBE639D00AD351B /* RecordBookService.swift in Sources */,
 				A48F5AB12CB80E48004F3A74 /* UserManager.swift in Sources */,
 				A48F5AD32CB81328004F3A74 /* AuthService.swift in Sources */,
 				A48F5AAC2CB80DEC004F3A74 /* LoginViewModel.swift in Sources */,
@@ -746,9 +760,11 @@
 				03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
 				A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */,
+				03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */,
 				03CECE502CB83282000E8FF0 /* CharacterView.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
+				03DA639D2CBE661800AD351B /* Networkable.swift in Sources */,
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
 				03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */,
 				A48F5AAA2CB80DE7004F3A74 /* LoginViewController.swift in Sources */,

@@ -10,6 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum SomeNetworkStatus {
+    case normal
+    case networkLost
+    case loading
+    case error(_: Error)
+    case done
+}
+
 protocol RecordBookViewModelDelegate: AnyObject {
     func didUpdateStartDate(_ date: String)
     func didUpdateEndDate(_ date: String)
@@ -19,6 +27,7 @@ final class RecordBookViewModel: ViewModel {
     
     private let disposeBag = DisposeBag()
     weak var delegate: RecordBookViewModelDelegate?
+    var networkState = BehaviorRelay<SomeNetworkStatus>(value: .normal)
     
     init() {
         
@@ -31,6 +40,7 @@ final class RecordBookViewModel: ViewModel {
         let endDate: PublishRelay<String>
         let reviewText: Observable<String>
         let checkButton: PublishRelay<Void>
+        let postReviews: PublishSubject<RecordBookRequestDTO>
     }
     
     struct Output {
@@ -89,6 +99,12 @@ final class RecordBookViewModel: ViewModel {
             .map { $0 && $1 && $2 && $3 }  // 네 가지 조건이 모두 충족되었을 때 true
             .asObservable()
         
+        input.postReviews
+            .subscribe(onNext: { dto in
+                self.postReviews(dto: dto)
+            })
+            .disposed(by: disposeBag)
+        
         return output
     }
     
@@ -127,5 +143,17 @@ final class RecordBookViewModel: ViewModel {
     
     func updateEndDate(date: String) {
         delegate?.didUpdateEndDate(date)
+    }
+    
+    func postReviews(dto: RecordBookRequestDTO) {
+        RecordBookService.postReviews(dto: dto)
+            .subscribe(onNext: { [weak self] dto in
+                guard let self else { return }
+                self.networkState.accept(.done)
+            }, onError: { [weak self] error in
+                guard let self else { return }
+                self.networkState.accept(.error(error))
+            })
+            .disposed(by: disposeBag)
     }
 }
