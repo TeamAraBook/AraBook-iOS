@@ -20,27 +20,40 @@ final class ThirdOnboardingView: UIView {
     private let title1 = UILabel()
     
     private let title2 = UILabel()
-    lazy var category2 = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     private let title3 = UILabel()
-    lazy var category3 = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
-    private let flowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 6 // 셀 사이
-        layout.minimumLineSpacing = 8
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 85, height: 29)
-        return layout
-    }()
-    
-    lazy var categoryCollectionView1 = {
+    lazy var category1 = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 6 // 셀 사이
         layout.minimumLineSpacing = 8
         layout.scrollDirection = .vertical
 //        layout.itemSize = CGSize(width: 85, height: 29)
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+        return cv
+    }()
+    
+    lazy var category2 = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 6 // 셀 사이
+        layout.minimumLineSpacing = 8
+        layout.scrollDirection = .vertical
+//        layout.itemSize = CGSize(width: 85, height: 29)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+        return cv
+    }()
+    
+    lazy var category3 = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 6 // 셀 사이
+        layout.minimumLineSpacing = 8
+        layout.scrollDirection = .vertical
+//        layout.itemSize = CGSize(width: 85, height: 29)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
         return cv
@@ -110,7 +123,6 @@ extension ThirdOnboardingView {
         }
         
         category2.do {
-            $0.collectionViewLayout = flowLayout
             $0.isScrollEnabled = true
             $0.backgroundColor = .clear
             $0.showsHorizontalScrollIndicator = false
@@ -123,7 +135,6 @@ extension ThirdOnboardingView {
         }
         
         category3.do {
-            $0.collectionViewLayout = flowLayout
             $0.isScrollEnabled = false
             $0.backgroundColor = .clear
             $0.showsHorizontalScrollIndicator = false
@@ -136,11 +147,11 @@ extension ThirdOnboardingView {
         
         self.addSubviews(navigationBar, subCategoryLabel,
                          title1, title2, title3,
-                         categoryCollectionView1
+                         category1
                          , category2, category3)
         
         navigationBar.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalTo(safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -154,20 +165,21 @@ extension ThirdOnboardingView {
             $0.leading.equalTo(subCategoryLabel)
         }
         
-        categoryCollectionView1.snp.makeConstraints {
+        category1.snp.makeConstraints {
             $0.top.equalTo(title1.snp.bottom).offset(8)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(200)
+            $0.height.equalTo(110)
         }
         
         title2.snp.makeConstraints {
-            $0.top.equalTo(categoryCollectionView1.snp.bottom).offset(25)
+            $0.top.equalTo(category1.snp.bottom).offset(25)
             $0.leading.equalTo(subCategoryLabel)
         }
         
         category2.snp.makeConstraints {
             $0.top.equalTo(title2.snp.bottom).offset(8)
             $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(110)
         }
         
         
@@ -179,10 +191,17 @@ extension ThirdOnboardingView {
         category3.snp.makeConstraints {
             $0.top.equalTo(title3.snp.bottom).offset(8)
             $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(110)
         }
     }
     
     // MARK: - Methods
+    
+    func bindTitle(_ model: [CategorySubResponseDTO]) {
+        title1.text = "📗 \(model[0].mainCategoryName)"
+        title2.text = "📗 \(model[1].mainCategoryName)"
+        title3.text = "📗 \(model[2].mainCategoryName)"
+    }
     
     // MARK: - @objc Methods
 }

@@ -16,6 +16,7 @@ protocol OnboardingViewModelInputs {
     func userInfo(_ model: OnboardingUserInfo)
     func getCategoryMain()
     func getCategorySub(_ list: [Int])
+    func putOnboarding(_ list: [Int])
 }
 
 protocol OnboardingViewModelOutputs {
@@ -34,6 +35,7 @@ protocol OnboardingViewModelType {
 
 final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelOutputs, OnboardingViewModelType {
     
+    
     private let disposeBag = DisposeBag()
     
     var selectedGenderType: BehaviorRelay<GenderType> = BehaviorRelay<GenderType>(value: .man)
@@ -50,6 +52,7 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     
     var mainCategoryList: [Int] = [1, 2, 3]
     var subCategory1: [SubCategoryLists] = [SubCategoryLists(subCategoryId: 11, subCategoryName: "제발")]
+    var subCategoryList: [Int] = []
     
     var inputs: OnboardingViewModelInputs { return self }
     var outputs: OnboardingViewModelOutputs { return self }
@@ -57,7 +60,6 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     init() {
         getCategoryMain()
         getCategorySub(mainCategoryList)
-//        category1.accept(subCategory1)
     }
 }
 
@@ -94,14 +96,22 @@ extension OnboardingViewModel {
                     return (category.mainCategoryId, category.mainCategoryName, category.subCategories)
                 }
                 
-                
-                subCategory1 = categoryData[0].2
                 self.category1.accept(categoryData[0].2)
-                print("✅ category1Data:", categoryData[0].2)
                 self.category2.accept(categoryData[1].2)
                 self.category3.accept(categoryData[2].2)
                 
                 self.categorySub.accept(data)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func putOnboarding(_ list: [Int]) {
+        let dto = OnboardingRequestDTO(nickname: self.nickname, gender: "WOMAN", birthYear: self.birth, interestSubCategoryIds: list)
+        
+        OnboardingService.putOnboarding(dto)
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                print("성공서 ㅇ속ㅇ성공것옷", data)
             })
             .disposed(by: disposeBag)
     }

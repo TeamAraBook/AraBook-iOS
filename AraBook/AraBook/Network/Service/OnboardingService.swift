@@ -84,6 +84,14 @@ struct OnboardingService: Networkable {
             .mapError()
             .decode(decodeType: [CategorySubResponseDTO].self)
     }
+    
+    static func putOnboarding(_ dto: OnboardingRequestDTO) -> Observable<EmptyResponse> {
+        return provider.rx.request(.putOnboarding(dto: dto))
+            .asObservable()
+            .mapError()
+            .decode(decodeType: EmptyResponse.self)
+        
+    }
 }
 
 struct CategoryMainResponseDTO: Codable {
@@ -107,4 +115,8 @@ struct OnboardingRequestDTO: Codable {
     let gender: String
     let birthYear: String
     let interestSubCategoryIds: [Int]
+}
+
+struct EmptyResponse: Codable {
+    let data: String
 }
