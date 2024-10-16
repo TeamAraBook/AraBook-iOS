@@ -57,7 +57,7 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     init() {
         getCategoryMain()
         getCategorySub(mainCategoryList)
-        category1.accept(subCategory1)
+//        category1.accept(subCategory1)
     }
 }
 
@@ -92,14 +92,14 @@ extension OnboardingViewModel {
                 
                 let categoryData = data.map { category in
                     return (category.mainCategoryId, category.mainCategoryName, category.subCategories)
-                    }
+                }
                 
                 
                 subCategory1 = categoryData[0].2
                 self.category1.accept(categoryData[0].2)
-                    print("✅ category1Data:", categoryData)
-                    self.category2.accept(categoryData[1].2)
-                    self.category3.accept(categoryData[2].2)
+                print("✅ category1Data:", categoryData[0].2)
+                self.category2.accept(categoryData[1].2)
+                self.category3.accept(categoryData[2].2)
                 
                 self.categorySub.accept(data)
             })

@@ -36,10 +36,15 @@ final class ThirdOnboardingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     
+    override func loadView() {
+        self.view = thirdView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUI()
-        setLayout()
+        //        setLayout()
         setRegister()
         bindViewModel()
     }
@@ -55,35 +60,36 @@ extension ThirdOnboardingViewController {
         
         // MARK: - 지금 애초에 셀 bind가 안됨 데이터는 잘 들어옴 컬렉션뷰의 문제인듯함
         
-        onboardingVM.outputs.categoryMain
+        onboardingVM.outputs.category1
             .bind(to: thirdView.categoryCollectionView1.rx
-                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-//                    cell.(model)
-                    print("🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️", model)
-                }
-                .disposed(by: disposeBag)
-
-//        // category2 바인딩
-//        onboardingVM.outputs.category2
-//            .bind(to: thirdView.category2.rx
-//                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-//                    cell.setCell(model)
-//                }
-//                .disposed(by: disposeBag)
-//        
-//        // category3 바인딩
-//        onboardingVM.outputs.category3
-//            .bind(to: thirdView.category3.rx
-//                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-//                    cell.setCell(model)
-//                }
-//                .disposed(by: disposeBag)
+                .items(cellIdentifier: TopicCollectionViewCell.className,
+                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
+                cell.setCell(model)
+            }
+                       .disposed(by: disposeBag)
         
-        thirdView.categoryCollectionView1.rx.setDelegate(self)
-        
-        thirdView.category2.rx.setDelegate(self)
-        
-        thirdView.category3.rx.setDelegate(self)
+        //        // category2 바인딩
+        //        onboardingVM.outputs.category2
+        //            .bind(to: thirdView.category2.rx
+        //                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
+        //                    cell.setCell(model)
+        //                }
+        //                .disposed(by: disposeBag)
+        //
+        //        // category3 바인딩
+        //        onboardingVM.outputs.category3
+        //            .bind(to: thirdView.category3.rx
+        //                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
+        //                    cell.setCell(model)
+        //                }
+        //                .disposed(by: disposeBag)
+        //
+        thirdView.categoryCollectionView1.delegate = self
+//        thirdView.categoryCollectionView1.dataSource = self
+        //
+        //        thirdView.category2.rx.setDelegate(self)
+        //
+        //        thirdView.category3.rx.setDelegate(self)
         
     }
     
@@ -122,7 +128,7 @@ extension ThirdOnboardingViewController {
     // MARK: - Methods
     
     private func setRegister() {
-        thirdView.categoryCollectionView1.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+        //        thirdView.categoryCollectionView1.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
         thirdView.category2.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
         thirdView.category3.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
     }
@@ -131,12 +137,12 @@ extension ThirdOnboardingViewController {
 }
 
 extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         let model = onboardingVM.outputs.category1.value[indexPath.item]
         let title = model.subCategoryName
-        
+
         let maxCellWidth = collectionView.bounds.width - 40
         let size = (title as NSString).boundingRect(
             with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
@@ -144,7 +150,7 @@ extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
             context: nil
         )
-        
+
         return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
     }
 }

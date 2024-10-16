@@ -18,7 +18,6 @@ final class ThirdOnboardingView: UIView {
     private let subCategoryLabel = UILabel()
     
     private let title1 = UILabel()
-    lazy var categoryCollectionView1 = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     private let title2 = UILabel()
     lazy var category2 = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -26,7 +25,26 @@ final class ThirdOnboardingView: UIView {
     private let title3 = UILabel()
     lazy var category3 = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
-    private let flowLayout = UICollectionViewFlowLayout()
+    private let flowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 6 // 셀 사이
+        layout.minimumLineSpacing = 8
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 85, height: 29)
+        return layout
+    }()
+    
+    lazy var categoryCollectionView1 = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 6 // 셀 사이
+        layout.minimumLineSpacing = 8
+        layout.scrollDirection = .vertical
+//        layout.itemSize = CGSize(width: 85, height: 29)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.backgroundColor = .clear
+        cv.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+        return cv
+    }()
     
     // MARK: - Properties
     
@@ -64,11 +82,12 @@ extension ThirdOnboardingView {
             $0.numberOfLines = 2
         }
         
-        flowLayout.do {
-            $0.minimumInteritemSpacing = 6 // 셀 사이
-            $0.minimumLineSpacing = 8
-            $0.scrollDirection = .vertical
-        }
+//        flowLayout.do {
+//            $0.minimumInteritemSpacing = 6 // 셀 사이
+//            $0.minimumLineSpacing = 8
+//            $0.scrollDirection = .vertical
+//            $0.itemSize = CGSize(width: 85, height: 29)
+//        }
         
         title1.do {
             $0.text = "📗 소설"
@@ -76,13 +95,13 @@ extension ThirdOnboardingView {
             $0.textColor = .gray800
         }
         
-        categoryCollectionView1.do {
-            $0.collectionViewLayout = flowLayout
-            $0.isScrollEnabled = true
-            $0.backgroundColor = .clear
-            $0.showsHorizontalScrollIndicator = false
-            $0.backgroundColor = .red
-        }
+//        categoryCollectionView1.do {
+//            $0.collectionViewLayout = flowLayout
+//            $0.isScrollEnabled = true
+//            $0.backgroundColor = .clear
+//            $0.showsHorizontalScrollIndicator = false
+//            $0.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+//        }
         
         title2.do {
             $0.text = "📗 소설"
@@ -117,7 +136,8 @@ extension ThirdOnboardingView {
         
         self.addSubviews(navigationBar, subCategoryLabel,
                          title1, title2, title3,
-                         categoryCollectionView1, category2, category3)
+                         categoryCollectionView1
+                         , category2, category3)
         
         navigationBar.snp.makeConstraints {
             $0.top.equalToSuperview()
