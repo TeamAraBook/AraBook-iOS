@@ -118,6 +118,7 @@ extension ThirdOnboardingViewController {
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
                 onboardingVM.inputs.putOnboarding(self.subCategory)
+                UserManager.shared.updateOnboarding()
             })
             .disposed(by: disposeBag)
         
