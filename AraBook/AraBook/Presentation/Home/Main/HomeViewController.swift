@@ -88,11 +88,23 @@ extension HomeViewController {
         searchImageView.isUserInteractionEnabled = true
         searchImageView.rx.tapGesture()
             .when(.recognized)
-            .bind { _ in
+            .subscribe(onNext: { _ in
                 let nav = SerachViewController()
                 nav.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(nav, animated: true)
-            }
+            })
+            .disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                if let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell {
+                    let nav = BookDetailViewController(bookId: cell.bookId)
+                    nav.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(nav, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindViewModel() {
