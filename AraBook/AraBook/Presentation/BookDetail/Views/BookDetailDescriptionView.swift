@@ -90,8 +90,9 @@ extension BookDetailDescriptionView {
         
         hashTagLabel.do {
             $0.text = "#해시태그 #이런거"
-            $0.textColor = .gray300
-            $0.font = .araFont(type: .PretandardRegular, size: 12)
+            $0.textColor = .gray500
+            $0.font = .araFont(type: .PretandardRegular, size: 14)
+            $0.numberOfLines = 0
         }
         
         lineView.do {
@@ -102,6 +103,7 @@ extension BookDetailDescriptionView {
             $0.text = "기상천외한 이야기를 들려주는\n베르나르베르베르\n개마나르개미개미"
             $0.textColor = .black
             $0.font = .araFont(type: .PretandardRegular, size: 14)
+            $0.numberOfLines = 0
         }
     }
     
@@ -146,6 +148,7 @@ extension BookDetailDescriptionView {
         
         hashTagLabel.snp.makeConstraints {
             $0.top.equalTo(bookCategoryLabel.snp.bottom).offset(30)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.leading.equalTo(pageLabel)
         }
         
@@ -158,7 +161,8 @@ extension BookDetailDescriptionView {
         
         bookDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(40)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.bottom.equalToSuperview()
         }
     }

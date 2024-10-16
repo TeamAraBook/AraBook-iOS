@@ -170,7 +170,7 @@ extension HomeViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(bestSellerTitle.snp.bottom).offset(16)
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(1600)
+            $0.height.equalTo(1800)
         }
     }
 }

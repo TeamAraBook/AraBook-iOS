@@ -55,8 +55,13 @@ extension SplashViewController {
     
     func checkToken() {
         if UserManager.shared.hasAccessToken {
-            let nav = TabBarController()
-            self.navigationController?.pushViewController(nav, animated: true)
+            if UserManager.shared.doOnboarding ?? false {
+                let nav = TabBarController()
+                self.navigationController?.pushViewController(nav, animated: true)
+            } else {
+                let nav = FirstOnboardingViewController()
+                self.navigationController?.pushViewController(nav, animated: true)
+            }
         } else {
             let nav = LoginViewController()
             self.navigationController?.pushViewController(nav, animated: true)
