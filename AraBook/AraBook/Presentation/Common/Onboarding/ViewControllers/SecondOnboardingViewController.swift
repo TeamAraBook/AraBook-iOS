@@ -57,6 +57,7 @@ extension SecondOnboardingViewController {
             .bind(to: secondView.secondCollectionView.rx
                 .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
                     cell.configureCell(model)
+                    print("🧯🧯🧯🧯🧯🧯🧯", model)
                 }
                 .disposed(by: disposeBag)
         
@@ -66,6 +67,7 @@ extension SecondOnboardingViewController {
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
                 onboardingVM.inputs.getCategorySub(mainCategory)
+                self.navigationController?.pushViewController(ThirdOnboardingViewController(viewModel: onboardingVM), animated: true)
             })
             .disposed(by: disposeBag)
     }

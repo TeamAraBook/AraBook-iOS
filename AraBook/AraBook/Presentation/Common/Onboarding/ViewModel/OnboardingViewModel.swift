@@ -22,6 +22,9 @@ protocol OnboardingViewModelOutputs {
     var selectedGenderType: BehaviorRelay<GenderType> { get }
     var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> { get }
     var categorySub: BehaviorRelay<[CategorySubResponseDTO]> { get }
+    var category1: BehaviorRelay<[SubCategoryLists]> { get }
+    var category2: BehaviorRelay<[SubCategoryLists]> { get }
+    var category3: BehaviorRelay<[SubCategoryLists]> { get }
 }
 
 protocol OnboardingViewModelType {
@@ -41,11 +44,20 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> = BehaviorRelay<[CategoryMainResponseDTO]>(value: [])
     var categorySub: BehaviorRelay<[CategorySubResponseDTO]> = BehaviorRelay<[CategorySubResponseDTO]>(value: [])
     
+    var category1: BehaviorRelay<[SubCategoryLists]> = BehaviorRelay(value: [])
+    var category2: BehaviorRelay<[SubCategoryLists]> = BehaviorRelay(value: [])
+    var category3: BehaviorRelay<[SubCategoryLists]> = BehaviorRelay(value: [])
+    
+    var mainCategoryList: [Int] = [1, 2, 3]
+    var subCategory1: [SubCategoryLists] = [SubCategoryLists(subCategoryId: 11, subCategoryName: "제발")]
+    
     var inputs: OnboardingViewModelInputs { return self }
     var outputs: OnboardingViewModelOutputs { return self }
     
     init() {
         getCategoryMain()
+        getCategorySub(mainCategoryList)
+        category1.accept(subCategory1)
     }
 }
 
@@ -72,10 +84,23 @@ extension OnboardingViewModel {
     }
     
     func getCategorySub(_ list: [Int]) {
-        var query = list.map { String($0) }.joined(separator: ",")
+        mainCategoryList = list
+        let query = list.map { String($0) }.joined(separator: ",")
         OnboardingService.getCategorySub(query)
             .subscribe(onNext: { [weak self] data in
                 guard let self else { return }
+                
+                let categoryData = data.map { category in
+                    return (category.mainCategoryId, category.mainCategoryName, category.subCategories)
+                    }
+                
+                
+                subCategory1 = categoryData[0].2
+                self.category1.accept(categoryData[0].2)
+                    print("✅ category1Data:", categoryData)
+                    self.category2.accept(categoryData[1].2)
+                    self.category3.accept(categoryData[2].2)
+                
                 self.categorySub.accept(data)
             })
             .disposed(by: disposeBag)

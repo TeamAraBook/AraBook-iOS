@@ -66,8 +66,9 @@ extension TopicCollectionViewCell {
         categoryId = model.mainCategoryId
     }
     
-    func setSelectedCell() {
-        self.backgroundColor = .chGreen
+    func setCell(_ model: SubCategoryLists) {
+        titleLabel.text = model.subCategoryName
+        categoryId = model.subCategoryId
     }
 }
 
