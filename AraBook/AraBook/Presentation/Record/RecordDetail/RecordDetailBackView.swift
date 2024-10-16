@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Kingfisher
 
 final class RecordDetailBackView: UIView {
     
@@ -39,7 +40,7 @@ private extension RecordDetailBackView {
     
     func setUI() {
         self.do {
-            $0.backgroundColor = .chYellow
+//            $0.backgroundColor = .chYellow
             $0.makeCornerRound(radius: 50)
         }
         
@@ -107,8 +108,10 @@ private extension RecordDetailBackView {
 
 extension RecordDetailBackView {
     
-    func bindBackView(model: RecordBackModel) {
-        recordMentLabel.text = model.ment
+    func bindBackView(model: RecordDetailResponseDto) {
+        recordIcon.kf.setImage(with: URL(string: model.reviewTagIcon))
+        recordMentLabel.text = model.reviewTagComment
         recordContentLabel.text = model.content
+        backgroundColor = UIColor(hex: model.reviewTagColor)
     }
 }

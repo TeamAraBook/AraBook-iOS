@@ -17,6 +17,7 @@ final class RecordListViewController: UIViewController {
     
     private let recordListVM = RecordListViewModel()
     private let viewWillAppear = PublishRelay<Void>()
+    private let selectRecordlist = PublishRelay<Int>()
     private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
@@ -52,7 +53,7 @@ private extension RecordListViewController {
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self else { return }
                 if let cell = recordListView.recordListCollectionView.cellForItem(at: indexPath) as? RecordListCell {
-                    print(cell.bookId)
+                    selectRecordlist.accept(cell.bookId)
                     let nav = RecordDetailViewController(viewModel: self.recordListVM)
                     nav.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(nav, animated: true)
@@ -64,6 +65,7 @@ private extension RecordListViewController {
     func bindViewModel() {
         let input = RecordListViewModel.Input(
             viewWillAppear: viewWillAppear,
+            selectRecordList: selectRecordlist,
             detailViewWillAppear: PublishRelay()
         )
         
@@ -76,8 +78,6 @@ private extension RecordListViewController {
                     cell.configureCell(model)
                 }
                 .disposed(by: disposeBag)
-        
-        
         
         recordListVM.bindBookList
             .subscribe(onNext: { [weak self] data in
