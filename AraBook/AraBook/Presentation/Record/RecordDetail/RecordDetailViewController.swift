@@ -19,9 +19,6 @@ final class RecordDetailViewController: UIViewController {
     private let detailViewWillAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
     
-    private var frontModel: RecordFrontModel?
-    private var backModel: RecordBackModel?
-    
     // MARK: - UI Components
     
     private let navigationBar = {
@@ -92,22 +89,16 @@ extension RecordDetailViewController {
     func bindViewModel() {
         let input = RecordListViewModel.Input(
             viewWillAppear: PublishRelay(),
+            selectRecordList: PublishRelay(),
             detailViewWillAppear: detailViewWillAppear
         )
         
         let output = recordVM.transform(input: input)
         
-        output.recordFrontData
-            .subscribe(onNext: { [weak self] data in
-                guard let self else { return }
-                frontCardView.bindFrontView(model: data)
-            })
-            .disposed(by: disposeBag)
-        
-        output.recordBackData
-            .subscribe(onNext: { [weak self] data in
-                guard let self else { return }
-                backCardView.bindBackView(model: data)
+        output.recordDetailData
+            .subscribe(onNext: { data in
+                self.frontCardView.bindFrontView(model: data)
+                self.backCardView.bindBackView(model: data)
             })
             .disposed(by: disposeBag)
     }

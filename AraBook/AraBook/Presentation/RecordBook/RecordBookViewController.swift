@@ -204,6 +204,7 @@ extension RecordBookViewController {
                 }
                 
                 self.postReviews.onNext(RecordBookRequestDTO(bookId: self.bookId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
+                self.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
     }
