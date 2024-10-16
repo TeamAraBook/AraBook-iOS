@@ -187,7 +187,6 @@ extension RecordBookViewController {
                 let text = recordBookView.bookReviewView.reviewTextView.text ?? ""
                 let start = convertDateFormat(recordBookView.recordDateView.startDate.dateLabel.text ?? "")
                 let end = convertDateFormat(recordBookView.recordDateView.endDate.dateLabel.text ?? "")
-                // 여기 캐릭터 매핑해야댐~~!!
                 var tag: String
                 switch selectedCharacter.value {
                 case .notMuch:

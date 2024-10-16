@@ -5,38 +5,46 @@
 //  Created by KJ on 10/7/24.
 //
 
+import UIKit
+
 import RxSwift
 import RxCocoa
+import Moya
 
-final class BookDetailViewModel: ViewModel {
+protocol BookDetailViewModelInputs {
+    func getBookDetail(_ bookId: Int)
+}
+
+protocol BookDetailViewModelOutputs {
+    var bindBookDetail: PublishRelay<BookDetailResponseDTO> { get }
+}
+
+protocol BookDetailViewModelType {
+    var inputs: BookDetailViewModelInputs { get }
+    var outputs: BookDetailViewModelOutputs { get }
+}
+
+final class BookDetailViewModel: BookDetailViewModelInputs, BookDetailViewModelOutputs, BookDetailViewModelType {
     
     private let disposeBag = DisposeBag()
     
-    struct Input {
-        let viewWillAppear: PublishRelay<Void>
-    }
+    var bindBookDetail: PublishRelay<BookDetailResponseDTO> = PublishRelay<BookDetailResponseDTO>()
     
-    struct Output {
-
-    }
+    var inputs: BookDetailViewModelInputs { return self }
+    var outputs: BookDetailViewModelOutputs { return self }
     
-    func transform(input: Input) -> Output {
-        let output = Output()
-        self.bindOutput(output: output, disposeBag: disposeBag)
-        
-        input.viewWillAppear
-            .subscribe(with: self, onNext: { owner, _ in
-                
-            })
-            .disposed(by: disposeBag)
-        
-        return output
+    init() {
     }
 }
 
 extension BookDetailViewModel {
     
-    private func bindOutput(output: Output, disposeBag: DisposeBag) {
-        
+    func getBookDetail(_ bookId: Int) {
+        RecordBookService.getBookDetail(bookId: bookId)
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                self.bindBookDetail.accept(data)
+            })
+            .disposed(by: disposeBag)
     }
 }

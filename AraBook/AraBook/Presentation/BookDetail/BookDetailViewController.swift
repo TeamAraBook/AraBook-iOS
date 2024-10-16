@@ -21,15 +21,20 @@ final class BookDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let bookDetailVM = BookDetailViewModel()
-    private let viewWillAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
+    private var bookId: Int
+    
+    // MARK: - Initializer
+
+    init(bookId: Int) {
+        self.bookId = bookId
+        super.init(nibName: nil, bundle: nil)
+    }
     
     // MARK: - LifeCycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.viewWillAppear.accept(())
     }
 
     override func viewDidLoad() {
@@ -39,6 +44,10 @@ final class BookDetailViewController: UIViewController {
         bindViewModel()
         setHierarchy()
         setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -50,12 +59,23 @@ extension BookDetailViewController {
     }
     
     func bindViewModel() {
-        let input = BookDetailViewModel.Input(
-            viewWillAppear: viewWillAppear
-        )
         
-        let output = bookDetailVM.transform(input: input)
-    
+        bookDetailVM.inputs.getBookDetail(bookId)
+        
+        bookDetailVM.outputs.bindBookDetail
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                bookDetailView.bindBookDetail(data)
+            })
+            .disposed(by: disposeBag)
+        
+        bookDetailView.writeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                present(RecordBookViewController(bookId: bookId), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     func setHierarchy() {

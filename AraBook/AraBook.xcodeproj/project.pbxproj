@@ -26,6 +26,16 @@
 		03DA639D2CBE661800AD351B /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639C2CBE661300AD351B /* Networkable.swift */; };
 		03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA639E2CBE671C00AD351B /* ObservableType+.swift */; };
 		03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63A02CBE674900AD351B /* ServiceError.swift */; };
+		03DA63D32CBE77AD00AD351B /* FirstOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63D22CBE77AC00AD351B /* FirstOnboardingViewController.swift */; };
+		03DA63D62CBE77D500AD351B /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63D52CBE77CD00AD351B /* SecondOnboardingViewController.swift */; };
+		03DA63D82CBE77DF00AD351B /* ThirdOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63D72CBE77D900AD351B /* ThirdOnboardingViewController.swift */; };
+		03DA63DB2CBE783400AD351B /* FirstOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63DA2CBE783100AD351B /* FirstOnboardingView.swift */; };
+		03DA63DD2CBE783C00AD351B /* SecondOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63DC2CBE783800AD351B /* SecondOnboardingView.swift */; };
+		03DA63DF2CBE784300AD351B /* ThirdOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63DE2CBE783F00AD351B /* ThirdOnboardingView.swift */; };
+		03DA63E22CBE787700AD351B /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63E12CBE787200AD351B /* OnboardingViewModel.swift */; };
+		03DA63E82CBEBD0500AD351B /* OnboardingUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63E72CBEBCF900AD351B /* OnboardingUserInfo.swift */; };
+		03DA63EA2CBEC51A00AD351B /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63E92CBEC50E00AD351B /* TopicCollectionViewCell.swift */; };
+		03DA63EC2CBEC95000AD351B /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63EB2CBEC94B00AD351B /* OnboardingService.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
 		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
@@ -127,6 +137,16 @@
 		03DA639C2CBE661300AD351B /* Networkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
 		03DA639E2CBE671C00AD351B /* ObservableType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+.swift"; sourceTree = "<group>"; };
 		03DA63A02CBE674900AD351B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		03DA63D22CBE77AC00AD351B /* FirstOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingViewController.swift; sourceTree = "<group>"; };
+		03DA63D52CBE77CD00AD351B /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
+		03DA63D72CBE77D900AD351B /* ThirdOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingViewController.swift; sourceTree = "<group>"; };
+		03DA63DA2CBE783100AD351B /* FirstOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingView.swift; sourceTree = "<group>"; };
+		03DA63DC2CBE783800AD351B /* SecondOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingView.swift; sourceTree = "<group>"; };
+		03DA63DE2CBE783F00AD351B /* ThirdOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingView.swift; sourceTree = "<group>"; };
+		03DA63E12CBE787200AD351B /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		03DA63E72CBEBCF900AD351B /* OnboardingUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserInfo.swift; sourceTree = "<group>"; };
+		03DA63E92CBEC50E00AD351B /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
+		03DA63EB2CBEC94B00AD351B /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -278,6 +298,54 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		03DA63D02CBE771F00AD351B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				03DA63E62CBEBCF500AD351B /* Models */,
+				03DA63E02CBE786D00AD351B /* ViewModel */,
+				03DA63D92CBE782600AD351B /* Views */,
+				03DA63D42CBE77BF00AD351B /* ViewControllers */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		03DA63D42CBE77BF00AD351B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				03DA63D22CBE77AC00AD351B /* FirstOnboardingViewController.swift */,
+				03DA63D52CBE77CD00AD351B /* SecondOnboardingViewController.swift */,
+				03DA63D72CBE77D900AD351B /* ThirdOnboardingViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		03DA63D92CBE782600AD351B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03DA63E92CBEC50E00AD351B /* TopicCollectionViewCell.swift */,
+				03DA63DA2CBE783100AD351B /* FirstOnboardingView.swift */,
+				03DA63DC2CBE783800AD351B /* SecondOnboardingView.swift */,
+				03DA63DE2CBE783F00AD351B /* ThirdOnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03DA63E02CBE786D00AD351B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				03DA63E12CBE787200AD351B /* OnboardingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03DA63E62CBEBCF500AD351B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03DA63E72CBEBCF900AD351B /* OnboardingUserInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A48AC36C2CA28F6A00212432 = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +451,7 @@
 		A48AC3942CA292AA00212432 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				03DA63D02CBE771F00AD351B /* Onboarding */,
 				A48AC3982CA292C200212432 /* NaviBar */,
 				A48AC3972CA292BE00212432 /* TabBar */,
 			);
@@ -477,6 +546,7 @@
 		A48F587B2CB42863004F3A74 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				03DA63EB2CBEC94B00AD351B /* OnboardingService.swift */,
 				03DA639A2CBE639800AD351B /* RecordBookService.swift */,
 				A48F5AD22CB81325004F3A74 /* AuthService.swift */,
 				A48F58852CB4293F004F3A74 /* HomeService.swift */,
@@ -712,9 +782,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03DA63D82CBE77DF00AD351B /* ThirdOnboardingViewController.swift in Sources */,
 				A48F588D2CB439F3004F3A74 /* UIImageView+.swift in Sources */,
 				A48AC3A72CA2993C00212432 /* SizeLiterals.swift in Sources */,
 				A48F5B922CB82115004F3A74 /* SettingMenu.swift in Sources */,
+				03DA63EC2CBEC95000AD351B /* OnboardingService.swift in Sources */,
 				A48F5AAF2CB80E42004F3A74 /* UserDefaultWrapper.swift in Sources */,
 				A48F5ACD2CB8122A004F3A74 /* LoginRequestDto.swift in Sources */,
 				A48F5AA62CB80D97004F3A74 /* SplashViewController.swift in Sources */,
@@ -724,6 +796,7 @@
 				A48AC3D22CA5B7D400212432 /* HomeViewModel.swift in Sources */,
 				A48F58AC2CB57ADE004F3A74 /* SearchResultView.swift in Sources */,
 				A48AC39A2CA292D100212432 /* TabBarItem.swift in Sources */,
+				03DA63E82CBEBD0500AD351B /* OnboardingUserInfo.swift in Sources */,
 				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
@@ -747,8 +820,10 @@
 				A48AC3C82CA4284800212432 /* UIStackView+.swift in Sources */,
 				A48F58862CB42943004F3A74 /* HomeService.swift in Sources */,
 				A48F58B02CB57B50004F3A74 /* RecentCollectionViewCell.swift in Sources */,
+				03DA63DD2CBE783C00AD351B /* SecondOnboardingView.swift in Sources */,
 				03CECE4E2CB83271000E8FF0 /* RecordBookView.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
+				03DA63DB2CBE783400AD351B /* FirstOnboardingView.swift in Sources */,
 				A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */,
 				A48AC3DA2CA5B85A00212432 /* ViewModel.swift in Sources */,
 				A48F59712CB58EF8004F3A74 /* SearchViewModel.swift in Sources */,
@@ -758,11 +833,15 @@
 				03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */,
 				A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */,
 				03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */,
+				03DA63EA2CBEC51A00AD351B /* TopicCollectionViewCell.swift in Sources */,
+				03DA63E22CBE787700AD351B /* OnboardingViewModel.swift in Sources */,
+				03DA63D32CBE77AD00AD351B /* FirstOnboardingViewController.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
 				A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */,
 				03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */,
 				03CECE502CB83282000E8FF0 /* CharacterView.swift in Sources */,
 				A48AC3C02CA41D6C00212432 /* HomeViewController.swift in Sources */,
+				03DA63D62CBE77D500AD351B /* SecondOnboardingViewController.swift in Sources */,
 				A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */,
 				03DA639D2CBE661800AD351B /* Networkable.swift in Sources */,
 				A48F58802CB428C8004F3A74 /* RecommendAiResponseDto.swift in Sources */,
@@ -775,6 +854,7 @@
 				03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
 				A48F58AE2CB57AEE004F3A74 /* RecentSearchView.swift in Sources */,
+				03DA63DF2CBE784300AD351B /* ThirdOnboardingView.swift in Sources */,
 				A48F5AD12CB81322004F3A74 /* AuthTarget.swift in Sources */,
 				A48AC3A92CA2994300212432 /* FontLiterals.swift in Sources */,
 				03DA637D2CBE548400AD351B /* CheckButton.swift in Sources */,

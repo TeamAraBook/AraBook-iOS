@@ -51,10 +51,12 @@ private extension RecordListViewController {
         recordListView.recordListCollectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self else { return }
-                print(indexPath)
-                let nav = RecordDetailViewController(viewModel: self.recordListVM)
-                nav.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(nav, animated: true)
+                if let cell = recordListView.recordListCollectionView.cellForItem(at: indexPath) as? RecordListCell {
+                    print(cell.bookId)
+                    let nav = RecordDetailViewController(viewModel: self.recordListVM)
+                    nav.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(nav, animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -67,12 +69,22 @@ private extension RecordListViewController {
         
         let output = recordListVM.transform(input: input)
         
-        output.recordListData
+        recordListVM.bindBookList
+            .map { $0.reviews }
             .bind(to: recordListView.recordListCollectionView.rx
                 .items(cellIdentifier: RecordListCell.className, cellType: RecordListCell.self)) { (index, model, cell) in
                     cell.configureCell(model)
                 }
                 .disposed(by: disposeBag)
+        
+        
+        
+        recordListVM.bindBookList
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                print(data)
+            })
+            .disposed(by: disposeBag)
         
     }
     
