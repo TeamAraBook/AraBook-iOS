@@ -117,8 +117,8 @@ extension ThirdOnboardingViewController {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
+                print("asdlfija;weoifj;aowe버튼 클릭")
                 onboardingVM.inputs.putOnboarding(self.subCategory)
-                UserManager.shared.updateOnboarding()
             })
             .disposed(by: disposeBag)
         

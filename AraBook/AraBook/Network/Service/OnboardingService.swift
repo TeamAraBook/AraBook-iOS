@@ -111,10 +111,13 @@ struct SubCategoryLists: Codable {
 }
 
 struct OnboardingRequestDTO: Codable {
-    let nickname: String
-    let gender: String
-    let birthYear: String
-    let interestSubCategoryIds: [Int]
+    let nickname, gender, birthYear: String
+    let interestSubCategoryIDS: [Int]
+
+    enum CodingKeys: String, CodingKey {
+        case nickname, gender, birthYear
+        case interestSubCategoryIDS = "interestSubCategoryIds"
+    }
 }
 
 struct EmptyResponse: Codable {

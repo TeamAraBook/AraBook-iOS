@@ -106,10 +106,11 @@ extension OnboardingViewModel {
     }
     
     func putOnboarding(_ list: [Int]) {
-        let dto = OnboardingRequestDTO(nickname: self.nickname, gender: "WOMAN", birthYear: genderBind(self.gender), interestSubCategoryIds: list)
+        let dto = OnboardingRequestDTO(nickname: self.nickname, gender: genderBind(self.gender), birthYear: self.birth, interestSubCategoryIDS: list)
         
         OnboardingService.putOnboarding(dto)
             .subscribe(onNext: { data in
+                UserManager.shared.updateOnboarding()
                 print("성공서 ㅇ속ㅇ성공것옷", data)
             })
             .disposed(by: disposeBag)
