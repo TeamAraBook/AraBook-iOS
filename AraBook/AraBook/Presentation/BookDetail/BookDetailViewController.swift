@@ -60,12 +60,19 @@ extension BookDetailViewController {
     
     func bindViewModel() {
         
-        bookDetailVM.inputs.getBookDetail(1)
+        bookDetailVM.inputs.getBookDetail(bookId)
         
         bookDetailVM.outputs.bindBookDetail
             .subscribe(onNext: { [weak self] data in
                 guard let self else { return }
                 bookDetailView.bindBookDetail(data)
+            })
+            .disposed(by: disposeBag)
+        
+        bookDetailView.writeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                present(RecordBookViewController(bookId: bookId), animated: true)
             })
             .disposed(by: disposeBag)
         

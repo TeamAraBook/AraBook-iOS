@@ -17,7 +17,7 @@ final class BookDetailView: UIView {
     
     let bookCoverView = BookDetailCoverView()
     let bookDescriptionView = BookDetailDescriptionView()
-    private let writeButton = UIButton()
+    let writeButton = UIButton()
     
     // MARK: - Properties
     
