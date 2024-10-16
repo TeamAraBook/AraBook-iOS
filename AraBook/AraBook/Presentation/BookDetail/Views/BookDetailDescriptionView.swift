@@ -15,19 +15,19 @@ final class BookDetailDescriptionView: UIScrollView {
     // MARK: - UI Components
     
     private let pageLabel = UILabel()
-    private let bookPageLabel = UILabel()
+    let bookPageLabel = UILabel()
     
     private let publisherLabel = UILabel()
-    private let bookPublisherLabel = UILabel()
+    let bookPublisherLabel = UILabel()
     
     private let categoryLabel = UILabel()
-    private let bookCategoryLabel = UILabel()
+    let bookCategoryLabel = UILabel()
     
-    private let hashTagLabel = UILabel()
+    let hashTagLabel = UILabel()
     
     private let lineView = UIView()
     
-    private let bookDescriptionLabel = UILabel()
+    let bookDescriptionLabel = UILabel()
     
     // MARK: - Properties
     
@@ -59,7 +59,7 @@ extension BookDetailDescriptionView {
         }
         
         bookPageLabel.do {
-            $0.text = "000p"
+            $0.text = "241p"
             $0.textColor = .gray500
             $0.font = .araFont(type: .PretandardSemiBold, size: 16)
         }

@@ -52,7 +52,7 @@ extension BookDetailViewController {
         bookDetailVM.outputs.bindBookDetail
             .subscribe(onNext: { [weak self] data in
                 guard let self else { return }
-                print(data)
+                bookDetailView.bindBookDetail(data)
             })
             .disposed(by: disposeBag)
         

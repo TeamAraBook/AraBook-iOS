@@ -9,13 +9,14 @@ import UIKit
 
 import SnapKit
 import Then
+import Kingfisher
 
 final class BookDetailView: UIView {
     
     // MARK: - UI Components
     
-    private let bookCoverView = BookDetailCoverView()
-    private let bookDescriptionView = BookDetailDescriptionView()
+    let bookCoverView = BookDetailCoverView()
+    let bookDescriptionView = BookDetailDescriptionView()
     private let writeButton = UIButton()
     
     // MARK: - Properties
@@ -76,6 +77,26 @@ extension BookDetailView {
     }
     
     // MARK: - Methods
+    
+    func bindBookDetail(_ model: BookDetailResponseDTO) {
+        bookCoverView.bookBackgroundImageView.kf.setImage(with: URL(string: model.coverURL))
+        bookCoverView.bookImageView.kf.setImage(with: URL(string: model.coverURL))
+        bookCoverView.bookTitleLabel.text = model.title
+        bookCoverView.authorLabel.text = model.author
+        bookDescriptionView.bookPublisherLabel.text = "\(model.publisher), \(model.publicationYear)"
+        bookDescriptionView.bookDescriptionLabel.text = model.description
+        bookDescriptionView.bookCategoryLabel.text = arrayToCategoryString(model.categories)
+        bookDescriptionView.hashTagLabel.text = arrayToHashTagString(model.hashtags)
+    }
+    
+    func arrayToCategoryString(_ array: [BookCategory]) -> String {
+        guard !array.isEmpty else { return "" }
+        return array.map { $0.subCategoryName }.joined(separator: ", ")
+    }
+    
+    func arrayToHashTagString(_ array: [BookHashtag]) -> String {
+        return array.map { "#\($0.name)" }.joined(separator: " ")
+    }
     
     // MARK: - @objc Methods
 }

@@ -15,10 +15,10 @@ final class BookDetailCoverView: UIView {
     // MARK: - UI Components
     
     let navigationBar = CustomNavigationBar()
-    private let bookBackgroundImageView = UIImageView(image: .imgBook)
-    private let bookImageView = UIImageView(image: .imgBook)
-    private let bookTitleLabel = UILabel()
-    private let authorLabel = UILabel()
+    let bookBackgroundImageView = UIImageView(image: .imgBook)
+    let bookImageView = UIImageView(image: .imgBook)
+    let bookTitleLabel = UILabel()
+    let authorLabel = UILabel()
     
     // MARK: - Properties
     
