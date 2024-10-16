@@ -98,6 +98,7 @@ extension RecordListCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(31)
             $0.leading.equalTo(bookImage.snp.trailing).offset(11)
+            $0.trailing.equalTo(recordIcon.snp.leading).offset(-7)
         }
         
         recordIcon.snp.makeConstraints {
