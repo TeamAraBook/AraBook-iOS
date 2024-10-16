@@ -106,13 +106,23 @@ extension OnboardingViewModel {
     }
     
     func putOnboarding(_ list: [Int]) {
-        let dto = OnboardingRequestDTO(nickname: self.nickname, gender: "WOMAN", birthYear: self.birth, interestSubCategoryIds: list)
+        let dto = OnboardingRequestDTO(nickname: self.nickname, gender: "WOMAN", birthYear: genderBind(self.gender), interestSubCategoryIds: list)
         
         OnboardingService.putOnboarding(dto)
-            .subscribe(onNext: { [weak self] data in
-                guard let self else { return }
+            .subscribe(onNext: { data in
                 print("성공서 ㅇ속ㅇ성공것옷", data)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func genderBind(_ type: GenderType) -> String {
+        switch type {
+        case .man:
+            return "MAN"
+        case .woman:
+            return "WOMAN"
+        case .none:
+            return "UNKNOWN"
+        }
     }
 }
