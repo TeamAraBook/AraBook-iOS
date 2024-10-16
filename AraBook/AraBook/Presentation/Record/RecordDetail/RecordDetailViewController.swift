@@ -18,6 +18,7 @@ final class RecordDetailViewController: UIViewController {
     private let recordVM: RecordListViewModel
     private let detailViewWillAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
+    private var bookID: Int = 0
     
     // MARK: - UI Components
     
@@ -82,7 +83,8 @@ extension RecordDetailViewController {
         }
         
         navigationBar.editButtonAction = {
-            // 수정하기 뷰로 이동
+            let nav = RecordBookViewController(bookId: self.bookID)
+            self.navigationController?.pushViewController(nav, animated: true)
         }
     }
     
@@ -97,6 +99,7 @@ extension RecordDetailViewController {
         
         output.recordDetailData
             .subscribe(onNext: { data in
+                self.bookID = data.bookID
                 self.frontCardView.bindFrontView(model: data)
                 self.backCardView.bindBackView(model: data)
             })

@@ -128,6 +128,16 @@ extension SerachViewController {
                 self.selectRecent.accept(indexPath.item)
             })
             .disposed(by: disposeBag)
+        
+        searchResultView.resultCollectionView.rx.itemSelected
+            .subscribe(onNext: { indexPath in
+                if let cell = self.searchResultView.resultCollectionView.cellForItem(at: indexPath) as? BookCollectionViewCell {
+                    let nav = BookDetailViewController(bookId: cell.searchBookId)
+                    nav.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(nav, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindViewModel() {

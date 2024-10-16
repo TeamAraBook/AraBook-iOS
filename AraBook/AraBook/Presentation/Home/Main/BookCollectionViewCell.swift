@@ -14,6 +14,7 @@ import Kingfisher
 final class BookCollectionViewCell: UICollectionViewCell {
     
     var bookId: Int = 0
+    var searchBookId: Int = 0
     
     private let bookImage = UIImageView()
     private let bookTitle = UILabel()
@@ -96,5 +97,6 @@ extension BookCollectionViewCell {
         bookImage.kf.setImage(with: URL(string: model.coverURL))
         bookTitle.text = model.title
         bookAuthor.text = model.author
+        searchBookId = model.bookID
     }
 }
