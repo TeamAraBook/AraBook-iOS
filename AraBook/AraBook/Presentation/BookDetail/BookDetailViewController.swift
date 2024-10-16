@@ -86,7 +86,10 @@ extension BookDetailViewController {
     func setLayout() {
         
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         bookDetailView.snp.makeConstraints {
