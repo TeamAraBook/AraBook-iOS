@@ -26,6 +26,7 @@ enum URLConstant {
     // recordBook
     
     static let reviews = "/reviews"
+    static let reviewsDetail = "/reviews/{reviewId}"
     
     // onboarding
     

@@ -12,58 +12,9 @@ import RxCocoa
 import RxMoya
 import RxSwift
 
-enum RecordBookTarget {
-    
-    case getBookDetail(bookId: Int)
-    case postReviews(dto: RecordBookRequestDTO)
-    case getRecordBookList
-}
-
-extension RecordBookTarget: BaseTargetType {
-    
-    var path: String {
-        switch self {
-        case .postReviews:
-            return URLConstant.reviews
-        case .getBookDetail(let bookId):
-            let path = URLConstant.bookDetail
-                .replacingOccurrences(of: "{bookId}", with: String(bookId))
-            return path
-        case .getRecordBookList:
-            return URLConstant.reviews
-        }
-    }
-    
-    var method: Moya.Method {
-        switch self {
-        case .postReviews:
-            return .post
-        case .getBookDetail:
-            return .get
-        case .getRecordBookList:
-            return .get
-        }
-    }
-    
-    var task: Moya.Task {
-        switch self {
-        case .postReviews(let dto):
-            return .requestJSONEncodable(dto)
-        case .getBookDetail:
-            return .requestPlain
-        case .getRecordBookList:
-            return .requestPlain
-        }
-    }
-    
-    var headers: [String : String]? {
-        return HeaderConstant.hasTokenHeader
-    }
-}
-
 struct RecordBookService: Networkable {
     
-    typealias Target = RecordBookTarget
+    typealias Target = RecordTarget
     private static let provider = makeProvider()
     
     static func postReviews(dto: RecordBookRequestDTO) -> Observable<RecordBookResponseDTO> {
@@ -86,7 +37,16 @@ struct RecordBookService: Networkable {
             .mapError()
             .decode(decodeType: BookRecordResponseDTO.self)
     }
+    
+    static func getBookRecordDetail(reviewId: Int) -> Observable<RecordDetailResponseDto> {
+        return provider.rx.request(.getRecordBookDetail(reviewId: reviewId))
+            .asObservable()
+            .mapError()
+            .decode(decodeType: RecordDetailResponseDto.self)
+    }
 }
+
+// TODO:- dto 옮겨주세여.....
 
 struct RecordBookRequestDTO: Codable {
     let bookId: Int
