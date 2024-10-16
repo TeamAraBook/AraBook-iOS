@@ -47,6 +47,7 @@ extension BookDetailViewController {
     }
     
     func bindViewModel() {
+        
         bookDetailVM.inputs.getBookDetail(1)
         
         bookDetailVM.outputs.bindBookDetail

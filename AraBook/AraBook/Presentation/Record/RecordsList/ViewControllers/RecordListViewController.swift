@@ -67,12 +67,22 @@ private extension RecordListViewController {
         
         let output = recordListVM.transform(input: input)
         
-        output.recordListData
+        recordListVM.bindBookList
+            .map { $0.reviews }
             .bind(to: recordListView.recordListCollectionView.rx
                 .items(cellIdentifier: RecordListCell.className, cellType: RecordListCell.self)) { (index, model, cell) in
                     cell.configureCell(model)
                 }
                 .disposed(by: disposeBag)
+        
+        
+        
+        recordListVM.bindBookList
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                print(data)
+            })
+            .disposed(by: disposeBag)
         
     }
     

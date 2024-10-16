@@ -21,6 +21,10 @@ final class RecordListCell: UICollectionViewCell {
     private let totalReadDate = UILabel()
     private let readingDate = UILabel()
     
+    // MARK: - Properties
+    
+    var bookId: Int = 0
+    
     // MARK: - View Life Cycle
     
     override init(frame: CGRect) {
@@ -119,17 +123,30 @@ extension RecordListCell {
     
     // MARK: - Methods
     
-    func configureCell(_ model: RecordListModel) {
+    func configureCell(_ model: BookRecordList) {
+        bookImage.kf.setImage(with: URL(string: model.coverURL))
         titleLabel.text = model.title
-        totalReadDate.text = model.totalReadDate
-        readingDate.text = model.readDate
+        totalReadDate.text = model.readStartDate
+        readingDate.text = model.readEndDate
+        totalReadDate.text = "총 \(model.readPeriod)일 동안 읽었어요!"
+        bookId = model.reviewID
+        recordIcon.kf.setImage(with: URL(string: model.reviewTagIcon))
+        backgroundColor = UIColor(hex: model.reviewTagColor)
+    }
+}
+
+extension UIColor {
+    convenience init?(hex: String) {
+        var hexFormatted = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexFormatted = hexFormatted.replacingOccurrences(of: "#", with: "")
+
+        var rgb: UInt64 = 0
+        Scanner(string: hexFormatted).scanHexInt64(&rgb)
+
+        let red = CGFloat((rgb >> 16) & 0xFF) / 255.0
+        let green = CGFloat((rgb >> 8) & 0xFF) / 255.0
+        let blue = CGFloat(rgb & 0xFF) / 255.0
         
-        switch model.backgroundColor {
-        case "yellow": backgroundColor = .chYellow
-        case "green": backgroundColor = .chGreen
-        case "orange": backgroundColor = .chOrange
-        default:
-            backgroundColor = .white
-        }
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
