@@ -56,7 +56,7 @@ private extension HomeTodayBookView {
         }
         
         todayBookBackView.do {
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleToFill
         }
         
         backgroundView.do {

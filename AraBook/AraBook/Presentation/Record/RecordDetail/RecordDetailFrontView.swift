@@ -9,13 +9,14 @@ import UIKit
 
 import SnapKit
 import Then
+import Kingfisher
 
 final class RecordDetailFrontView: UIView {
     
     // MARK: - UI Components
     
     private let bookBackView = UIView()
-    private let bookImageView = UIImageView(image: .imgBook)
+    private let bookImageView = UIImageView()
     private let bookTitleLabel = UILabel()
     private let divideView = UIView()
     private let bookAuthorLabel = UILabel()
@@ -40,7 +41,7 @@ private extension RecordDetailFrontView {
     
     func setUI() {
         self.do {
-            $0.backgroundColor = .chYellow
+//            $0.backgroundColor = .chYellow
             $0.makeCornerRound(radius: 50)
         }
         
@@ -124,8 +125,10 @@ private extension RecordDetailFrontView {
 
 extension RecordDetailFrontView {
     
-    func bindFrontView(model: RecordFrontModel) {
+    func bindFrontView(model: RecordDetailResponseDto) {
+        bookImageView.kf.setImage(with: URL(string: model.coverURL))
         bookTitleLabel.text = model.title
         bookAuthorLabel.text = model.author
+        backgroundColor = UIColor(hex: model.reviewTagColor)
     }
 }

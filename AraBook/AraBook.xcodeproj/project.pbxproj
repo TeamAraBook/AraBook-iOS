@@ -114,6 +114,8 @@
 		A48F5B8E2CB8203A004F3A74 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5B8D2CB8202F004F3A74 /* MypageViewController.swift */; };
 		A48F5B902CB82052004F3A74 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5B8F2CB8203F004F3A74 /* MypageTableViewCell.swift */; };
 		A48F5B922CB82115004F3A74 /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5B912CB82112004F3A74 /* SettingMenu.swift */; };
+		A48F5D1C2CBF964E004F3A74 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5D1B2CBF964B004F3A74 /* UIColor+.swift */; };
+		A48F5D212CBF9724004F3A74 /* RecordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F5D202CBF971C004F3A74 /* RecordTarget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -205,6 +207,8 @@
 		A48F5B8D2CB8202F004F3A74 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		A48F5B8F2CB8203F004F3A74 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		A48F5B912CB82112004F3A74 /* SettingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
+		A48F5D1B2CBF964B004F3A74 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		A48F5D202CBF971C004F3A74 /* RecordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTarget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -499,6 +503,7 @@
 		A48AC3B32CA29A9900212432 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A48F5D1B2CBF964B004F3A74 /* UIColor+.swift */,
 				03DA639E2CBE671C00AD351B /* ObservableType+.swift */,
 				A48F588C2CB439ED004F3A74 /* UIImageView+.swift */,
 				A48AC3B42CA29AA600212432 /* UIView+.swift */,
@@ -537,6 +542,7 @@
 		A48F587A2CB42860004F3A74 /* Target */ = {
 			isa = PBXGroup;
 			children = (
+				A48F5D202CBF971C004F3A74 /* RecordTarget.swift */,
 				A48F5AD02CB81320004F3A74 /* AuthTarget.swift */,
 				A48F58832CB42909004F3A74 /* HomeTarget.swift */,
 			);
@@ -808,6 +814,7 @@
 				A48F5AB12CB80E48004F3A74 /* UserManager.swift in Sources */,
 				A48F5AD32CB81328004F3A74 /* AuthService.swift in Sources */,
 				A48F5AAC2CB80DEC004F3A74 /* LoginViewModel.swift in Sources */,
+				A48F5D1C2CBF964E004F3A74 /* UIColor+.swift in Sources */,
 				A48AC3932CA2921200212432 /* Config.swift in Sources */,
 				03CECE2B2CB821ED000E8FF0 /* BookDetailDescriptionView.swift in Sources */,
 				A48F596D2CB58304004F3A74 /* SearchTextField.swift in Sources */,
@@ -837,6 +844,7 @@
 				03DA63E22CBE787700AD351B /* OnboardingViewModel.swift in Sources */,
 				03DA63D32CBE77AD00AD351B /* FirstOnboardingViewController.swift in Sources */,
 				A48AC3D02CA431A400212432 /* NSObject+.swift in Sources */,
+				A48F5D212CBF9724004F3A74 /* RecordTarget.swift in Sources */,
 				A48F58672CB426BC004F3A74 /* GeneralResponse.swift in Sources */,
 				03DA639F2CBE672800AD351B /* ObservableType+.swift in Sources */,
 				03CECE502CB83282000E8FF0 /* CharacterView.swift in Sources */,
