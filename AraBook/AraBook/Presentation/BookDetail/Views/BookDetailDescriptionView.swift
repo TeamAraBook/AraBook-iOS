@@ -158,7 +158,7 @@ extension BookDetailDescriptionView {
         
         bookDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(40)
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview()
         }
     }
