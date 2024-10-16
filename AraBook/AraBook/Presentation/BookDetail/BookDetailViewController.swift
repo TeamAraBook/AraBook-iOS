@@ -21,15 +21,12 @@ final class BookDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let bookDetailVM = BookDetailViewModel()
-    private let viewWillAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
     
     // MARK: - LifeCycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.viewWillAppear.accept(())
     }
 
     override func viewDidLoad() {
@@ -50,12 +47,15 @@ extension BookDetailViewController {
     }
     
     func bindViewModel() {
-        let input = BookDetailViewModel.Input(
-            viewWillAppear: viewWillAppear
-        )
+        bookDetailVM.inputs.getBookDetail(1)
         
-        let output = bookDetailVM.transform(input: input)
-    
+        bookDetailVM.outputs.bindBookDetail
+            .subscribe(onNext: { [weak self] data in
+                guard let self else { return }
+                print(data)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     func setHierarchy() {

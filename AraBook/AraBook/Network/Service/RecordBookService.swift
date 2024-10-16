@@ -14,23 +14,38 @@ import RxSwift
 
 enum RecordBookTarget {
     
+    case getBookDetail(bookId: Int)
     case postReviews(dto: RecordBookRequestDTO)
 }
 
 extension RecordBookTarget: BaseTargetType {
     
     var path: String {
-        return URLConstant.reviews
+        switch self {
+        case .postReviews:
+            return URLConstant.reviews
+        case .getBookDetail(let bookId):
+            let path = URLConstant.bookDetail
+                .replacingOccurrences(of: "{bookId}", with: String(bookId))
+            return path
+        }
     }
     
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .postReviews:
+            return .post
+        case .getBookDetail:
+            return .get
+        }
     }
     
     var task: Moya.Task {
         switch self {
         case .postReviews(let dto):
             return .requestJSONEncodable(dto)
+        case .getBookDetail:
+            return .requestPlain
         }
     }
     
@@ -49,6 +64,13 @@ struct RecordBookService: Networkable {
             .mapError()
             .decode(decodeType: RecordBookResponseDTO.self)
     }
+    
+    static func getBookDetail(bookId: Int) -> Observable<BookDetailResponseDTO> {
+        return provider.rx.request(.getBookDetail(bookId: bookId))
+            .asObservable()
+            .mapError()
+            .decode(decodeType: BookDetailResponseDTO.self)
+    }
 }
 
 struct RecordBookRequestDTO: Codable {
@@ -61,4 +83,41 @@ struct RecordBookRequestDTO: Codable {
 
 struct RecordBookResponseDTO: Codable {
     let reviewId: Int
+}
+
+struct BookDetailResponseDTO: Codable {
+    let bookID: Int
+    let coverURL: String
+    let title, author, publisher, publicationYear: String
+    let description: String
+    let categories: [BookCategory]
+    let hashtags: [BookHashtag]
+
+    enum CodingKeys: String, CodingKey {
+        case bookID = "bookId"
+        case coverURL = "coverUrl"
+        case title, author, publisher, publicationYear, description, categories, hashtags
+    }
+}
+
+// MARK: - Category
+struct BookCategory: Codable {
+    let subCategoryID: Int
+    let subCategoryName: String
+
+    enum CodingKeys: String, CodingKey {
+        case subCategoryID = "subCategoryId"
+        case subCategoryName
+    }
+}
+
+// MARK: - Hashtag
+struct BookHashtag: Codable {
+    let hashTagID: Int
+    let name: String
+
+    enum CodingKeys: String, CodingKey {
+        case hashTagID = "hashTagId"
+        case name
+    }
 }
