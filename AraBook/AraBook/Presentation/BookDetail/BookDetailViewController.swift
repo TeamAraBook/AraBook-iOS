@@ -22,6 +22,14 @@ final class BookDetailViewController: UIViewController {
     
     private let bookDetailVM = BookDetailViewModel()
     private let disposeBag = DisposeBag()
+    private var bookId: Int
+    
+    // MARK: - Initializer
+
+    init(bookId: Int) {
+        self.bookId = bookId
+        super.init(nibName: nil, bundle: nil)
+    }
     
     // MARK: - LifeCycle
     
@@ -36,6 +44,10 @@ final class BookDetailViewController: UIViewController {
         bindViewModel()
         setHierarchy()
         setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
