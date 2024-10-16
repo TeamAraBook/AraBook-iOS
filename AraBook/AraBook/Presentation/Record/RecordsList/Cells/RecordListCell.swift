@@ -16,7 +16,7 @@ final class RecordListCell: UICollectionViewCell {
     
     private let bookImage = UIImageView(image: .imgBook)
     private let titleLabel = UILabel()
-    private let recordIcon = UIImageView(image: .icRecordList)
+    private let recordIcon = UIImageView()
     private let underLine = UIView()
     private let totalReadDate = UILabel()
     private let readingDate = UILabel()
@@ -72,6 +72,10 @@ extension RecordListCell {
             $0.text = "23. 11. 25 ~ 24. 09. 20"
             $0.font = .araFont(type: .PretandardRegular, size: 12)
             $0.textColor = .black
+        }
+        
+        recordIcon.do {
+            $0.contentMode = .scaleAspectFit
         }
     }
     
