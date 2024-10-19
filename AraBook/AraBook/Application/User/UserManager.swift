@@ -18,7 +18,7 @@ final class UserManager {
     var hasAccessToken: Bool { return self.accessToken != nil }
     var getAccessToken: String { return self.accessToken ?? "" }
     var getRefreshToken: String { return self.refreshToken ?? "" }
-    var hasOnboarding: Bool { return self.doOnboarding != nil }
+    var hasOnboarding: Bool { return self.doOnboarding ?? false }
     
     private init() {}
 }
@@ -43,6 +43,6 @@ extension UserManager {
     func withdraw() {
         self.accessToken = nil
         self.refreshToken = nil
-        self.doOnboarding = nil
+        self.doOnboarding = false
     }
 }
