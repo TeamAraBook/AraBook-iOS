@@ -14,7 +14,7 @@ final class RecordBookView: UIScrollView {
     
     // MARK: - UI Components
     
-    private let navigationBar = CustomNavigationBar()
+    let navigationBar = CustomNavigationBar()
     let characterView = CharacterView()
     let recordDateView = RecordDateView()
     let bookReviewView = BookReviewView()
@@ -47,7 +47,7 @@ extension RecordBookView {
         self.backgroundColor = .clear
         
         navigationBar.do {
-            $0.isTitleLabelIncluded = "퀸의 대각선"
+//            $0.isTitleLabelIncluded = "퀸의 대각선"
             $0.isTitleViewIncluded = true
             $0.isCloseButtonIncluded = true
         }
@@ -68,7 +68,7 @@ extension RecordBookView {
         
         navigationBar.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         characterView.snp.makeConstraints {

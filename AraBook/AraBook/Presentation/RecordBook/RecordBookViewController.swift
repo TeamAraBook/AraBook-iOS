@@ -35,11 +35,13 @@ final class RecordBookViewController: UIViewController {
     private var isStart: Bool = false
     private var isEnd: Bool = false
     private let bookId: Int
+    private var bookTitle: String
     
     // MARK: - Initializer
 
-    init(bookId: Int) {
+    init(bookId: Int, bookTitle: String) {
         self.bookId = bookId
+        self.bookTitle = bookTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -90,6 +92,7 @@ extension RecordBookViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         recordBookView.do {
+            $0.navigationBar.isTitleLabelIncluded = self.bookTitle
             $0.isScrollEnabled = false
             $0.showsVerticalScrollIndicator = true
             $0.showsHorizontalScrollIndicator = false
