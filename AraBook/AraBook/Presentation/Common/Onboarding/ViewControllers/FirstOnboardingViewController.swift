@@ -89,7 +89,7 @@ extension FirstOnboardingViewController {
     // MARK: - UI Components Property
     
     private func setUI() {
-        
+        self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = .white
         
     }

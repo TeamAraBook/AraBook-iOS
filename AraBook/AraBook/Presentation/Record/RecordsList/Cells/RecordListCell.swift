@@ -98,6 +98,7 @@ extension RecordListCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(31)
             $0.leading.equalTo(bookImage.snp.trailing).offset(11)
+            $0.trailing.equalTo(recordIcon.snp.leading).offset(-7)
         }
         
         recordIcon.snp.makeConstraints {
@@ -130,8 +131,7 @@ extension RecordListCell {
     func configureCell(_ model: BookRecordList) {
         bookImage.kf.setImage(with: URL(string: model.coverURL))
         titleLabel.text = model.title
-        totalReadDate.text = model.readStartDate
-        readingDate.text = model.readEndDate
+        readingDate.text = "\(model.readStartDate) ~ \(model.readEndDate)"
         totalReadDate.text = "총 \(model.readPeriod)일 동안 읽었어요!"
         bookId = model.reviewID
         recordIcon.kf.setImage(with: URL(string: model.reviewTagIcon))

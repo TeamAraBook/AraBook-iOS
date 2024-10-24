@@ -19,6 +19,7 @@ final class RecordDetailViewController: UIViewController {
     private let detailViewWillAppear = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
     private var bookID: Int = 0
+    private var bookTitle: String = ""
     
     // MARK: - UI Components
     
@@ -83,7 +84,8 @@ extension RecordDetailViewController {
         }
         
         navigationBar.editButtonAction = {
-            let nav = RecordBookViewController(bookId: self.bookID)
+            let nav = RecordBookViewController(bookId: self.bookID,
+                                               bookTitle: self.bookTitle)
             self.navigationController?.pushViewController(nav, animated: true)
         }
     }
@@ -100,6 +102,7 @@ extension RecordDetailViewController {
         output.recordDetailData
             .subscribe(onNext: { data in
                 self.bookID = data.bookID
+                self.bookTitle = data.title
                 self.frontCardView.bindFrontView(model: data)
                 self.backCardView.bindBackView(model: data)
             })

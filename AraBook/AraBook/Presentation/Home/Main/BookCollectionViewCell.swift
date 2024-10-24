@@ -15,6 +15,7 @@ final class BookCollectionViewCell: UICollectionViewCell {
     
     var bookId: Int = 0
     var searchBookId: Int = 0
+    var cellBookTitle: String = ""
     
     private let bookImage = UIImageView()
     private let bookTitle = UILabel()
@@ -91,11 +92,13 @@ extension BookCollectionViewCell {
         bookTitle.text = model.title
         bookAuthor.text = model.author
         bookId = model.bookID
+        cellBookTitle = model.title
     }
     
     func bindSearchBook(model: SearchBook) {
         bookImage.kf.setImage(with: URL(string: model.coverURL))
         bookTitle.text = model.title
+        cellBookTitle = model.title
         bookAuthor.text = model.author
         searchBookId = model.bookID
     }
