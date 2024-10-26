@@ -14,6 +14,7 @@ final class SplashViewController: UIViewController {
     // MARK: - UI Properties
     
     private let backImageView = UIImageView(image: UIImage(resource: .imgBackground))
+    private let logoImageView = UIImageView(image: .imgLogo)
     
     // MARK: - LifeCycle
     
@@ -37,18 +38,24 @@ extension SplashViewController {
     }
     
     func setHierarchy() {
-        view.addSubview(backImageView)
+        view.addSubviews(backImageView, logoImageView)
     }
     
     func setLayout() {
         backImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        logoImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(300)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(180)
+        }
     }
     
     func checkToken() {
         if UserManager.shared.hasAccessToken {
-            if UserManager.shared.doOnboarding ?? false {
+            if UserManager.shared.hasOnboarding {
                 let nav = TabBarController()
                 self.navigationController?.pushViewController(nav, animated: true)
             } else {

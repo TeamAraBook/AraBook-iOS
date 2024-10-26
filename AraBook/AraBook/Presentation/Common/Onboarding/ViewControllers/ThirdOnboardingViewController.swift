@@ -119,9 +119,26 @@ extension ThirdOnboardingViewController {
                 guard let self else { return }
                 print("asdlfija;weoifj;aowe버튼 클릭")
                 onboardingVM.inputs.putOnboarding(self.subCategory)
+                self.changeRootToTabVC()
             })
             .disposed(by: disposeBag)
         
+        onboardingVM.outputs.completeOnboarding
+            .subscribe(onNext: { [weak self] in
+                self?.changeRootToTabVC()
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
+    func changeRootToTabVC() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                let spalshVC = TabBarController()
+                let navigationController = UINavigationController(rootViewController: spalshVC)
+                window.rootViewController = navigationController
+            }
+        }
     }
     
     // MARK: - UI Components Property

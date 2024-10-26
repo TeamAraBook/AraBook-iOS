@@ -86,6 +86,7 @@ private extension CustomNavigationBar {
         titleLabel.do {
             $0.font = .araFont(type: .PretandardSemiBold, size: 16)
             $0.textColor = .black
+            $0.textAlignment = .center
         }
         
         backButton.do {
@@ -125,12 +126,14 @@ private extension CustomNavigationBar {
         }
         
         titleView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(50)
             $0.height.equalTo(24)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
         
         backButton.snp.makeConstraints {

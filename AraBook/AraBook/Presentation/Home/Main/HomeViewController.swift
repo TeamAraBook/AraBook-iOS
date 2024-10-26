@@ -99,7 +99,7 @@ extension HomeViewController {
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
                 if let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell {
-                    let nav = BookDetailViewController(bookId: cell.bookId)
+                    let nav = BookDetailViewController(bookId: cell.bookId, bookTitle: cell.cellBookTitle)
                     nav.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(nav, animated: true)
                 }

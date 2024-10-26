@@ -105,6 +105,9 @@ extension BookDetailDescriptionView {
             $0.font = .araFont(type: .PretandardRegular, size: 14)
             $0.numberOfLines = 0
         }
+        
+        pageLabel.isHidden = true
+        bookPageLabel.isHidden = true
     }
     
     // MARK: - Layout Helper
@@ -127,7 +130,7 @@ extension BookDetailDescriptionView {
         }
         
         publisherLabel.snp.makeConstraints {
-            $0.top.equalTo(bookPageLabel.snp.bottom).offset(20)
+            $0.top.equalToSuperview().inset(20)
             $0.leading.equalTo(pageLabel)
         }
         
@@ -147,7 +150,7 @@ extension BookDetailDescriptionView {
         }
         
         hashTagLabel.snp.makeConstraints {
-            $0.top.equalTo(bookCategoryLabel.snp.bottom).offset(30)
+            $0.top.equalTo(bookCategoryLabel.snp.bottom).offset(20)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.leading.equalTo(pageLabel)
         }

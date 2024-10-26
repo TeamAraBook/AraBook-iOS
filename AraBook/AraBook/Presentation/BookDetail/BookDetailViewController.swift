@@ -23,11 +23,13 @@ final class BookDetailViewController: UIViewController {
     private let bookDetailVM = BookDetailViewModel()
     private let disposeBag = DisposeBag()
     private var bookId: Int
+    private var bookTitle: String
     
     // MARK: - Initializer
 
-    init(bookId: Int) {
+    init(bookId: Int, bookTitle: String) {
         self.bookId = bookId
+        self.bookTitle = bookTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -72,7 +74,7 @@ extension BookDetailViewController {
         bookDetailView.writeButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                present(RecordBookViewController(bookId: bookId), animated: true)
+                present(RecordBookViewController(bookId: bookId, bookTitle: bookTitle), animated: true)
             })
             .disposed(by: disposeBag)
         

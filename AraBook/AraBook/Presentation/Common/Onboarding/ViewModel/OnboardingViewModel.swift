@@ -26,6 +26,7 @@ protocol OnboardingViewModelOutputs {
     var category1: BehaviorRelay<[SubCategoryLists]> { get }
     var category2: BehaviorRelay<[SubCategoryLists]> { get }
     var category3: BehaviorRelay<[SubCategoryLists]> { get }
+    var completeOnboarding: PublishRelay<Void> { get }
 }
 
 protocol OnboardingViewModelType {
@@ -53,6 +54,8 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     var mainCategoryList: [Int] = [1, 2, 3]
     var subCategory1: [SubCategoryLists] = [SubCategoryLists(subCategoryId: 11, subCategoryName: "제발")]
     var subCategoryList: [Int] = []
+    
+    var completeOnboarding: PublishRelay<Void> = PublishRelay<Void>()
     
     var inputs: OnboardingViewModelInputs { return self }
     var outputs: OnboardingViewModelOutputs { return self }
@@ -107,11 +110,10 @@ extension OnboardingViewModel {
     
     func putOnboarding(_ list: [Int]) {
         let dto = OnboardingRequestDTO(nickname: self.nickname, gender: genderBind(self.gender), birthYear: self.birth, interestSubCategoryIDS: list)
-        
+        UserManager.shared.updateOnboarding()
         OnboardingService.putOnboarding(dto)
             .subscribe(onNext: { data in
-                UserManager.shared.updateOnboarding()
-                print("성공서 ㅇ속ㅇ성공것옷", data)
+                self.completeOnboarding.accept(())
             })
             .disposed(by: disposeBag)
     }

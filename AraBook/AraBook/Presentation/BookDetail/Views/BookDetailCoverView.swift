@@ -58,6 +58,7 @@ extension BookDetailCoverView {
         bookTitleLabel.do {
             $0.text = "퀸의 대각선"
             $0.textColor = .white
+            $0.textAlignment = .center
             $0.font = .araFont(type: .PyeongChangBold, size: 20)
         }
         
@@ -65,6 +66,7 @@ extension BookDetailCoverView {
             $0.text = "베르나르베르베르"
             $0.textColor = .white
             $0.font = .araFont(type: .PyeongChangRegular, size: 14)
+            $0.textAlignment = .center
         }
     }
     
@@ -92,12 +94,12 @@ extension BookDetailCoverView {
         }
         
         bookTitleLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(bookImageView.snp.bottom).offset(16)
         }
         
         authorLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(bookTitleLabel.snp.bottom).offset(4)
         }
     }

@@ -112,9 +112,7 @@ extension LoginViewController {
             .drive(with: self, onNext: { owner, loginData in
                 UserManager.shared.updateToken(loginData.token.accessToken,
                                                loginData.token.refreshToken)
-                
-                //TODO: 온보딩 연결 후에 삭제
-                let nav = TabBarController()
+                let nav = FirstOnboardingViewController()
                 self.navigationController?.pushViewController(nav, animated: false)
             })
             .disposed(by: disposeBag)

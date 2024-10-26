@@ -132,7 +132,7 @@ extension SerachViewController {
         searchResultView.resultCollectionView.rx.itemSelected
             .subscribe(onNext: { indexPath in
                 if let cell = self.searchResultView.resultCollectionView.cellForItem(at: indexPath) as? BookCollectionViewCell {
-                    let nav = BookDetailViewController(bookId: cell.searchBookId)
+                    let nav = BookDetailViewController(bookId: cell.searchBookId, bookTitle: cell.cellBookTitle)
                     nav.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(nav, animated: true)
                 }
