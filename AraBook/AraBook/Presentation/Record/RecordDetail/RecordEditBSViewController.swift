@@ -17,6 +17,9 @@ final class RecordEditBSViewController: UIViewController {
     
     private var bottomHeight: CGFloat = 199
     private let disposeBag = DisposeBag()
+    private var reviewId: Int
+    private var recordVM: RecordListViewModel
+    private let delButtonTapped = PublishRelay<Int>()
     
     // MARK: - UI Components
     
@@ -50,6 +53,18 @@ final class RecordEditBSViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Initializer
+
+    init(reviewId: Int, viewModel: RecordListViewModel) {
+        self.reviewId = reviewId
+        self.recordVM = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
@@ -59,6 +74,7 @@ final class RecordEditBSViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDismissAction()
+        bindViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,7 +97,24 @@ extension RecordEditBSViewController {
         
         delButton.rx.tap
             .subscribe(onNext: {
-                print("delbuttontapped")
+                self.delButtonTapped.accept(self.reviewId)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindViewModel() {
+        let input = RecordListViewModel.Input(
+            viewWillAppear: PublishRelay(),
+            selectRecordList: PublishRelay(),
+            detailViewWillAppear: PublishRelay(),
+            delButtonTapped: self.delButtonTapped
+        )
+        
+        let output = recordVM.transform(input: input)
+        
+        output.recordDelData
+            .subscribe(onNext: { data in
+                self.changeRootToTabBarVC()
             })
             .disposed(by: disposeBag)
     }
@@ -167,5 +200,16 @@ extension RecordEditBSViewController {
     @objc
     func hideBottomSheetAction() {
         hideBottomSheet()
+    }
+    
+    func changeRootToTabBarVC() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                let tabbarVC = TabBarController()
+                tabbarVC.selectedIndex = 0
+                let navigationController = UINavigationController(rootViewController: tabbarVC)
+                window.rootViewController = navigationController
+            }
+        }
     }
 }

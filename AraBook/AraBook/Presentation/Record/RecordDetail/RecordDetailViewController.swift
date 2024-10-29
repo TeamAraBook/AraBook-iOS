@@ -85,7 +85,8 @@ extension RecordDetailViewController {
         }
         
         navigationBar.moreButtonAction = {
-            let nav = RecordEditBSViewController()
+            let nav = RecordEditBSViewController(reviewId: self.reviewID,
+                                                 viewModel: self.recordVM)
             nav.modalPresentationStyle = .overFullScreen
             self.present(nav, animated: false)
 //            let nav = RecordBookViewController(bookId: self.bookID,
@@ -98,7 +99,8 @@ extension RecordDetailViewController {
         let input = RecordListViewModel.Input(
             viewWillAppear: PublishRelay(),
             selectRecordList: PublishRelay(),
-            detailViewWillAppear: detailViewWillAppear
+            detailViewWillAppear: detailViewWillAppear,
+            delButtonTapped: PublishRelay()
         )
         
         let output = recordVM.transform(input: input)

@@ -66,7 +66,8 @@ private extension RecordListViewController {
         let input = RecordListViewModel.Input(
             viewWillAppear: viewWillAppear,
             selectRecordList: selectRecordlist,
-            detailViewWillAppear: PublishRelay()
+            detailViewWillAppear: PublishRelay(),
+            delButtonTapped: PublishRelay()
         )
         
         let output = recordListVM.transform(input: input)
