@@ -58,7 +58,7 @@ extension BookDetailView {
         addSubviews(bookCoverView, bookDescriptionView, writeButton)
         
         bookCoverView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(-60)
+            $0.top.equalToSuperview().inset(-65)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(450)
         }

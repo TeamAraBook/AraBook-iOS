@@ -58,6 +58,7 @@ extension BookDetailViewController {
     func setUI() {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        scrollView.bounces = false
     }
     
     func bindViewModel() {

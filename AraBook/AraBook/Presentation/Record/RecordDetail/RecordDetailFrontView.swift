@@ -63,14 +63,14 @@ private extension RecordDetailFrontView {
         bookTitleLabel.do {
             $0.textColor = .black
             $0.textAlignment = .center
-            $0.numberOfLines = 0
+            $0.numberOfLines = 2
             $0.font = .araFont(type: .PretandardBold, size: 32)
         }
         
         bookAuthorLabel.do {
             $0.textColor = .black
             $0.textAlignment = .center
-            $0.numberOfLines = 0
+            $0.numberOfLines = 2
             $0.font = .araFont(type: .PretandardSemiBold, size: 20)
         }
     }
