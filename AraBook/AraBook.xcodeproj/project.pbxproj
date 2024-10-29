@@ -38,7 +38,6 @@
 		03DA63EC2CBEC95000AD351B /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DA63EB2CBEC94B00AD351B /* OnboardingService.swift */; };
 		A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3782CA28F6A00212432 /* AppDelegate.swift */; };
 		A48AC37B2CA28F6A00212432 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */; };
-		A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC37C2CA28F6A00212432 /* ViewController.swift */; };
 		A48AC3822CA28F6B00212432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3812CA28F6B00212432 /* Assets.xcassets */; };
 		A48AC3852CA28F6B00212432 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A48AC3842CA28F6B00212432 /* Base */; };
 		A48AC3932CA2921200212432 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48AC3922CA2921200212432 /* Config.swift */; };
@@ -158,7 +157,6 @@
 		A48AC3752CA28F6A00212432 /* AraBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AraBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48AC3782CA28F6A00212432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48AC37A2CA28F6A00212432 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A48AC37C2CA28F6A00212432 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A48AC3812CA28F6B00212432 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A48AC3842CA28F6B00212432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A48AC3862CA28F6B00212432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -314,7 +312,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		03DA63D02CBE771F00AD351B /* Onboarding */ = {
+		03DA63D02CBE771F00AD351B /* InputUserInfo */ = {
 			isa = PBXGroup;
 			children = (
 				03DA63E62CBEBCF500AD351B /* Models */,
@@ -322,7 +320,7 @@
 				03DA63D92CBE782600AD351B /* Views */,
 				03DA63D42CBE77BF00AD351B /* ViewControllers */,
 			);
-			path = Onboarding;
+			path = InputUserInfo;
 			sourceTree = "<group>";
 		};
 		03DA63D42CBE77BF00AD351B /* ViewControllers */ = {
@@ -394,14 +392,11 @@
 		A48AC38C2CA291BD00212432 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				03CECE472CB82E29000E8FF0 /* RecordBook */,
 				A48F5B8C2CB8201C004F3A74 /* Mypage */,
 				A48F5AA32CB80C44004F3A74 /* Onboarding */,
-				03CECE202CB8218C000E8FF0 /* BookDetail */,
 				A4B716622CAC146000F28562 /* Record */,
 				A48AC3BE2CA41D6100212432 /* Home */,
 				A48AC3942CA292AA00212432 /* Common */,
-				A48AC37C2CA28F6A00212432 /* ViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -467,7 +462,6 @@
 		A48AC3942CA292AA00212432 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				03DA63D02CBE771F00AD351B /* Onboarding */,
 				A48AC3982CA292C200212432 /* NaviBar */,
 				A48AC3972CA292BE00212432 /* TabBar */,
 			);
@@ -528,6 +522,7 @@
 		A48AC3BE2CA41D6100212432 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				03CECE202CB8218C000E8FF0 /* BookDetail */,
 				A48F58A62CB576FA004F3A74 /* Search */,
 				A48F58A52CB576E6004F3A74 /* Main */,
 			);
@@ -631,6 +626,7 @@
 			children = (
 				A48F5AA42CB80C4C004F3A74 /* Splash */,
 				A48F5AA82CB80DDC004F3A74 /* Login */,
+				03DA63D02CBE771F00AD351B /* InputUserInfo */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -695,6 +691,7 @@
 		A4B716622CAC146000F28562 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				03CECE472CB82E29000E8FF0 /* RecordBook */,
 				A4B716632CAC146700F28562 /* RecordDetail */,
 				033518562CA5C35000F60B61 /* RecordsList */,
 			);
@@ -835,7 +832,6 @@
 				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
-				A48AC37D2CA28F6A00212432 /* ViewController.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
 				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
