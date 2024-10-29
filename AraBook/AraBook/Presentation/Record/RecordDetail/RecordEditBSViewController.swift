@@ -18,6 +18,8 @@ final class RecordEditBSViewController: UIViewController {
     private var bottomHeight: CGFloat = 199
     private let disposeBag = DisposeBag()
     private var reviewId: Int
+    private var bookID: Int
+    private var bookTitle: String
     private var recordVM: RecordListViewModel
     private let delButtonTapped = PublishRelay<Int>()
     
@@ -55,8 +57,13 @@ final class RecordEditBSViewController: UIViewController {
     
     // MARK: - Initializer
 
-    init(reviewId: Int, viewModel: RecordListViewModel) {
+    init(reviewId: Int,
+         bookId: Int,
+         bookTitle: String,
+         viewModel: RecordListViewModel) {
         self.reviewId = reviewId
+        self.bookID = bookId
+        self.bookTitle = bookTitle
         self.recordVM = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -91,7 +98,9 @@ extension RecordEditBSViewController {
         
         editButton.rx.tap
             .subscribe(onNext: {
-                print("editbuttontapped")
+                let nav = RecordBookViewController(bookId: self.bookID,
+                                                   bookTitle: self.bookTitle)
+                self.present(nav, animated: true)
             })
             .disposed(by: disposeBag)
         

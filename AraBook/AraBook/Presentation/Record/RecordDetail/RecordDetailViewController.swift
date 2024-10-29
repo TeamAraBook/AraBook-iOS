@@ -86,12 +86,11 @@ extension RecordDetailViewController {
         
         navigationBar.moreButtonAction = {
             let nav = RecordEditBSViewController(reviewId: self.reviewID,
+                                                 bookId: self.bookID,
+                                                 bookTitle: self.bookTitle,
                                                  viewModel: self.recordVM)
             nav.modalPresentationStyle = .overFullScreen
             self.present(nav, animated: false)
-//            let nav = RecordBookViewController(bookId: self.bookID,
-//                                               bookTitle: self.bookTitle)
-//            self.navigationController?.pushViewController(nav, animated: true)
         }
     }
     
