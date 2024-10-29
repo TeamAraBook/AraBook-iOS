@@ -93,6 +93,9 @@ extension RecordBookViewController {
         
         recordBookView.do {
             $0.navigationBar.isTitleLabelIncluded = self.bookTitle
+            $0.navigationBar.closeButtonAction = {
+                self.dismiss(animated: true)
+            }
             $0.isScrollEnabled = false
             $0.showsVerticalScrollIndicator = true
             $0.showsHorizontalScrollIndicator = false
@@ -207,9 +210,20 @@ extension RecordBookViewController {
                 }
                 
                 self.postReviews.onNext(RecordBookRequestDTO(bookId: self.bookId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
-                self.dismiss(animated: true)
+                self.changeRootToTabBarVC()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func changeRootToTabBarVC() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                let tabbarVC = TabBarController()
+                tabbarVC.selectedIndex = 0
+                let navigationController = UINavigationController(rootViewController: tabbarVC)
+                window.rootViewController = navigationController
+            }
+        }
     }
     
     func bindViewModel() {
