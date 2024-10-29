@@ -13,6 +13,7 @@ enum RecordTarget {
     case postReviews(dto: RecordBookRequestDTO)
     case getRecordBookList
     case getRecordBookDetail(reviewId: Int)
+    case delRecordBookDeatil(reviewId: Int)
 }
 
 extension RecordTarget: BaseTargetType {
@@ -27,7 +28,7 @@ extension RecordTarget: BaseTargetType {
             return path
         case .getRecordBookList:
             return URLConstant.reviews
-        case .getRecordBookDetail(let reviewId):
+        case .getRecordBookDetail(let reviewId), .delRecordBookDeatil(let reviewId):
             let path = URLConstant.reviewsDetail
                 .replacingOccurrences(of: "{reviewId}", with: String(reviewId))
             return path
@@ -38,6 +39,8 @@ extension RecordTarget: BaseTargetType {
         switch self {
         case .postReviews:
             return .post
+        case .delRecordBookDeatil:
+            return .delete
         default:
             return .get
         }
