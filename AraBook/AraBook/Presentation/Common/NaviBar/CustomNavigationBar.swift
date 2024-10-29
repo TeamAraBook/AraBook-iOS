@@ -19,7 +19,7 @@ final class CustomNavigationBar: UIView {
     private lazy var backButton = UIButton()
     private lazy var closeButton = UIButton()
     private lazy var whiteBackButton = UIButton()
-    private lazy var editButton = UIButton()
+    private lazy var moreButton = UIButton()
     
     // MARK: - Properties
     
@@ -48,14 +48,14 @@ final class CustomNavigationBar: UIView {
         set { whiteBackButton.isHidden = !newValue }
     }
     
-    var isEditButtonIncluded: Bool {
-        get { !editButton.isHidden }
-        set { editButton.isHidden = !newValue }
+    var isMoreButtonIncluded: Bool {
+        get { !moreButton.isHidden }
+        set { moreButton.isHidden = !newValue }
     }
     
     var backButtonAction: (() -> Void)?
     var closeButtonAction: (() -> Void)?
-    var editButtonAction: (() -> Void)?
+    var moreButtonAction: (() -> Void)?
     
     // MARK: - Initializer
 
@@ -106,8 +106,8 @@ private extension CustomNavigationBar {
             $0.isEnabled = true
         }
         
-        editButton.do {
-            $0.setImage(.icEdit, for: .normal)
+        moreButton.do {
+            $0.setImage(.btnMore, for: .normal)
             $0.isHidden = true
             $0.isEnabled = true
         }
@@ -115,7 +115,7 @@ private extension CustomNavigationBar {
     
     func setHierarchy() {
         
-        self.addSubviews(backButton, closeButton, titleView, whiteBackButton, editButton)
+        self.addSubviews(backButton, closeButton, titleView, whiteBackButton, moreButton)
         titleView.addSubview(titleLabel)
     }
     
@@ -154,14 +154,12 @@ private extension CustomNavigationBar {
             $0.size.equalTo(48)
         }
         
-        editButton.snp.makeConstraints {
+        moreButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(8)
             $0.centerY.equalToSuperview()
             $0.size.equalTo(48)
         }
     }
-    
-    // TODO: combine으로 바꾸기
     
     func setAddTarget() {
         backButton.addTarget(self,
@@ -170,8 +168,8 @@ private extension CustomNavigationBar {
         closeButton.addTarget(self,
                               action: #selector(closeButtonTapped),
                               for: .touchUpInside)
-        editButton.addTarget(self,
-                             action: #selector(editButtonTapped),
+        moreButton.addTarget(self,
+                             action: #selector(moreButtonTapped),
                              for: .touchUpInside)
     }
     
@@ -186,7 +184,7 @@ private extension CustomNavigationBar {
     }
     
     @objc
-    func editButtonTapped() {
-        editButtonAction?()
+    func moreButtonTapped() {
+        moreButtonAction?()
     }
 }
