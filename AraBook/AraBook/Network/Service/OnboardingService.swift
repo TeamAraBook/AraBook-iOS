@@ -123,3 +123,9 @@ struct OnboardingRequestDTO: Codable {
 struct EmptyResponse: Codable {
     let data: String
 }
+
+struct NoDataResponse: Codable {
+    let code: Int
+    let message: String
+    let data: String
+}

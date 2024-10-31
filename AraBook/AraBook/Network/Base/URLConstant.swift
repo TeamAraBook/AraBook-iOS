@@ -16,6 +16,7 @@ enum URLConstant {
     // auth
     
     static let authSocialLoginURL = "/auth/social-login"
+    static let withdrawURL = "/member/withdraw"
     
     // home
     
