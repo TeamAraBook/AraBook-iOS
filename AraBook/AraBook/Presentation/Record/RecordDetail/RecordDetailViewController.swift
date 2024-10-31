@@ -20,6 +20,7 @@ final class RecordDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var bookID: Int = 0
     private var bookTitle: String = ""
+    private var reviewID: Int = 0
     
     // MARK: - UI Components
     
@@ -28,7 +29,7 @@ final class RecordDetailViewController: UIViewController {
         navi.isTitleLabelIncluded = "나의 독서 기록"
         navi.isTitleViewIncluded = true
         navi.isBackButtonIncluded = true
-        navi.isEditButtonIncluded = true
+        navi.isMoreButtonIncluded = true
         return navi
     }()
     
@@ -83,10 +84,13 @@ extension RecordDetailViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
-        navigationBar.editButtonAction = {
-            let nav = RecordBookViewController(bookId: self.bookID,
-                                               bookTitle: self.bookTitle)
-            self.navigationController?.pushViewController(nav, animated: true)
+        navigationBar.moreButtonAction = {
+            let nav = RecordEditBSViewController(reviewId: self.reviewID,
+                                                 bookId: self.bookID,
+                                                 bookTitle: self.bookTitle,
+                                                 viewModel: self.recordVM)
+            nav.modalPresentationStyle = .overFullScreen
+            self.present(nav, animated: false)
         }
     }
     
@@ -94,7 +98,8 @@ extension RecordDetailViewController {
         let input = RecordListViewModel.Input(
             viewWillAppear: PublishRelay(),
             selectRecordList: PublishRelay(),
-            detailViewWillAppear: detailViewWillAppear
+            detailViewWillAppear: detailViewWillAppear,
+            delButtonTapped: PublishRelay()
         )
         
         let output = recordVM.transform(input: input)
@@ -103,6 +108,7 @@ extension RecordDetailViewController {
             .subscribe(onNext: { data in
                 self.bookID = data.bookID
                 self.bookTitle = data.title
+                self.reviewID = data.reviewID
                 self.frontCardView.bindFrontView(model: data)
                 self.backCardView.bindBackView(model: data)
             })

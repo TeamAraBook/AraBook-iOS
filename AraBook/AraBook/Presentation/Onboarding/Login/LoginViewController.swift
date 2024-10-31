@@ -112,8 +112,12 @@ extension LoginViewController {
             .drive(with: self, onNext: { owner, loginData in
                 UserManager.shared.updateToken(loginData.token.accessToken,
                                                loginData.token.refreshToken)
-                let nav = FirstOnboardingViewController()
-                self.navigationController?.pushViewController(nav, animated: false)
+                if loginData.role == "GUEST" {
+                    let nav = FirstOnboardingViewController()
+                    self.navigationController?.pushViewController(nav, animated: false)
+                } else {
+                    self.changeRootToTabBarVC()
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -153,5 +157,15 @@ extension LoginViewController {
     
     func showKakaoLoginFailMessage() {
         print("카카오 로그인 실패")
+    }
+    
+    func changeRootToTabBarVC() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                let tabbarVC = TabBarController()
+                let navigationController = UINavigationController(rootViewController: tabbarVC)
+                window.rootViewController = navigationController
+            }
+        }
     }
 }

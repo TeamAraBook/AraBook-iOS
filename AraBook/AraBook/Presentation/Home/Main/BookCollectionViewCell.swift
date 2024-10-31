@@ -50,14 +50,14 @@ private extension BookCollectionViewCell {
             $0.textColor = .black
             $0.textAlignment = .left
             $0.font = .araFont(type: .PretandardSemiBold, size: 12)
-            $0.numberOfLines = 0
+            $0.numberOfLines = 2
         }
         
         bookAuthor.do {
             $0.textColor = .gray500
             $0.textAlignment = .left
             $0.font = .araFont(type: .PretandardRegular, size: 12)
-            $0.numberOfLines = 0
+            $0.numberOfLines = 2
         }
     }
     

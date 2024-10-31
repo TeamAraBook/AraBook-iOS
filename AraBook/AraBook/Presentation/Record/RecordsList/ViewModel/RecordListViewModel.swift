@@ -18,16 +18,18 @@ final class RecordListViewModel: ViewModel {
         let viewWillAppear: PublishRelay<Void>
         let selectRecordList: PublishRelay<Int>
         let detailViewWillAppear: PublishRelay<Void>
+        let delButtonTapped: PublishRelay<Int>
     }
     
     struct Output {
         let recordListData = PublishRelay<BookRecordResponseDTO>()
         let recordDetailData = PublishRelay<RecordDetailResponseDto>()
+        let recordDelData = PublishRelay<EmptyDataResponse>()
     }
     
     func transform(input: Input) -> Output {
         let output = Output()
-        self.bindOutput(output: output, disposeBag: disposeBag)
+//        self.bindOutput(output: output, disposeBag: disposeBag)
         
         input.viewWillAppear
             .subscribe(with: self, onNext: { owner, _ in
@@ -46,6 +48,14 @@ final class RecordListViewModel: ViewModel {
         input.selectRecordList
             .subscribe(with: self, onNext: { owner, index in
                 self.selectReviewId = index
+            })
+            .disposed(by: disposeBag)
+        
+        input.delButtonTapped
+            .subscribe(with: self, onNext: { owner, id in
+                self.delRecordBook(reviewId: id,
+                                   output: output,
+                                   disposeBag: self.disposeBag)
             })
             .disposed(by: disposeBag)
         
@@ -74,5 +84,12 @@ extension RecordListViewModel {
                 output.recordDetailData.accept(data)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func delRecordBook(reviewId: Int, output: Output, disposeBag: DisposeBag) {
+        RecordService.shared.delRecordData(reviewId: reviewId) {  response in
+            guard let data = response?.data else { return }
+            output.recordDelData.accept(data)
+        }
     }
 }

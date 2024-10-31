@@ -47,7 +47,6 @@ extension RecordBookView {
         self.backgroundColor = .clear
         
         navigationBar.do {
-//            $0.isTitleLabelIncluded = "퀸의 대각선"
             $0.isTitleViewIncluded = true
             $0.isCloseButtonIncluded = true
         }
