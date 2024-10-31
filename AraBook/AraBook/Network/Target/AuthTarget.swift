@@ -12,26 +12,44 @@ import Moya
 enum AuthTarget {
     
     case postAuthLogin(dto: LoginRequestDto)
+    case delWithdraw
 }
 
 extension AuthTarget: BaseTargetType {
     
     var path: String {
-        return URLConstant.authSocialLoginURL
+        switch self {
+        case .postAuthLogin:
+            return URLConstant.authSocialLoginURL
+        case .delWithdraw:
+            return URLConstant.withdrawURL
+        }
     }
     
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .postAuthLogin:
+            return .post
+        case .delWithdraw:
+            return .delete
+        }
     }
     
     var task: Moya.Task {
         switch self {
         case .postAuthLogin(let dto):
             return .requestJSONEncodable(dto)
+        case .delWithdraw:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        return HeaderConstant.noTokenHeader
+        switch self {
+        case .postAuthLogin:
+            return HeaderConstant.noTokenHeader
+        case .delWithdraw:
+            return HeaderConstant.hasTokenHeader
+        }
     }
 }

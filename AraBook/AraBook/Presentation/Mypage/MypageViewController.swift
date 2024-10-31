@@ -121,7 +121,7 @@ extension MypageViewController {
                        cellType: MypageTableViewCell.self)) { (index, model, cell) in
                 cell.configureSettingCell(menu: model)
             }
-            .disposed(by: disposeBag)
+                       .disposed(by: disposeBag)
         
         settingTableView.rx.itemSelected
             .subscribe(onNext: { indexPath in
@@ -136,8 +136,7 @@ extension MypageViewController {
                     UserManager.shared.logout()
                     self.changeRootToSplashVC()
                 case 4:
-                    UserManager.shared.withdraw()
-                    self.changeRootToSplashVC()
+                    self.delWithdraw()
                 default:
                     break
                 }
@@ -152,6 +151,14 @@ extension MypageViewController {
                 let navigationController = UINavigationController(rootViewController: spalshVC)
                 window.rootViewController = navigationController
             }
+        }
+    }
+    
+    func delWithdraw() {
+        AuthService.shared.delWithdraw { response in
+            guard (response?.data) != nil else { return }
+            UserManager.shared.withdraw()
+            self.changeRootToSplashVC()
         }
     }
 }

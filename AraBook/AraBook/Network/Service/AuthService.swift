@@ -17,6 +17,7 @@ final class AuthService {
     private init() {}
     
     public private(set) var loginData: GeneralResponse<LoginResponseDto>?
+    public private(set) var withdrawData: NoDataResponse?
     
     // MARK: - POST
     
@@ -30,6 +31,27 @@ final class AuthService {
                     self.loginData = try response.map(GeneralResponse<LoginResponseDto>.self)
                     guard let loginData = self.loginData else { return }
                     completion(loginData)
+                } catch let err {
+                    print(err.localizedDescription, 500)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completion(nil)
+            }
+        }
+    }
+    
+    // MARK: - DELETE
+    
+    func delWithdraw(completion: @escaping(NoDataResponse?) -> Void) {
+        authProvider.request(.delWithdraw) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let response):
+                do {
+                    self.withdrawData = try response.map(NoDataResponse.self)
+                    guard let withdrawData = self.withdrawData else { return }
+                    completion(withdrawData)
                 } catch let err {
                     print(err.localizedDescription, 500)
                 }
