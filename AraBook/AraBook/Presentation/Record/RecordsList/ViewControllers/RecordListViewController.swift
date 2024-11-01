@@ -40,6 +40,7 @@ final class RecordListViewController: UIViewController {
         setHierarchy()
         setLayout()
         setRegister()
+        recordListView.recordListCollectionView.reloadData()
     }
 }
 
