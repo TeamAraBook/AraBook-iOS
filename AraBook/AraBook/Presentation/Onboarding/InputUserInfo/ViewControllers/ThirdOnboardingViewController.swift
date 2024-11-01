@@ -51,8 +51,6 @@ final class ThirdOnboardingViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        // 모든 컬렉션 뷰의 높이 업데이트
         for collectionView in self.thirdView.collectionViews {
             self.updateCollectionViewHeight(collectionView)
         }
@@ -68,53 +66,8 @@ extension ThirdOnboardingViewController {
     
     private func bindViewModel() {
         
-        //        onboardingVM.outputs.category1
-        //            .bind(to: thirdView.category1.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className,
-        //                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                cell.setCell(model)
-        //            }
-        //                       .disposed(by: disposeBag)
-        //
-        //        onboardingVM.outputs.category2
-        //            .bind(to: thirdView.category2.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className,
-        //                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                cell.setCell(model)
-        //            }
-        //                       .disposed(by: disposeBag)
-        //
-        //        onboardingVM.outputs.category3
-        //            .bind(to: thirdView.category3.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className,
-        //                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                cell.setCell(model)
-        //            }
-        //                       .disposed(by: disposeBag)
-        
-//        for (index, relay) in onboardingVM.outputs.categoryLists.enumerated() {
-//            let collectionView = createCollectionView()
-//            thirdView.addSubview(collectionView)
-//            thirdView.collectionViews.append(collectionView)
-//            print("🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁", index, relay)
-//            
-//            relay.bind(to: collectionView.rx.items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { _, model, cell in
-//                print("🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁", model)
-//                cell.setCell(model)
-//            }
-//            .disposed(by: disposeBag)
-//            
-//            collectionView.snp.makeConstraints {
-//                $0.leading.trailing.equalToSuperview()
-//                $0.top.equalTo(index == 0 ? thirdView.subCategoryLabel.snp.bottom : thirdView.collectionViews[index - 1].snp.bottom).offset(16)
-//                $0.height.equalTo(100)
-//            }
-//        }
-        
         onboardingVM.outputs.categorySub
             .subscribe(onNext: { data in
-//                self.thirdView.bindTitle(data)
-//                print("🎀🎀🎀🎀🎀🎀🎀🎀", data)
                 
                 for (index, relay) in self.onboardingVM.outputs.categoryLists.enumerated() {
                     let mainTitle = self.createMainTitleLabel()
@@ -129,7 +82,6 @@ extension ThirdOnboardingViewController {
                     collectionView.snp.makeConstraints {
                         $0.leading.trailing.equalToSuperview().inset(16)
                         $0.top.equalTo(mainTitle.snp.bottom).offset(16)
-                        // 높이 제약을 변수로 저장
                         collectionViewHeightConstraint = $0.height.equalTo(50).constraint
                     }
                     
@@ -148,12 +100,6 @@ extension ThirdOnboardingViewController {
                         $0.leading.equalToSuperview().inset(16)
                         $0.top.equalTo(index == 0 ? self.thirdView.subCategoryLabel.snp.bottom : self.thirdView.collectionViews[index - 1].snp.bottom).offset(30)
                     }
-                    
-//                    collectionView.snp.makeConstraints {
-//                        $0.leading.trailing.equalToSuperview().inset(16)
-//                        $0.top.equalTo(mainTitle.snp.bottom).offset(16)
-//                        $0.height.equalTo(100).constraint
-//                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -242,11 +188,7 @@ extension ThirdOnboardingViewController {
     // MARK: - Methods
     
     private func setDelegate() {
-//        thirdView.category1.delegate = self
-//        thirdView.category2.delegate = self
-//        thirdView.category3.delegate = self
         thirdView.collectionViews.forEach { $0.delegate = self }
-        
     }
     
     private func createCollectionView() -> UICollectionView {
@@ -268,7 +210,6 @@ extension ThirdOnboardingViewController {
     }
     
     private func updateCollectionViewHeight(_ collectionView: UICollectionView) {
-        // 컬렉션 뷰의 contentSize.height를 기준으로 높이 제약 조건을 업데이트
         collectionView.snp.updateConstraints {
             $0.height.equalTo(collectionView.contentSize.height)
         }
@@ -280,25 +221,6 @@ extension ThirdOnboardingViewController {
     }
 
 }
-
-//extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//        var
-//        // Similar to your existing implementation for dynamic cell sizing based on text
-//        let title = onboardingVM.outputs.categoryLists[collectionView.tag].value[indexPath.item].subCategoryName
-//        print("🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽", title)
-//        let maxCellWidth = collectionView.bounds.width - 40
-//        let size = (title as NSString).boundingRect(
-//            with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-//            options: .usesLineFragmentOrigin,
-//            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-//            context: nil
-//        )
-//        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-//    }
-//}
 
 extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
     
@@ -322,59 +244,6 @@ extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
     }
 }
-
-//extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//        switch collectionView {
-//        case thirdView.category1:
-//            let model = onboardingVM.outputs.category1.value[indexPath.item]
-//            
-//            let title = model.subCategoryName
-//
-//            let maxCellWidth = collectionView.bounds.width - 40
-//            let size = (title as NSString).boundingRect(
-//                with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-//                options: .usesLineFragmentOrigin,
-//                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-//                context: nil
-//            )
-//
-//            return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-//            
-//        case thirdView.category2:
-//            let model = onboardingVM.outputs.category2.value[indexPath.item]
-//            let title = model.subCategoryName
-//
-//            let maxCellWidth = collectionView.bounds.width - 40
-//            let size = (title as NSString).boundingRect(
-//                with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-//                options: .usesLineFragmentOrigin,
-//                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-//                context: nil
-//            )
-//
-//            return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-//            
-//        case thirdView.category3:
-//                let model = onboardingVM.outputs.category3.value[indexPath.item]
-//                let title = model.subCategoryName
-//                
-//                let maxCellWidth = collectionView.bounds.width - 40
-//                let size = (title as NSString).boundingRect(
-//                    with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-//                    options: .usesLineFragmentOrigin,
-//                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-//                    context: nil
-//                )
-//                
-//                return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-//        default:
-//            return CGSize(width: 0, height: 0)
-//        }
-//    }
-//}
 
 extension ThirdOnboardingViewController: UICollectionViewDelegate {
     
