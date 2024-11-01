@@ -23,9 +23,6 @@ protocol OnboardingViewModelOutputs {
     var selectedGenderType: BehaviorRelay<GenderType> { get }
     var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> { get }
     var categorySub: BehaviorRelay<[CategorySubResponseDTO]> { get }
-//    var category1: BehaviorRelay<[SubCategoryLists]> { get }
-//    var category2: BehaviorRelay<[SubCategoryLists]> { get }
-//    var category3: BehaviorRelay<[SubCategoryLists]> { get }
     var completeOnboarding: PublishRelay<Void> { get }
     var categoryLists: [BehaviorRelay<[SubCategoryLists]>] { get }
 }
@@ -48,14 +45,8 @@ final class OnboardingViewModel: OnboardingViewModelInputs, OnboardingViewModelO
     var categoryMain: BehaviorRelay<[CategoryMainResponseDTO]> = BehaviorRelay<[CategoryMainResponseDTO]>(value: [])
     var categorySub: BehaviorRelay<[CategorySubResponseDTO]> = BehaviorRelay<[CategorySubResponseDTO]>(value: [])
     
-//    var category1: BehaviorRelay<[SubCategoryLists]> = BehaviorRelay(value: [])
-//    var category2: BehaviorRelay<[SubCategoryLists]> = BehaviorRelay(value: [])
-//    var category3: BehaviorRelay<[SubCategoryLists]> = BehaviorRelay(value: [])
-    
     var mainCategoryList: [Int] = []
     var categoryLists: [BehaviorRelay<[SubCategoryLists]>] = []
-//    var subCategory1: [SubCategoryLists] = [SubCategoryLists(subCategoryId: 11, subCategoryName: "제발")]
-//    var subCategoryList: [Int] = []
     
     var completeOnboarding: PublishRelay<Void> = PublishRelay<Void>()
     
@@ -105,15 +96,6 @@ extension OnboardingViewModel {
                 }
                 
                 self.categorySub.accept(data)
-//                print("🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️", data)
-//                let categoryData = data.map { category in
-//                    return (category.mainCategoryId, category.mainCategoryName, category.subCategories)
-//                }
-                
-//                self.category1.accept(categoryData[0].2)
-//                self.category2.accept(categoryData[1].2)
-//                self.category3.accept(categoryData[2].2)
-                
             })
             .disposed(by: disposeBag)
     }
