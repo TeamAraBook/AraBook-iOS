@@ -10,9 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
-final class BookDetailDescriptionView: UIScrollView {
+final class BookDetailDescriptionView:  UIView {
     
     // MARK: - UI Components
+    
+    private let nameLabel = UILabel()
+    let bookNameLabel = UILabel()
+    
+    private let authorLabel = UILabel()
+    let bookAuthorLabel = UILabel()
     
     private let pageLabel = UILabel()
     let bookPageLabel = UILabel()
@@ -51,6 +57,42 @@ extension BookDetailDescriptionView {
     // MARK: - UI Components Property
     
     private func setUI() {
+        
+        nameLabel.do {
+            $0.text = "이름"
+            $0.textColor = .black
+            $0.font = .araFont(type: .PretandardSemiBold, size: 16)
+        }
+        
+        bookNameLabel.do {
+            $0.text = "241p"
+            $0.textColor = .gray500
+            $0.font = .araFont(type: .PretandardSemiBold, size: 16)
+        }
+        
+        authorLabel.do {
+            $0.text = "저자"
+            $0.textColor = .black
+            $0.font = .araFont(type: .PretandardSemiBold, size: 16)
+        }
+        
+        bookAuthorLabel.do {
+            $0.text = "241p"
+            $0.textColor = .gray500
+            $0.font = .araFont(type: .PretandardSemiBold, size: 16)
+        }
+        
+        pageLabel.do {
+            $0.text = "페이지"
+            $0.textColor = .black
+            $0.font = .araFont(type: .PretandardSemiBold, size: 16)
+        }
+        
+        bookPageLabel.do {
+            $0.text = "241p"
+            $0.textColor = .gray500
+            $0.font = .araFont(type: .PretandardSemiBold, size: 16)
+        }
         
         pageLabel.do {
             $0.text = "페이지"
@@ -114,13 +156,35 @@ extension BookDetailDescriptionView {
     
     private func setLayout() {
         
-        addSubviews(pageLabel, bookPageLabel,
+        addSubviews(nameLabel, bookNameLabel,
+                    authorLabel, bookAuthorLabel,
+                    pageLabel, bookPageLabel,
                     publisherLabel, bookPublisherLabel,
                     categoryLabel, bookCategoryLabel,
                     hashTagLabel, lineView, bookDescriptionLabel)
         
-        pageLabel.snp.makeConstraints {
+        nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        bookNameLabel.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.bottom).offset(6)
+            $0.leading.equalTo(nameLabel)
+        }
+        
+        authorLabel.snp.makeConstraints {
+            $0.top.equalTo(bookNameLabel.snp.bottom).offset(20)
+            $0.leading.equalTo(nameLabel)
+        }
+        
+        bookAuthorLabel.snp.makeConstraints {
+            $0.top.equalTo(authorLabel.snp.bottom).offset(6)
+            $0.leading.equalTo(nameLabel)
+        }
+        
+        pageLabel.snp.makeConstraints {
+            $0.top.equalTo(bookAuthorLabel.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -130,7 +194,7 @@ extension BookDetailDescriptionView {
         }
         
         publisherLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
+            $0.top.equalTo(bookAuthorLabel.snp.bottom).offset(20)
             $0.leading.equalTo(pageLabel)
         }
         
