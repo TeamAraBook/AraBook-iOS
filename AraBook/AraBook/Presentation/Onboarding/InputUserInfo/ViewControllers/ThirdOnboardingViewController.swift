@@ -28,11 +28,13 @@ final class ThirdOnboardingViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var selectedIndexPaths: [IndexPath] = []
     private var subCategory: [Int] = []
+    private var scrollHeight: Int
     
     // MARK: - Initializer
     
     init(viewModel: OnboardingViewModel) {
         self.onboardingVM = viewModel
+        self.scrollHeight = viewModel.outputs.categoryLists.count * 70
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,6 +48,16 @@ final class ThirdOnboardingViewController: UIViewController {
         setDelegate()
         bindViewModel()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // 모든 컬렉션 뷰의 높이 업데이트
+        for collectionView in self.thirdView.collectionViews {
+            self.updateCollectionViewHeight(collectionView)
+        }
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -105,23 +117,43 @@ extension ThirdOnboardingViewController {
 //                print("🎀🎀🎀🎀🎀🎀🎀🎀", data)
                 
                 for (index, relay) in self.onboardingVM.outputs.categoryLists.enumerated() {
+                    let mainTitle = self.createMainTitleLabel()
+                    mainTitle.text = "📗 \(data[index].mainCategoryName)"
+                    
                     let collectionView = self.createCollectionView()
-                    self.thirdView.addSubview(collectionView)
+                    collectionView.tag = index
+                    self.thirdView.addSubviews(mainTitle, collectionView)
                     self.thirdView.collectionViews.append(collectionView)
                     
+                    var collectionViewHeightConstraint: Constraint?
+                    collectionView.snp.makeConstraints {
+                        $0.leading.trailing.equalToSuperview().inset(16)
+                        $0.top.equalTo(mainTitle.snp.bottom).offset(16)
+                        // 높이 제약을 변수로 저장
+                        collectionViewHeightConstraint = $0.height.equalTo(50).constraint
+                    }
+                    
                     relay.bind(to: collectionView.rx.items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { _, model, cell in
-                        print("🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁🛁", model)
                         cell.setCell(model)
                     }
                     .disposed(by: self.disposeBag)
+
+                    relay.subscribe(onNext: { _ in
+                        DispatchQueue.main.async {
+                            self.updateCollectionViewHeight(collectionView)
+                        }
+                    }).disposed(by: self.disposeBag)
                     
-//                    $0.top.equalTo(subCategoryLabel.snp.bottom).offset(30)
-                    
-                    collectionView.snp.makeConstraints {
-                        $0.leading.trailing.equalToSuperview()
+                    mainTitle.snp.makeConstraints {
+                        $0.leading.equalToSuperview().inset(16)
                         $0.top.equalTo(index == 0 ? self.thirdView.subCategoryLabel.snp.bottom : self.thirdView.collectionViews[index - 1].snp.bottom).offset(30)
-                        $0.height.equalTo(500)
                     }
+                    
+//                    collectionView.snp.makeConstraints {
+//                        $0.leading.trailing.equalToSuperview().inset(16)
+//                        $0.top.equalTo(mainTitle.snp.bottom).offset(16)
+//                        $0.height.equalTo(100).constraint
+//                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -194,10 +226,10 @@ extension ThirdOnboardingViewController {
         
         thirdView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.height.equalTo(1700)
+            $0.height.equalTo(1500)
         }
         
-        view.addSubview(nextButton)  // nextButton을 최상위 뷰에 추가합니다.
+        view.addSubview(nextButton)
         
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -224,23 +256,69 @@ extension ThirdOnboardingViewController {
         collectionView.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }
+    
+    private func createMainTitleLabel() -> UILabel {
+        let label = UILabel()
+        label.font = .araFont(type: .PretandardSemiBold, size: 15)
+        label.textColor = .gray800
+        return label
+    }
+    
+    private func updateCollectionViewHeight(_ collectionView: UICollectionView) {
+        // 컬렉션 뷰의 contentSize.height를 기준으로 높이 제약 조건을 업데이트
+        collectionView.snp.updateConstraints {
+            $0.height.equalTo(collectionView.contentSize.height)
+        }
+    }
+    
+    private func setScrollHeight() -> Int {
+        let mainCategoryNum = onboardingVM.categoryLists.count
+        return mainCategoryNum * 70
+    }
+
 }
+
+//extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        
+//        var
+//        // Similar to your existing implementation for dynamic cell sizing based on text
+//        let title = onboardingVM.outputs.categoryLists[collectionView.tag].value[indexPath.item].subCategoryName
+//        print("🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽", title)
+//        let maxCellWidth = collectionView.bounds.width - 40
+//        let size = (title as NSString).boundingRect(
+//            with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
+//            options: .usesLineFragmentOrigin,
+//            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
+//            context: nil
+//        )
+//        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
+//    }
+//}
 
 extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Similar to your existing implementation for dynamic cell sizing based on text
-        let title = onboardingVM.outputs.categoryLists[collectionView.tag].value[indexPath.item].subCategoryName
-        print("🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽🧽", title)
+        let title: String
         let maxCellWidth = collectionView.bounds.width - 40
+        
+        if collectionView.tag < onboardingVM.outputs.categoryLists.count {
+            title = onboardingVM.outputs.categoryLists[collectionView.tag].value[indexPath.item].subCategoryName
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
+
         let size = (title as NSString).boundingRect(
             with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
             context: nil
         )
+
         return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
     }
 }
