@@ -66,7 +66,7 @@ extension BookDetailView {
         bookDescriptionView.snp.makeConstraints {
             $0.top.equalTo(bookCoverView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(writeButton.snp.top)
+            $0.bottom.equalTo(writeButton.snp.top).offset(-30)
         }
         
         writeButton.snp.makeConstraints {
@@ -83,6 +83,8 @@ extension BookDetailView {
         bookCoverView.bookImageView.kf.setImage(with: URL(string: model.coverURL))
         bookCoverView.bookTitleLabel.text = model.title
         bookCoverView.authorLabel.text = model.author
+        bookDescriptionView.bookNameLabel.text = model.title
+        bookDescriptionView.bookAuthorLabel.text = model.author
         bookDescriptionView.bookPublisherLabel.text = "\(model.publisher), \(model.publicationYear)"
         bookDescriptionView.bookDescriptionLabel.text = model.description
         bookDescriptionView.bookCategoryLabel.text = arrayToCategoryString(model.categories)

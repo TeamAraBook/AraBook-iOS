@@ -83,6 +83,10 @@ extension SecondOnboardingViewController {
             $0.setTitle("다음", for: .normal)
             $0.setState(.allow)
         }
+        
+        secondView.navigationBar.backButtonAction = {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     // MARK: - Layout Helper

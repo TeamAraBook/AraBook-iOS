@@ -18,6 +18,8 @@ final class ThirdOnboardingViewController: UIViewController {
     // MARK: - UI Components
     
     private let thirdView = ThirdOnboardingView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let nextButton = CheckButton()
     
     // MARK: - Properties
@@ -26,28 +28,34 @@ final class ThirdOnboardingViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var selectedIndexPaths: [IndexPath] = []
     private var subCategory: [Int] = []
+    private var scrollHeight: Int
     
     // MARK: - Initializer
     
     init(viewModel: OnboardingViewModel) {
         self.onboardingVM = viewModel
+        self.scrollHeight = viewModel.outputs.categoryLists.count * 70
         super.init(nibName: nil, bundle: nil)
     }
     
     // MARK: - View Life Cycle
-    
-    override func loadView() {
-        self.view = thirdView
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setLayout()
-        setRegister()
+        setDelegate()
         bindViewModel()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        for collectionView in self.thirdView.collectionViews {
+            self.updateCollectionViewHeight(collectionView)
+        }
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,66 +66,48 @@ extension ThirdOnboardingViewController {
     
     private func bindViewModel() {
         
-        // MARK: - 지금 애초에 셀 bind가 안됨 데이터는 잘 들어옴 컬렉션뷰의 문제인듯함
-        
-        onboardingVM.outputs.category1
-            .bind(to: thirdView.category1.rx
-                .items(cellIdentifier: TopicCollectionViewCell.className,
-                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-                cell.setCell(model)
-            }
-                       .disposed(by: disposeBag)
-        
-        onboardingVM.outputs.category2
-            .bind(to: thirdView.category2.rx
-                .items(cellIdentifier: TopicCollectionViewCell.className,
-                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-                cell.setCell(model)
-            }
-                       .disposed(by: disposeBag)
-        
-        onboardingVM.outputs.category3
-            .bind(to: thirdView.category3.rx
-                .items(cellIdentifier: TopicCollectionViewCell.className,
-                       cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-                cell.setCell(model)
-            }
-                       .disposed(by: disposeBag)
-        
         onboardingVM.outputs.categorySub
             .subscribe(onNext: { data in
-                self.thirdView.bindTitle(data)
+                
+                for (index, relay) in self.onboardingVM.outputs.categoryLists.enumerated() {
+                    let mainTitle = self.createMainTitleLabel()
+                    mainTitle.text = "📗 \(data[index].mainCategoryName)"
+                    
+                    let collectionView = self.createCollectionView()
+                    collectionView.tag = index
+                    self.thirdView.addSubviews(mainTitle, collectionView)
+                    self.thirdView.collectionViews.append(collectionView)
+                    
+                    var collectionViewHeightConstraint: Constraint?
+                    collectionView.snp.makeConstraints {
+                        $0.leading.trailing.equalToSuperview().inset(16)
+                        $0.top.equalTo(mainTitle.snp.bottom).offset(16)
+                        collectionViewHeightConstraint = $0.height.equalTo(50).constraint
+                    }
+                    
+                    relay.bind(to: collectionView.rx.items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { _, model, cell in
+                        cell.setCell(model)
+                    }
+                    .disposed(by: self.disposeBag)
+
+                    relay.subscribe(onNext: { _ in
+                        DispatchQueue.main.async {
+                            self.updateCollectionViewHeight(collectionView)
+                        }
+                    }).disposed(by: self.disposeBag)
+                    
+                    mainTitle.snp.makeConstraints {
+                        $0.leading.equalToSuperview().inset(16)
+                        $0.top.equalTo(index == 0 ? self.thirdView.subCategoryLabel.snp.bottom : self.thirdView.collectionViews[index - 1].snp.bottom).offset(30)
+                    }
+                }
             })
             .disposed(by: disposeBag)
-        //        // category2 바인딩
-        //        onboardingVM.outputs.category2
-        //            .bind(to: thirdView.category2.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                    cell.setCell(model)
-        //                }
-        //                .disposed(by: disposeBag)
-        //
-        //        // category3 바인딩
-        //        onboardingVM.outputs.category3
-        //            .bind(to: thirdView.category3.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                    cell.setCell(model)
-        //                }
-        //                .disposed(by: disposeBag)
-        //
-        thirdView.category1.delegate = self
-        thirdView.category2.delegate = self
-        thirdView.category3.delegate = self
-//        thirdView.categoryCollectionView1.dataSource = self
-        //
-        //        thirdView.category2.rx.setDelegate(self)
-        //
-        //        thirdView.category3.rx.setDelegate(self)
         
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                print("asdlfija;weoifj;aowe버튼 클릭")
+                print("🏮🏮🏮🏮🏮🏮🏮🏮🏮🏮", self.subCategory)
                 onboardingVM.inputs.putOnboarding(self.subCategory)
                 self.changeRootToTabVC()
             })
@@ -128,7 +118,6 @@ extension ThirdOnboardingViewController {
                 self?.changeRootToTabVC()
             })
             .disposed(by: disposeBag)
-        
     }
     
     func changeRootToTabVC() {
@@ -152,13 +141,41 @@ extension ThirdOnboardingViewController {
             $0.setTitle("다음", for: .normal)
             $0.setState(.allow)
         }
+        
+        scrollView.do {
+            $0.showsVerticalScrollIndicator = false
+            $0.contentInsetAdjustmentBehavior = .never
+        }
+        
+        thirdView.navigationBar.backButtonAction = {
+            self.navigationController?.popViewController(animated: true)
+            self.onboardingVM.categoryLists.removeAll()
+        }
     }
     
     // MARK: - Layout Helper
     
     private func setLayout() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(thirdView)
         
-        self.view.addSubviews(nextButton)
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView.snp.width)
+            $0.height.equalTo(scrollView.snp.height).priority(.low)
+        }
+        
+        thirdView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(1500)
+        }
+        
+        view.addSubview(nextButton)
         
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -167,69 +184,64 @@ extension ThirdOnboardingViewController {
         }
     }
     
+    
     // MARK: - Methods
     
-    private func setRegister() {
-        //        thirdView.categoryCollectionView1.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
-//        thirdView.category2.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
-//        thirdView.category3.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+    private func setDelegate() {
+        thirdView.collectionViews.forEach { $0.delegate = self }
     }
     
-    // MARK: - @objc Methods
+    private func createCollectionView() -> UICollectionView {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+        collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }
+    
+    private func createMainTitleLabel() -> UILabel {
+        let label = UILabel()
+        label.font = .araFont(type: .PretandardSemiBold, size: 15)
+        label.textColor = .gray800
+        return label
+    }
+    
+    private func updateCollectionViewHeight(_ collectionView: UICollectionView) {
+        collectionView.snp.updateConstraints {
+            $0.height.equalTo(collectionView.contentSize.height)
+        }
+    }
+    
+    private func setScrollHeight() -> Int {
+        let mainCategoryNum = onboardingVM.categoryLists.count
+        return mainCategoryNum * 70
+    }
+
 }
 
 extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let title: String
+        let maxCellWidth = collectionView.bounds.width - 40
         
-        print("dafseijf;aoiejf;oaijwef;🦧🦧🦧🦧🦧🦧🦧🦧", collectionView)
-        
-        switch collectionView {
-        case thirdView.category1:
-            let model = onboardingVM.outputs.category1.value[indexPath.item]
-            
-            let title = model.subCategoryName
-
-            let maxCellWidth = collectionView.bounds.width - 40
-            let size = (title as NSString).boundingRect(
-                with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-                options: .usesLineFragmentOrigin,
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-                context: nil
-            )
-
-            return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-            
-        case thirdView.category2:
-            let model = onboardingVM.outputs.category2.value[indexPath.item]
-            let title = model.subCategoryName
-
-            let maxCellWidth = collectionView.bounds.width - 40
-            let size = (title as NSString).boundingRect(
-                with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-                options: .usesLineFragmentOrigin,
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-                context: nil
-            )
-
-            return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-            
-        case thirdView.category3:
-                let model = onboardingVM.outputs.category3.value[indexPath.item]
-                let title = model.subCategoryName
-                
-                let maxCellWidth = collectionView.bounds.width - 40
-                let size = (title as NSString).boundingRect(
-                    with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
-                    options: .usesLineFragmentOrigin,
-                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-                    context: nil
-                )
-                
-                return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
-        default:
+        if collectionView.tag < onboardingVM.outputs.categoryLists.count {
+            title = onboardingVM.outputs.categoryLists[collectionView.tag].value[indexPath.item].subCategoryName
+        } else {
             return CGSize(width: 0, height: 0)
         }
+
+        let size = (title as NSString).boundingRect(
+            with: CGSize(width: maxCellWidth, height: CGFloat.greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
+            context: nil
+        )
+
+        return CGSize(width: min(maxCellWidth, size.width + 20), height: 36)
     }
 }
 
@@ -251,5 +263,6 @@ extension ThirdOnboardingViewController: UICollectionViewDelegate {
                 cell.makeCornerRound(radius: cell.contentView.frame.height / 2)
             }
         }
+        print(subCategory)
     }
 }
