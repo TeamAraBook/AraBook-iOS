@@ -131,10 +131,21 @@ extension RecordListCell {
     func configureCell(_ model: BookRecordList) {
         bookImage.kf.setImage(with: URL(string: model.coverURL))
         titleLabel.text = model.title
-        readingDate.text = "\(model.readStartDate) ~ \(model.readEndDate)"
+        readingDate.text = "\(convertDateFormat(model.readStartDate)) ~ \(convertDateFormat(model.readEndDate))"
         totalReadDate.text = "총 \(model.readPeriod)일 동안 읽었어요!"
         bookId = model.reviewID
         recordIcon.kf.setImage(with: URL(string: model.reviewTagIcon))
         backgroundColor = UIColor(hex: model.reviewTagColor)
+    }
+    
+    private func convertDateFormat(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let dateObject = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "yyyy. MM. dd"
+            return dateFormatter.string(from: dateObject)
+        } else {
+            return "Invalid Date"
+        }
     }
 }
