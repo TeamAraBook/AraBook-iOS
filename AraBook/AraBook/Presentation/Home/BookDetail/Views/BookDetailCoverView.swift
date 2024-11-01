@@ -43,6 +43,8 @@ extension BookDetailCoverView {
     
     private func setUI() {
         
+        bookBackgroundImageView.isUserInteractionEnabled = true
+        
         navigationBar.do {
             $0.isWhiteBackButtonIncluded = true
             $0.isTitleLabelIncluded = "도서상세"

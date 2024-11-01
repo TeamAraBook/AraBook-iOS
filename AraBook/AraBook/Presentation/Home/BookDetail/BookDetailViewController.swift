@@ -59,6 +59,11 @@ extension BookDetailViewController {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         scrollView.bounces = false
+        scrollView.isUserInteractionEnabled = true
+        
+        bookDetailView.bookCoverView.navigationBar.whiteBackButtonAction = {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func bindViewModel() {

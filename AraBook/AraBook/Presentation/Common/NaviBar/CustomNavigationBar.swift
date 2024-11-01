@@ -56,6 +56,7 @@ final class CustomNavigationBar: UIView {
     var backButtonAction: (() -> Void)?
     var closeButtonAction: (() -> Void)?
     var moreButtonAction: (() -> Void)?
+    var whiteBackButtonAction: (() -> Void)?
     
     // MARK: - Initializer
 
@@ -171,6 +172,9 @@ private extension CustomNavigationBar {
         moreButton.addTarget(self,
                              action: #selector(moreButtonTapped),
                              for: .touchUpInside)
+        whiteBackButton.addTarget(self,
+                             action: #selector(whiteBackButtonTapped),
+                             for: .touchUpInside)
     }
     
     @objc
@@ -186,5 +190,10 @@ private extension CustomNavigationBar {
     @objc
     func moreButtonTapped() {
         moreButtonAction?()
+    }
+    
+    @objc
+    func whiteBackButtonTapped() {
+        whiteBackButtonAction?()
     }
 }
