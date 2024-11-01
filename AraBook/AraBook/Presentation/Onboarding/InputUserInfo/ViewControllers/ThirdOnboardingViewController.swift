@@ -18,6 +18,8 @@ final class ThirdOnboardingViewController: UIViewController {
     // MARK: - UI Components
     
     private let thirdView = ThirdOnboardingView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let nextButton = CheckButton()
     
     // MARK: - Properties
@@ -36,16 +38,12 @@ final class ThirdOnboardingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     
-    override func loadView() {
-        self.view = thirdView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setLayout()
-        setRegister()
+        setDelegate()
         bindViewModel()
     }
     
@@ -57,8 +55,6 @@ final class ThirdOnboardingViewController: UIViewController {
 extension ThirdOnboardingViewController {
     
     private func bindViewModel() {
-        
-        // MARK: - 지금 애초에 셀 bind가 안됨 데이터는 잘 들어옴 컬렉션뷰의 문제인듯함
         
         onboardingVM.outputs.category1
             .bind(to: thirdView.category1.rx
@@ -89,35 +85,11 @@ extension ThirdOnboardingViewController {
                 self.thirdView.bindTitle(data)
             })
             .disposed(by: disposeBag)
-        //        // category2 바인딩
-        //        onboardingVM.outputs.category2
-        //            .bind(to: thirdView.category2.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                    cell.setCell(model)
-        //                }
-        //                .disposed(by: disposeBag)
-        //
-        //        // category3 바인딩
-        //        onboardingVM.outputs.category3
-        //            .bind(to: thirdView.category3.rx
-        //                .items(cellIdentifier: TopicCollectionViewCell.className, cellType: TopicCollectionViewCell.self)) { (index, model, cell) in
-        //                    cell.setCell(model)
-        //                }
-        //                .disposed(by: disposeBag)
-        //
-        thirdView.category1.delegate = self
-        thirdView.category2.delegate = self
-        thirdView.category3.delegate = self
-//        thirdView.categoryCollectionView1.dataSource = self
-        //
-        //        thirdView.category2.rx.setDelegate(self)
-        //
-        //        thirdView.category3.rx.setDelegate(self)
         
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                print("asdlfija;weoifj;aowe버튼 클릭")
+                print("🏮🏮🏮🏮🏮🏮🏮🏮🏮🏮", self.subCategory)
                 onboardingVM.inputs.putOnboarding(self.subCategory)
                 self.changeRootToTabVC()
             })
@@ -128,7 +100,6 @@ extension ThirdOnboardingViewController {
                 self?.changeRootToTabVC()
             })
             .disposed(by: disposeBag)
-        
     }
     
     func changeRootToTabVC() {
@@ -152,13 +123,40 @@ extension ThirdOnboardingViewController {
             $0.setTitle("다음", for: .normal)
             $0.setState(.allow)
         }
+        
+        scrollView.do {
+            $0.showsVerticalScrollIndicator = false
+            $0.contentInsetAdjustmentBehavior = .never
+        }
+        
+        thirdView.navigationBar.backButtonAction = {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     // MARK: - Layout Helper
     
     private func setLayout() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(thirdView)  
         
-        self.view.addSubviews(nextButton)
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView.snp.width)
+            $0.height.equalTo(scrollView.snp.height).priority(.low)
+        }
+        
+        thirdView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(1700)
+        }
+        
+        view.addSubview(nextButton)  // nextButton을 최상위 뷰에 추가합니다.
         
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -166,23 +164,20 @@ extension ThirdOnboardingViewController {
             $0.height.equalTo(60)
         }
     }
+
     
     // MARK: - Methods
     
-    private func setRegister() {
-        //        thirdView.categoryCollectionView1.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
-//        thirdView.category2.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
-//        thirdView.category3.register(TopicCollectionViewCell.self, forCellWithReuseIdentifier: TopicCollectionViewCell.className)
+    private func setDelegate() {
+        thirdView.category1.delegate = self
+        thirdView.category2.delegate = self
+        thirdView.category3.delegate = self
     }
-    
-    // MARK: - @objc Methods
 }
 
 extension ThirdOnboardingViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        print("dafseijf;aoiejf;oaijwef;🦧🦧🦧🦧🦧🦧🦧🦧", collectionView)
         
         switch collectionView {
         case thirdView.category1:

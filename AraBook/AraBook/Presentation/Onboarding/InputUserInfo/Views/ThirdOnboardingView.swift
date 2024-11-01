@@ -14,7 +14,7 @@ final class ThirdOnboardingView: UIView {
     
     // MARK: - UI Components
     
-    private let navigationBar = CustomNavigationBar()
+    let navigationBar = CustomNavigationBar()
     private let subCategoryLabel = UILabel()
     
     private let title1 = UILabel()
@@ -147,8 +147,7 @@ extension ThirdOnboardingView {
         
         self.addSubviews(navigationBar, subCategoryLabel,
                          title1, title2, title3,
-                         category1
-                         , category2, category3)
+                         category1, category2, category3)
         
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -181,7 +180,6 @@ extension ThirdOnboardingView {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(110)
         }
-        
         
         title3.snp.makeConstraints {
             $0.top.equalTo(category2.snp.bottom).offset(25)
