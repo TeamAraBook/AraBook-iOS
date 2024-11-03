@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03C3C6A62CD5F87B00CD563A /* ModifyRecordBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3C6A52CD5F87200CD563A /* ModifyRecordBookViewController.swift */; };
+		03C3C6AA2CD7EDB300CD563A /* ModifyRecordBookRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3C6A92CD7EDAA00CD563A /* ModifyRecordBookRequestDto.swift */; };
 		03CECE222CB8219A000E8FF0 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE212CB82195000E8FF0 /* BookDetailView.swift */; };
 		03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */; };
 		03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */; };
@@ -124,6 +125,7 @@
 /* Begin PBXFileReference section */
 		03C3C5D72CD4E70700CD563A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		03C3C6A52CD5F87200CD563A /* ModifyRecordBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecordBookViewController.swift; sourceTree = "<group>"; };
+		03C3C6A92CD7EDAA00CD563A /* ModifyRecordBookRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecordBookRequestDto.swift; sourceTree = "<group>"; };
 		03CECE212CB82195000E8FF0 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 		A48F5D712CD075B0004F3A74 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				03C3C6A92CD7EDAA00CD563A /* ModifyRecordBookRequestDto.swift */,
 				A48F5D802CD07C55004F3A74 /* EmptyDataResponse.swift */,
 				A48F5D782CD07602004F3A74 /* RecordBookRequestDto.swift */,
 				A48F5D762CD075EF004F3A74 /* RecordBookResponseDto.swift */,
@@ -837,6 +840,7 @@
 				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
+				03C3C6AA2CD7EDB300CD563A /* ModifyRecordBookRequestDto.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
 				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,

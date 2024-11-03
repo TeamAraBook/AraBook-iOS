@@ -30,6 +30,7 @@ final class ModifyRecordBookViewController: UIViewController {
     private let textViewPlaceholder: String = ""
     private let checkButton = PublishRelay<Void>()
     private let postReviews = PublishSubject<RecordBookRequestDTO>()
+    private let putReviews = PublishSubject<ModifyRecordBookRequestDto>()
     
     private var isCharacter: Bool = false
     private var isStart: Bool = false
@@ -218,7 +219,8 @@ extension ModifyRecordBookViewController {
                     tag = ""
                 }
                 
-                self.postReviews.onNext(RecordBookRequestDTO(bookId: self.bookId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
+                print(ModifyRecordBookRequestDto(reviewID: self.reviewId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
+                self.putReviews.onNext(ModifyRecordBookRequestDto(reviewID: self.reviewId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
                 self.changeRootToTabBarVC()
             })
             .disposed(by: disposeBag)
@@ -242,7 +244,8 @@ extension ModifyRecordBookViewController {
             endDate: PublishRelay<String>(),
             reviewText: recordBookView.bookReviewView.reviewTextView.rx.text.orEmpty.asObservable(),
             checkButton: checkButton,
-            postReviews: postReviews
+            postReviews: postReviews,
+            putReviews: putReviews
         )
         
         let output = recordBookVM.transform(input: input)

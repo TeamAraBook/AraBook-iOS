@@ -233,7 +233,8 @@ extension RecordBookViewController {
             endDate: PublishRelay<String>(),
             reviewText: recordBookView.bookReviewView.reviewTextView.rx.text.orEmpty.asObservable(),
             checkButton: checkButton,
-            postReviews: postReviews
+            postReviews: postReviews,
+            putReviews: PublishSubject<ModifyRecordBookRequestDto>()
         )
         
         let output = recordBookVM.transform(input: input)

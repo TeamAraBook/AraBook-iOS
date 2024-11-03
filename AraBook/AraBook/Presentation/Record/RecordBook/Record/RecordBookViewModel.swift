@@ -41,6 +41,7 @@ final class RecordBookViewModel: ViewModel {
         let reviewText: Observable<String>
         let checkButton: PublishRelay<Void>
         let postReviews: PublishSubject<RecordBookRequestDTO>
+        let putReviews: PublishSubject<ModifyRecordBookRequestDto>
     }
     
     struct Output {
@@ -105,6 +106,12 @@ final class RecordBookViewModel: ViewModel {
             })
             .disposed(by: disposeBag)
         
+        input.putReviews
+            .subscribe(onNext: { dto in
+                self.putReviews(dto: dto)
+            })
+            .disposed(by: disposeBag)
+        
         return output
     }
     
@@ -148,6 +155,19 @@ final class RecordBookViewModel: ViewModel {
     func postReviews(dto: RecordBookRequestDTO) {
         RecordBookService.postReviews(dto: dto)
             .subscribe(onNext: { [weak self] dto in
+                guard let self else { return }
+                self.networkState.accept(.done)
+            }, onError: { [weak self] error in
+                guard let self else { return }
+                self.networkState.accept(.error(error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func putReviews(dto: ModifyRecordBookRequestDto) {
+        RecordBookService.putReviews(dto: dto)
+            .subscribe(onNext: { [weak self] dto in
+                print("🧽🧽🧽🧽🧽", dto)
                 guard let self else { return }
                 self.networkState.accept(.done)
             }, onError: { [weak self] error in
