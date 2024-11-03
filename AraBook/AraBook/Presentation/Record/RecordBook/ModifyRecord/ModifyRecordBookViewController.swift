@@ -27,7 +27,7 @@ final class ModifyRecordBookViewController: UIViewController {
     BehaviorRelay<CharacterType>(value: .notMuch)
     private let startDate = PublishRelay<String>()
     private let endDate = PublishRelay<String>()
-    private let textViewPlaceholder: String = "책에 대한 간단한 소감을 적어주세요."
+    private let textViewPlaceholder: String = ""
     private let checkButton = PublishRelay<Void>()
     private let postReviews = PublishSubject<RecordBookRequestDTO>()
     
@@ -105,6 +105,10 @@ extension ModifyRecordBookViewController {
         }
         
         recordBookView.submitButton.setTitle("수정하기", for: .normal)
+        recordBookView.recordDateView.startDate.modifyCalendar()
+        recordBookView.recordDateView.endDate.modifyCalendar()
+        self.recordBookView.bookReviewView.reviewTextView.textColor = .black
+        self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 1
     }
     
     func bindCharacterButton() {
@@ -169,7 +173,7 @@ extension ModifyRecordBookViewController {
         recordBookView.bookReviewView.reviewTextView.rx.didBeginEditing
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.recordBookView.bookReviewView.reviewTextView.text = nil
+//                self.recordBookView.bookReviewView.reviewTextView.text = nil
                 self.recordBookView.bookReviewView.reviewTextView.textColor = .black
                 self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 1
                 self.recordBookView.bookReviewView.reviewTextView.layer.borderColor = UIColor.chGreen.cgColor
@@ -402,13 +406,53 @@ extension ModifyRecordBookViewController: RecordBookViewModelDelegate {
 
 extension ModifyRecordBookViewController {
     
-    func getRecordDetail(reviewId: Int) {
+    private func getRecordDetail(reviewId: Int) {
         RecordBookService.getBookRecordDetail(reviewId: reviewId)
-            .subscribe(onNext: { [weak self] data in
+            .subscribe(onNext: { [weak self] model in
                 guard let self else { return }
-                print("📒📒📒📒📒📒📒📒", data)
+                print("📒📒📒📒📒📒📒📒", model)
+                characterType(model.reviewTagColor)
+                bindRecordBookInfo(startDate: model.readStartDate, endDate: model.readEndDate, content: model.content)
             })
             .disposed(by: disposeBag)
     }
-
+    
+    private func characterType(_ type: String) {
+        var characterType: CharacterType = .none
+        switch type {
+        case "#FFD600":
+            characterType = .notMuch
+        case "#FF8339":
+            characterType = .littleBit
+        case "#7187FF":
+            characterType = .normal
+        case "#1FD068":
+            characterType = .fun
+        case "#FE5D5C":
+            characterType = .lifeBook
+        default:
+            characterType = .none
+        }
+        self.selectedCharacter.accept(characterType)
+    }
+    
+    private func bindRecordBookInfo(startDate: String, endDate: String, content: String) {
+        didUpdateStartDate(convertModifyDateFormat(startDate))
+        didUpdateEndDate(convertModifyDateFormat(endDate))
+        isStart = true
+        isEnd = true
+        recordBookView.bookReviewView.reviewTextView.text = content
+        recordBookView.submitButton.setState(.allow)
+    }
+    
+    private func convertModifyDateFormat(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let dateObject = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "yyyy.MM.dd"
+            return dateFormatter.string(from: dateObject)
+        } else {
+            return "Invalid Date"
+        }
+    }
 }

@@ -107,6 +107,11 @@ extension RecordBookView {
         super.layoutSubviews()
         self.contentSize = contentView.frame.size
     }
+}
+
+extension RecordBookView {
     
-    // MARK: - @objc Methods
+    func bindModifyInfo(_ model: RecordDetailResponseDto) {
+        
+    }
 }
