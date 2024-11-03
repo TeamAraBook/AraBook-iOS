@@ -89,7 +89,7 @@ extension RecordBookView {
         }
         
         submitButton.snp.makeConstraints {
-            $0.top.equalTo(bookReviewView.snp.bottom).offset(17)
+            $0.top.equalTo(bookReviewView.snp.bottom).offset(8)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(60)
         }

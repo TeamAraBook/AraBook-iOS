@@ -103,6 +103,8 @@ extension ModifyRecordBookViewController {
             $0.showsVerticalScrollIndicator = true
             $0.showsHorizontalScrollIndicator = false
         }
+        
+        recordBookView.submitButton.setTitle("수정하기", for: .normal)
     }
     
     func bindCharacterButton() {
