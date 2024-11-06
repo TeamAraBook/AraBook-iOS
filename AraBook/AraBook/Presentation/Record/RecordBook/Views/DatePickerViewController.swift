@@ -67,7 +67,8 @@ extension DatePickerViewController {
             endDate: endDate,
             reviewText: Observable<String>.empty(),
             checkButton: PublishRelay<Void>(),
-            postReviews: PublishSubject<RecordBookRequestDTO>()
+            postReviews: PublishSubject<RecordBookRequestDTO>(),
+            putReviews: PublishSubject<ModifyRecordBookRequestDto>()
         )
         
         let output = recordBookVM.transform(input: input)

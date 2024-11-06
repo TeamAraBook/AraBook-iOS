@@ -14,6 +14,7 @@ enum RecordTarget {
     case getRecordBookList
     case getRecordBookDetail(reviewId: Int)
     case delRecordBookDeatil(reviewId: Int)
+    case putReviews(dto: ModifyRecordBookRequestDto)
 }
 
 extension RecordTarget: BaseTargetType {
@@ -32,6 +33,8 @@ extension RecordTarget: BaseTargetType {
             let path = URLConstant.reviewsDetail
                 .replacingOccurrences(of: "{reviewId}", with: String(reviewId))
             return path
+        case .putReviews:
+            return URLConstant.reviews
         }
     }
     
@@ -41,6 +44,8 @@ extension RecordTarget: BaseTargetType {
             return .post
         case .delRecordBookDeatil:
             return .delete
+        case .putReviews:
+            return .put
         default:
             return .get
         }
@@ -49,6 +54,8 @@ extension RecordTarget: BaseTargetType {
     var task: Moya.Task {
         switch self {
         case .postReviews(let dto):
+            return .requestJSONEncodable(dto)
+        case .putReviews(let dto):
             return .requestJSONEncodable(dto)
         default:
             return .requestPlain

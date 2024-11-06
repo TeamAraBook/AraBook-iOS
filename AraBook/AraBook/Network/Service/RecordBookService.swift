@@ -24,6 +24,13 @@ struct RecordBookService: Networkable {
             .decode(decodeType: RecordBookResponseDTO.self)
     }
     
+    static func putReviews(dto: ModifyRecordBookRequestDto) -> Observable<RecordBookResponseDTO> {
+        return provider.rx.request(.putReviews(dto: dto))
+            .asObservable()
+            .mapError()
+            .decode(decodeType: RecordBookResponseDTO.self)
+    }
+    
     static func getBookDetail(bookId: Int) -> Observable<BookDetailResponseDTO> {
         return provider.rx.request(.getBookDetail(bookId: bookId))
             .asObservable()

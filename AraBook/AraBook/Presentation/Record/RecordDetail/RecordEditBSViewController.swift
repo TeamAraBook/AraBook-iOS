@@ -98,8 +98,9 @@ extension RecordEditBSViewController {
         
         editButton.rx.tap
             .subscribe(onNext: {
-                let nav = RecordBookViewController(bookId: self.bookID,
-                                                   bookTitle: self.bookTitle)
+                let nav = ModifyRecordBookViewController(bookId: self.bookID,
+                                                         bookTitle: self.bookTitle,
+                                                         reviewId: self.reviewId)
                 self.present(nav, animated: true)
             })
             .disposed(by: disposeBag)

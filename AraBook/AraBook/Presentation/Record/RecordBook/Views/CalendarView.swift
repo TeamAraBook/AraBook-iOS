@@ -76,6 +76,13 @@ extension CalendarView {
         self.layer.borderColor = UIColor.gray800.cgColor
     }
     
+    func modifyCalendar() {
+        self.backgroundColor = .white
+        self.layer.borderWidth = 2
+        self.layer.borderColor = UIColor.gray800.cgColor
+        self.dateLabel.textColor = .black
+    }
+    
     func getCurrentDateString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd" 

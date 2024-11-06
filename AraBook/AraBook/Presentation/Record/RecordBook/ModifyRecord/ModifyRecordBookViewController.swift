@@ -1,8 +1,8 @@
 //
-//  RecordBookViewController.swift
+//  ModifyRecordBookViewController.swift
 //  AraBook
 //
-//  Created by KJ on 10/11/24.
+//  Created by KJ on 11/2/24.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class RecordBookViewController: UIViewController {
+final class ModifyRecordBookViewController: UIViewController {
     
     // MARK: - UI Components
 
@@ -27,22 +27,26 @@ final class RecordBookViewController: UIViewController {
     BehaviorRelay<CharacterType>(value: .notMuch)
     private let startDate = PublishRelay<String>()
     private let endDate = PublishRelay<String>()
-    private let textViewPlaceholder: String = "책에 대한 간단한 소감을 적어주세요."
+    private let textViewPlaceholder: String = ""
     private let checkButton = PublishRelay<Void>()
     private let postReviews = PublishSubject<RecordBookRequestDTO>()
+    private let putReviews = PublishSubject<ModifyRecordBookRequestDto>()
     
     private var isCharacter: Bool = false
     private var isStart: Bool = false
     private var isEnd: Bool = false
     private let bookId: Int
     private var bookTitle: String
+    private let reviewId: Int
     
     // MARK: - Initializer
 
-    init(bookId: Int, bookTitle: String) {
+    init(bookId: Int, bookTitle: String, reviewId: Int) {
         self.bookId = bookId
         self.bookTitle = bookTitle
+        self.reviewId = reviewId
         super.init(nibName: nil, bundle: nil)
+        self.getRecordDetail(reviewId: reviewId)
     }
     
     // MARK: - LifeCycle
@@ -85,7 +89,7 @@ final class RecordBookViewController: UIViewController {
     }
 }
 
-extension RecordBookViewController {
+extension ModifyRecordBookViewController {
     
     func setUI() {
         view.backgroundColor = .white
@@ -100,6 +104,12 @@ extension RecordBookViewController {
             $0.showsVerticalScrollIndicator = true
             $0.showsHorizontalScrollIndicator = false
         }
+        
+        recordBookView.submitButton.setTitle("수정하기", for: .normal)
+        recordBookView.recordDateView.startDate.modifyCalendar()
+        recordBookView.recordDateView.endDate.modifyCalendar()
+        self.recordBookView.bookReviewView.reviewTextView.textColor = .black
+        self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 1
     }
     
     func bindCharacterButton() {
@@ -164,7 +174,7 @@ extension RecordBookViewController {
         recordBookView.bookReviewView.reviewTextView.rx.didBeginEditing
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.recordBookView.bookReviewView.reviewTextView.text = nil
+//                self.recordBookView.bookReviewView.reviewTextView.text = nil
                 self.recordBookView.bookReviewView.reviewTextView.textColor = .black
                 self.recordBookView.bookReviewView.reviewTextView.layer.borderWidth = 1
                 self.recordBookView.bookReviewView.reviewTextView.layer.borderColor = UIColor.chGreen.cgColor
@@ -209,7 +219,8 @@ extension RecordBookViewController {
                     tag = ""
                 }
                 
-                self.postReviews.onNext(RecordBookRequestDTO(bookId: self.bookId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
+                print(ModifyRecordBookRequestDto(reviewID: self.reviewId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
+                self.putReviews.onNext(ModifyRecordBookRequestDto(reviewID: self.reviewId, reviewTag: tag, content: text, readStartDate: start, readEndDate: end))
                 self.changeRootToTabBarVC()
             })
             .disposed(by: disposeBag)
@@ -233,7 +244,8 @@ extension RecordBookViewController {
             endDate: PublishRelay<String>(),
             reviewText: recordBookView.bookReviewView.reviewTextView.rx.text.orEmpty.asObservable(),
             checkButton: checkButton,
-            postReviews: postReviews
+            postReviews: postReviews,
+            putReviews: putReviews
         )
         
         let output = recordBookVM.transform(input: input)
@@ -265,7 +277,7 @@ extension RecordBookViewController {
     }
 }
 
-extension RecordBookViewController {
+extension ModifyRecordBookViewController {
     
     // MARK: - Methods
     
@@ -382,7 +394,7 @@ extension RecordBookViewController {
     }
 }
 
-extension RecordBookViewController: RecordBookViewModelDelegate {
+extension ModifyRecordBookViewController: RecordBookViewModelDelegate {
     
     func didUpdateStartDate(_ date: String) {
         recordBookView.recordDateView.bindStartDate(date)
@@ -392,5 +404,58 @@ extension RecordBookViewController: RecordBookViewModelDelegate {
     func didUpdateEndDate(_ date: String) {
         recordBookView.recordDateView.bindEndDate(date)
         recordBookView.recordDateView.endDate.unSelectedCalendar()
+    }
+}
+
+extension ModifyRecordBookViewController {
+    
+    private func getRecordDetail(reviewId: Int) {
+        RecordBookService.getBookRecordDetail(reviewId: reviewId)
+            .subscribe(onNext: { [weak self] model in
+                guard let self else { return }
+                print("📒📒📒📒📒📒📒📒", model)
+                characterType(model.reviewTagColor)
+                bindRecordBookInfo(startDate: model.readStartDate, endDate: model.readEndDate, content: model.content)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func characterType(_ type: String) {
+        var characterType: CharacterType = .none
+        switch type {
+        case "#FFD600":
+            characterType = .notMuch
+        case "#FF8339":
+            characterType = .littleBit
+        case "#7187FF":
+            characterType = .normal
+        case "#1FD068":
+            characterType = .fun
+        case "#FE5D5C":
+            characterType = .lifeBook
+        default:
+            characterType = .none
+        }
+        self.selectedCharacter.accept(characterType)
+    }
+    
+    private func bindRecordBookInfo(startDate: String, endDate: String, content: String) {
+        didUpdateStartDate(convertModifyDateFormat(startDate))
+        didUpdateEndDate(convertModifyDateFormat(endDate))
+        isStart = true
+        isEnd = true
+        recordBookView.bookReviewView.reviewTextView.text = content
+        recordBookView.submitButton.setState(.allow)
+    }
+    
+    private func convertModifyDateFormat(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let dateObject = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "yyyy.MM.dd"
+            return dateFormatter.string(from: dateObject)
+        } else {
+            return "Invalid Date"
+        }
     }
 }

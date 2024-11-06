@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03C3C6A62CD5F87B00CD563A /* ModifyRecordBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3C6A52CD5F87200CD563A /* ModifyRecordBookViewController.swift */; };
+		03C3C6AA2CD7EDB300CD563A /* ModifyRecordBookRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3C6A92CD7EDAA00CD563A /* ModifyRecordBookRequestDto.swift */; };
 		03CECE222CB8219A000E8FF0 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE212CB82195000E8FF0 /* BookDetailView.swift */; };
 		03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */; };
 		03CECE262CB821BB000E8FF0 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */; };
 		03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */; };
 		03CECE2B2CB821ED000E8FF0 /* BookDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */; };
-		03CECE492CB82E3B000E8FF0 /* RecordBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE482CB82E36000E8FF0 /* RecordBookViewController.swift */; };
-		03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */; };
-		03CECE4E2CB83271000E8FF0 /* RecordBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */; };
 		03CECE502CB83282000E8FF0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE4F2CB8327E000E8FF0 /* CharacterView.swift */; };
 		03CECE522CB832A7000E8FF0 /* RecordDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE512CB8329F000E8FF0 /* RecordDateView.swift */; };
 		03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CECE532CB832B0000E8FF0 /* BookReviewView.swift */; };
@@ -125,14 +124,13 @@
 
 /* Begin PBXFileReference section */
 		03C3C5D72CD4E70700CD563A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		03C3C6A52CD5F87200CD563A /* ModifyRecordBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecordBookViewController.swift; sourceTree = "<group>"; };
+		03C3C6A92CD7EDAA00CD563A /* ModifyRecordBookRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecordBookRequestDto.swift; sourceTree = "<group>"; };
 		03CECE212CB82195000E8FF0 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		03CECE232CB821A7000E8FF0 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		03CECE252CB821B6000E8FF0 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		03CECE282CB821CD000E8FF0 /* BookDetailCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailCoverView.swift; sourceTree = "<group>"; };
 		03CECE2A2CB821E2000E8FF0 /* BookDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailDescriptionView.swift; sourceTree = "<group>"; };
-		03CECE482CB82E36000E8FF0 /* RecordBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookViewController.swift; sourceTree = "<group>"; };
-		03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookViewModel.swift; sourceTree = "<group>"; };
-		03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBookView.swift; sourceTree = "<group>"; };
 		03CECE4F2CB8327E000E8FF0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		03CECE512CB8329F000E8FF0 /* RecordDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDateView.swift; sourceTree = "<group>"; };
 		03CECE532CB832B0000E8FF0 /* BookReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReviewView.swift; sourceTree = "<group>"; };
@@ -223,6 +221,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		033518562CA5C35000F60B61 /* RecordsList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordsList; sourceTree = "<group>"; };
+		03C3C6A72CD5F91500CD563A /* Record */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Record; sourceTree = "<group>"; };
 		A4B716632CAC146700F28562 /* RecordDetail */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RecordDetail; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -259,6 +258,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03C3C6A82CD5F92B00CD563A /* ModifyRecord */ = {
+			isa = PBXGroup;
+			children = (
+				03C3C6A52CD5F87200CD563A /* ModifyRecordBookViewController.swift */,
+			);
+			path = ModifyRecord;
+			sourceTree = "<group>";
+		};
 		03CECE202CB8218C000E8FF0 /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,11 +289,10 @@
 		03CECE472CB82E29000E8FF0 /* RecordBook */ = {
 			isa = PBXGroup;
 			children = (
+				03C3C6A82CD5F92B00CD563A /* ModifyRecord */,
+				03C3C6A72CD5F91500CD563A /* Record */,
 				03CECF242CBA4711000E8FF0 /* Models */,
 				03CECE4C2CB83207000E8FF0 /* Views */,
-				03CECE4D2CB83259000E8FF0 /* RecordBookView.swift */,
-				03CECE4A2CB82E57000E8FF0 /* RecordBookViewModel.swift */,
-				03CECE482CB82E36000E8FF0 /* RecordBookViewController.swift */,
 			);
 			path = RecordBook;
 			sourceTree = "<group>";
@@ -679,6 +685,7 @@
 		A48F5D712CD075B0004F3A74 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				03C3C6A92CD7EDAA00CD563A /* ModifyRecordBookRequestDto.swift */,
 				A48F5D802CD07C55004F3A74 /* EmptyDataResponse.swift */,
 				A48F5D782CD07602004F3A74 /* RecordBookRequestDto.swift */,
 				A48F5D762CD075EF004F3A74 /* RecordBookResponseDto.swift */,
@@ -715,6 +722,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				033518562CA5C35000F60B61 /* RecordsList */,
+				03C3C6A72CD5F91500CD563A /* Record */,
 				A4B716632CAC146700F28562 /* RecordDetail */,
 			);
 			name = AraBook;
@@ -832,6 +840,7 @@
 				03DA63A12CBE674D00AD351B /* ServiceError.swift in Sources */,
 				03CECE242CB821AD000E8FF0 /* BookDetailViewController.swift in Sources */,
 				A48F58AA2CB57743004F3A74 /* SerachViewController.swift in Sources */,
+				03C3C6AA2CD7EDB300CD563A /* ModifyRecordBookRequestDto.swift in Sources */,
 				A48F58742CB4271A004F3A74 /* HeaderConstant.swift in Sources */,
 				A48F58762CB4282E004F3A74 /* URLConstant.swift in Sources */,
 				A48AC3CC2CA42EBE00212432 /* BookCollectionViewCell.swift in Sources */,
@@ -847,7 +856,6 @@
 				A48AC3B52CA29AA600212432 /* UIView+.swift in Sources */,
 				03CECE222CB8219A000E8FF0 /* BookDetailView.swift in Sources */,
 				A48AC3792CA28F6A00212432 /* AppDelegate.swift in Sources */,
-				03CECE492CB82E3B000E8FF0 /* RecordBookViewController.swift in Sources */,
 				A48F58842CB4290D004F3A74 /* HomeTarget.swift in Sources */,
 				A48F5D812CD07C5D004F3A74 /* EmptyDataResponse.swift in Sources */,
 				A48F58652CB426B3004F3A74 /* BaseTargetType.swift in Sources */,
@@ -856,7 +864,6 @@
 				A48F5D7D2CD07675004F3A74 /* RecordService.swift in Sources */,
 				A48F58B02CB57B50004F3A74 /* RecentCollectionViewCell.swift in Sources */,
 				03DA63DD2CBE783C00AD351B /* SecondOnboardingView.swift in Sources */,
-				03CECE4E2CB83271000E8FF0 /* RecordBookView.swift in Sources */,
 				A48AC39C2CA292DA00212432 /* TabBarController.swift in Sources */,
 				03DA63DB2CBE783400AD351B /* FirstOnboardingView.swift in Sources */,
 				A48F58822CB428D7004F3A74 /* RecommendBestSellerResponseDto.swift in Sources */,
@@ -867,7 +874,6 @@
 				03CECE542CB832C3000E8FF0 /* BookReviewView.swift in Sources */,
 				03CECF262CBA471E000E8FF0 /* CharacterModel.swift in Sources */,
 				A48F58782CB4284F004F3A74 /* NetworkLoggerPlugin.swift in Sources */,
-				03CECE4B2CB82E63000E8FF0 /* RecordBookViewModel.swift in Sources */,
 				03DA63EA2CBEC51A00AD351B /* TopicCollectionViewCell.swift in Sources */,
 				03DA63E22CBE787700AD351B /* OnboardingViewModel.swift in Sources */,
 				03DA63D32CBE77AD00AD351B /* FirstOnboardingViewController.swift in Sources */,
@@ -886,6 +892,7 @@
 				A48F596F2CB58D5D004F3A74 /* SearchBookResponseDto.swift in Sources */,
 				03CECF2A2CBA563C000E8FF0 /* DatePickerViewController.swift in Sources */,
 				03CECE582CB83EDB000E8FF0 /* CalendarView.swift in Sources */,
+				03C3C6A62CD5F87B00CD563A /* ModifyRecordBookViewController.swift in Sources */,
 				A48AC3962CA292BB00212432 /* CustomNavigationBar.swift in Sources */,
 				03CECE292CB821D6000E8FF0 /* BookDetailCoverView.swift in Sources */,
 				A48AC3C22CA4207600212432 /* HomeTodayBookView.swift in Sources */,
