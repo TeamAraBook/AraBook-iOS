@@ -78,6 +78,7 @@ extension MypageViewController {
     
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
+        self.view.backgroundColor = .white
     }
     
     func setHierarchy() {
